@@ -383,7 +383,7 @@ a.c:hover{color:var(--ink)}
 <div class="proof">
   <span><b>108</b> operations, full surface</span>
   <span><b>Synthetic</b> data only</span>
-  <span>Scoped <b>md_test_</b> key</span>
+  <span>Scoped <b>kx_test_</b> key</span>
   <span>Rate-limited &amp; revocable</span>
 </div>
 
@@ -407,10 +407,10 @@ a.c:hover{color:var(--ink)}
 
     <div class="reveal" id="reveal">
       <div class="lab">YOUR SANDBOX KEY &mdash; SHOWN ONCE</div>
-      <div class="keybox"><code id="keyVal">md_test_&hellip;</code><button class="copy" id="copyBtn" onclick="copyKey()">COPY</button></div>
-      <div class="warn"><span>&#9888;</span><div><b>Store this now.</b> For your security we keep only a hash of this key &mdash; we can&rsquo;t show or recover it again. Lost it? Generate a new one and revoke the old.</div></div>
+      <div class="keybox"><code id="keyVal">kx_test_&hellip;</code><button class="copy" id="copyBtn" onclick="copyKey()">COPY</button></div>
+      <div class="warn"><span>&#9888;</span><div><b>Store this now.</b> For your security this key is signed, not stored &mdash; we can&rsquo;t show or recover it again. Lost it? Generate a new one and revoke the old.</div></div>
       <div class="meta-grid">
-        <div class="mcell"><div class="k">ENVIRONMENT</div><div class="v"><b>sandbox</b> &middot; sandbox.api.microndelta.com</div></div>
+        <div class="mcell"><div class="k">ENVIRONMENT</div><div class="v"><b>sandbox</b> &middot; api.kineticanvil.com</div></div>
         <div class="mcell"><div class="k">KEY ID</div><div class="v mono" id="keyId">key_&hellip;</div></div>
         <div class="mcell"><div class="k">SCOPE</div><div class="v">All sandbox scopes &middot; read + write</div></div>
         <div class="mcell"><div class="k">RATE LIMIT</div><div class="v">120 req / min</div></div>
@@ -418,7 +418,7 @@ a.c:hover{color:var(--ink)}
       <div class="next">
         <div class="h">NEXT STEPS</div>
         <div class="steps">
-          <div class="step"><span class="n">01</span><div>Set your base URL to <code>https://sandbox.api.microndelta.com</code> and send the key as <code>Authorization: Bearer &lt;key&gt;</code>.</div></div>
+          <div class="step"><span class="n">01</span><div>Set your base URL to <code>https://api.kineticanvil.com</code> and send the key as <code>Authorization: Bearer &lt;key&gt;</code>.</div></div>
           <div class="step"><span class="n">02</span><div>Follow the <a href="https://docs.kineticanvil.com/quickstart">Quickstart</a> &mdash; first call in under a minute.</div></div>
           <div class="step"><span class="n">03</span><div>Import the <a href="https://docs.kineticanvil.com/#tools">Postman collection</a> &mdash; the key drops into <code>{{api_key}}</code>.</div></div>
         </div>
@@ -430,8 +430,8 @@ a.c:hover{color:var(--ink)}
 <div class="sec">
   <div class="eyebrow">§ 02 &mdash; HOW SANDBOX KEYS ARE SECURED</div>
   <div class="model">
-    <div class="m"><h3>Scoped &amp; sandbox-only <span class="badge live">By design</span></h3><p>A <span class="mono">md_test_</span> key reaches the sandbox environment and synthetic data only. It cannot read, write, or even see production matters &mdash; the prefix is environment-bound.</p></div>
-    <div class="m"><h3>Hashed at rest <span class="badge live">By design</span></h3><p>We store only a one-way hash of your key, never the key itself. It is shown to you exactly once at creation; after that, no one &mdash; including us &mdash; can recover it.</p></div>
+    <div class="m"><h3>Scoped &amp; sandbox-only <span class="badge live">By design</span></h3><p>A <span class="mono">kx_test_</span> key reaches the sandbox environment and synthetic data only. It cannot read, write, or even see production matters &mdash; the prefix is environment-bound.</p></div>
+    <div class="m"><h3>Signed, not stored <span class="badge live">By design</span></h3><p>Your key is a signed token we verify but never store. It is shown to you exactly once at creation; after that, no one &mdash; including us &mdash; can recover it.</p></div>
     <div class="m"><h3>One-time reveal <span class="badge live">By design</span></h3><p>The key is returned a single time in the response that creates it. Closing this panel discards it from the browser. Lost keys are replaced, not retrieved.</p></div>
     <div class="m"><h3>Rate-limited &amp; revocable <span class="badge live">By design</span></h3><p>Each key is rate-limited and capped per organization, with a self-serve revoke + rotate path. Abuse controls and inactivity expiry keep stale keys from lingering.</p></div>
   </div>
