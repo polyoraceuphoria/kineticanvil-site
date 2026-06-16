@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Kinetic Anvil: case operations infrastructure for financial fraud recovery. One protocol carries a matter from intake to remittance.">
+<link rel="canonical" href="https://kineticanvil.com/">
+<meta property="og:title" content="Kinetic Anvil: Case operations infrastructure for financial fraud recovery">
+<meta property="og:description" content="One protocol carries a matter from intake to remittance: asset tracing, legal process, enforcement, and audit, run as software.">
+<meta property="og:url" content="https://kineticanvil.com/">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://kineticanvil.com/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Kinetic Anvil: Case operations infrastructure for financial fraud recovery">
+<meta name="twitter:description" content="One protocol carries a matter from intake to remittance: asset tracing, legal process, enforcement, and audit, run as software.">
+<meta name="twitter:image" content="https://kineticanvil.com/og.png">
+<title>Anvil · Case operations infrastructure for financial fraud recovery | Kinetic</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='12' fill='none' stroke='%2300FF73' stroke-width='2'/><circle cx='16' cy='16' r='4' fill='%2300FF73'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>
+(function(){try{var t=localStorage.getItem('md-theme');if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t);}}catch(e){}})();
+</script>
+<style>
+html[data-theme="dark"]{
+  --bg:#111518; --ink:#E9E7E2; --muted:#9BA1A8; --faint:#878E96;
+  --hair:rgba(233,231,226,0.13); --green:#00FF73;
+  --panel:#161b1f; --btn-ink-bg:#E9E7E2; --btn-ink-fg:#111518;
+}
+html[data-theme="light"]{
+  --bg:#F2F0ED; --ink:#111518; --muted:#5A6068; --faint:#6E747C;
+  --hair:rgba(28,33,39,0.14); --green:#228B33;
+  --panel:#FAF9F7; --btn-ink-bg:#111518; --btn-ink-fg:#F2F0ED;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+:focus-visible{outline:2px solid var(--green);outline-offset:2px}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:'Satoshi',system-ui,sans-serif;font-weight:300;-webkit-font-smoothing:antialiased;transition:background .25s,color .25s}
+.mono{font-family:'Geist Mono',monospace}
+a{color:inherit;text-decoration:none}
+.frame{max-width:1080px;margin:0 auto;padding:0 48px}
+
+/* old nav sticky removed — KP unified header handles positioning */
+.nav-in{display:flex;justify-content:space-between;align-items:center;padding:22px 0}
+.brand{display:flex;align-items:center;gap:10px}
+.mark{width:14px;height:14px;border:1px solid var(--ink);border-radius:50%;position:relative}
+.mark::after{content:"";position:absolute;inset:0;margin:auto;width:4px;height:4px;background:var(--green);border-radius:50%}
+.brand span{font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:0.28em;font-weight:500}
+.nav-links{display:flex;gap:36px}
+.nav-links a{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.16em;color:var(--muted);transition:color .15s}
+.nav-links a:hover{color:var(--ink)}
+
+.hero{padding:120px 0 96px}
+h1{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:64px;line-height:1.08;letter-spacing:-0.01em;max-width:760px}
+h1 em{font-style:italic}
+.hero p{margin-top:36px;max-width:520px;font-size:16px;line-height:1.65;color:var(--muted);font-weight:400}
+
+.register{border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)}
+.reg-grid{display:grid;grid-template-columns:repeat(4,1fr)}
+.reg-cell{padding:32px 0;border-right:1px solid var(--hair)}
+.reg-cell:last-child{border-right:none}
+.reg-cell .n{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:40px;line-height:1}
+.reg-cell .l{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.2em;color:var(--muted);margin-top:10px}
+.reg-cell + .reg-cell{padding-left:32px}
+
+.sec{padding:88px 0;border-bottom:1px solid var(--hair)}
+.eyebrow{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.2em;color:var(--green);margin-bottom:40px}
+.sec-grid{display:grid;grid-template-columns:300px 1fr;gap:64px}
+h2{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:34px;line-height:1.15}
+h2 em{font-style:italic}
+.sec-body p{font-size:15px;line-height:1.7;color:var(--muted);font-weight:400;max-width:560px}
+
+.stations{display:flex;align-items:center;margin-top:56px;overflow-x:auto;padding-bottom:6px}
+.st{display:flex;flex-direction:column;align-items:center;gap:10px;flex:0 0 auto;padding:0 5px}
+.st .dot{width:5px;height:5px;border-radius:50%;background:var(--ink);opacity:0.85}
+.st:first-child .dot{background:var(--green);opacity:1}
+.st .nm{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.08em;color:var(--muted);white-space:nowrap}
+.rail{height:1px;background:var(--hair);flex:1;min-width:14px;margin-bottom:18px}
+
+.access{padding:110px 0 120px}
+.access h2{font-size:40px;max-width:620px}
+.access p{margin-top:24px;color:var(--muted);font-weight:400;font-size:15px;max-width:480px;line-height:1.7}
+.btn-row{margin-top:44px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.btn{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.16em;padding:13px 26px;border:1px solid var(--ink);cursor:pointer;background:none;color:var(--ink);transition:opacity .15s}
+.btn:hover{opacity:.8}
+.btn.primary{background:var(--btn-ink-bg);color:var(--btn-ink-fg)}
+
+footer{padding:28px 0;border-top:1px solid var(--hair)}
+.foot-in{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+footer .c{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.16em;color:var(--faint)}
+footer a.c:hover{color:var(--ink)}
+.theme-toggle{display:flex;align-items:center;gap:14px}
+.theme-toggle button{background:none;border:none;cursor:pointer;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.16em;color:var(--faint);padding:4px 0;transition:color .15s}
+.theme-toggle button:hover{color:var(--ink)}
+.theme-toggle button.active{color:var(--ink)}
+.theme-toggle button.active::before{content:"";display:inline-block;width:4px;height:4px;border-radius:50%;background:var(--green);margin-right:7px;vertical-align:1px}
+.theme-toggle .sep{width:1px;height:10px;background:var(--hair)}
+
+.modal-backdrop{position:fixed;inset:0;z-index:9000;background:rgba(10,12,14,.72);backdrop-filter:blur(6px);opacity:0;pointer-events:none;transition:opacity .25s}
+.modal-backdrop.open{opacity:1;pointer-events:auto}
+.modal-card{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(.97);z-index:9001;width:min(440px,calc(100vw - 32px));background:var(--bg);border:1px solid var(--hair);padding:40px 36px 32px;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s}
+.modal-card.open{opacity:1;pointer-events:auto;transform:translate(-50%,-50%) scale(1)}
+.modal-close{position:absolute;top:14px;right:14px;background:none;border:none;cursor:pointer;color:var(--muted)}
+.modal-close:hover{color:var(--ink)}
+.modal-card h3{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300;margin-bottom:6px}
+.modal-sub{font-size:13px;color:var(--muted);font-weight:400;margin-bottom:26px;line-height:1.55}
+.form-field{margin-bottom:16px}
+.form-field label{display:block;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.18em;color:var(--muted);margin-bottom:7px;text-transform:uppercase}
+.form-field input,.form-field textarea{width:100%;background:var(--panel);border:1px solid var(--hair);color:var(--ink);font-family:'Satoshi',sans-serif;font-size:14px;font-weight:400;padding:11px 13px;outline:none;resize:vertical}
+.form-field input:focus,.form-field textarea:focus{border-color:var(--green)}
+.modal-submit{width:100%;margin-top:8px}
+.modal-note{font-size:11px;color:var(--faint);text-align:center;margin-top:14px;font-weight:400}
+.modal-note a{text-decoration:underline;text-underline-offset:2px}
+.hp-field{position:absolute;left:-9999px;top:-9999px;height:0;overflow:hidden}
+.form-ok{text-align:center;padding:18px 0 8px}
+.form-ok .ok-icon{font-size:26px;color:var(--green);margin-bottom:12px}
+.form-ok h3{margin-bottom:8px}
+.form-ok p{font-size:13px;color:var(--muted);font-weight:400;line-height:1.6}
+
+.guar{border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)}
+.guar-in{display:flex;align-items:center;gap:40px;padding:30px 0}
+.guar .lab{font-family:'Geist Mono',monospace;font-size:10.5px;letter-spacing:.22em;color:var(--green);margin-bottom:10px}
+.guar .claim{font-family:'Cormorant Garamond',serif;font-size:27px;line-height:1.18;font-weight:300;max-width:560px}
+.guar .claim em{font-style:italic}
+.guar .artifact{flex-shrink:0;border-left:1px solid var(--hair);padding-left:36px;display:flex;flex-direction:column;gap:10px}
+.guar .arow{display:flex;align-items:baseline;gap:10px;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.04em;color:var(--muted);white-space:nowrap}
+.guar .arow b{color:var(--green);font-weight:500;font-size:13px}
+.guar .seeall{font-family:'Geist Mono',monospace;font-size:10.5px;letter-spacing:.14em;color:var(--faint);margin-top:4px}
+.guar .seeall:hover{color:var(--ink)}
+.uc-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:48px;border-top:1px solid var(--hair);border-left:1px solid var(--hair)}
+.uc-card{padding:36px 32px;border-right:1px solid var(--hair);border-bottom:1px solid var(--hair)}
+.uc-label{font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.22em;color:var(--green);margin-bottom:14px;text-transform:uppercase}
+.uc-scenario{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300;line-height:1.22;margin-bottom:14px}
+.uc-outcome{font-size:14px;line-height:1.65;color:var(--muted);font-weight:400;margin-bottom:18px}
+.uc-stations{font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.1em;color:var(--faint)}
+.uc-stations span{color:var(--green)}
+
+.pricing{padding:88px 0;border-bottom:1px solid var(--hair)}
+.pricing-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:48px;border-top:1px solid var(--hair);border-left:1px solid var(--hair)}
+.price-card{padding:36px 28px;border-right:1px solid var(--hair);border-bottom:1px solid var(--hair);display:flex;flex-direction:column}
+.price-card.featured{background:var(--panel)}
+.price-tier{font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.22em;color:var(--green);margin-bottom:16px;text-transform:uppercase}
+.price-amount{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:300;line-height:1;margin-bottom:4px}
+.price-period{font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.14em;color:var(--faint);margin-bottom:24px}
+.price-features{list-style:none;margin:0;padding:0;flex:1}
+.price-features li{font-size:13px;line-height:1.55;color:var(--muted);font-weight:400;padding:6px 0;border-bottom:1px solid var(--hair)}
+.price-features li:last-child{border-bottom:none}
+.price-features li::before{content:"";display:inline-block;width:4px;height:4px;border-radius:50%;background:var(--green);margin-right:10px;vertical-align:2px}
+.price-cta{margin-top:24px}
+.price-cta .btn{width:100%;text-align:center;display:block;font-size:10px}
+.overage-table{margin-top:48px;border-top:1px solid var(--hair)}
+.overage-row{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--hair)}
+.overage-row.header{color:var(--faint)}
+.overage-cell{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.08em;color:var(--muted);padding:14px 0}
+.overage-cell:last-child{text-align:right}
+.overage-row.header .overage-cell{font-size:10px;letter-spacing:.18em;color:var(--faint);padding:14px 0 10px}
+.pricing-note{margin-top:28px;font-size:13px;color:var(--faint);font-weight:400;line-height:1.65;max-width:600px}
+
+@media(max-width:860px){
+  .frame{padding:0 24px}
+  h1{font-size:42px}
+  .guar-in{flex-direction:column;align-items:flex-start;gap:22px}
+  .guar .artifact{border-left:none;padding-left:0;border-top:1px solid var(--hair);padding-top:20px;width:100%}
+  .hero{padding:80px 0 64px}
+  .sec{padding:64px 0}
+  .sec-grid{grid-template-columns:1fr;gap:28px}
+  .reg-grid{grid-template-columns:repeat(2,1fr)}
+  .reg-cell{border-right:none;padding:24px 0}
+  .reg-cell + .reg-cell{padding-left:0}
+  .reg-cell:nth-child(odd){border-right:1px solid var(--hair)}
+  .reg-cell:nth-child(even){padding-left:24px}
+  .access{padding:80px 0}
+  .access h2{font-size:32px}
+  .nav-links{gap:20px}
+  .uc-grid{grid-template-columns:1fr}
+  .uc-card{padding:28px 24px}
+  .pricing-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:520px){
+  .pricing-grid{grid-template-columns:1fr}
+}
+  /* ── BREADCRUMB ── */
+  .crumb {
+    font-family: 'Geist Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--faint);
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 14px 48px 0;
+  }
+  .crumb a { text-decoration: none; }
+  .crumb a:hover { color: var(--green); }
+  .crumb .num { color: var(--green); }
+
+/* ── MOBILE: API pages ── */
+@media(max-width:640px){
+  body{overflow-x:hidden}
+  .frame{padding:0 20px}
+  .crumb{padding:12px 20px 0;font-size:9px}
+  nav .nav-in{padding:14px 0}
+  .nav-links{display:none}
+  h1{font-size:32px!important;line-height:1.12}
+  .hero{padding:40px 0 36px}
+  .hero p{font-size:14.5px;margin-top:20px}
+  .guar{margin-top:0}
+  .guar-in{flex-direction:column;gap:18px;padding:24px 0}
+  .guar .lab{font-size:10px;margin-bottom:6px}
+  .guar .claim{font-size:22px}
+  .guar .artifact{border-left:none;padding-left:0;border-top:1px solid var(--hair);padding-top:16px;width:100%}
+  .guar .arow{font-size:10px;gap:8px}
+  .reg-grid{grid-template-columns:repeat(2,1fr)}
+  .reg-cell{padding:20px 0}
+  .reg-cell + .reg-cell{padding-left:20px}
+  .reg-cell:nth-child(2){border-right:none}
+  .reg-cell:nth-child(3){padding-left:0;border-top:1px solid var(--hair)}
+  .reg-cell:nth-child(4){border-top:1px solid var(--hair)}
+  .reg-cell .n{font-size:28px}
+  .sec{padding:48px 0}
+  .sec-grid{grid-template-columns:1fr;gap:24px}
+  h2{font-size:26px}
+  .stations{overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:10px}
+  .access{padding:56px 0 64px}
+  .access h2{font-size:28px}
+  .btn-row{flex-direction:column;align-items:stretch}
+  .btn{text-align:center}
+  .uc-grid{grid-template-columns:1fr}
+  .uc-card{padding:24px 20px}
+  .pricing-grid{grid-template-columns:1fr}
+  header{padding:0 20px}
+  .nav-links,.nav-cta{display:none}
+  .nav-hamburger{display:flex}
+  .site-footer{padding:32px 20px 24px}
+  .footer-grid{grid-template-columns:repeat(2,1fr);gap:20px}
+  .footer-bottom{flex-direction:column;align-items:flex-start;gap:12px}
+  footer{padding:28px 20px}
+}
+
+
+  /* ── HEADER NAV ── */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(17,21,24,0.82);
+    -webkit-backdrop-filter: blur(14px) saturate(1.4);
+    backdrop-filter: blur(14px) saturate(1.4);
+    border-bottom: 1px solid var(--stone-800);
+    padding: 0 40px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .brand { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+  .mark { width: 16px; height: 16px; display: block; }
+  a.brand { color: inherit; text-decoration: none; }
+
+  .wordmark {
+    font-family: 'Geist Mono', monospace;
+    font-weight: 500;
+    font-size: 0.8125rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    margin-left: auto;
+    font-family: 'Geist Mono', monospace;
+    font-weight: 400;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+  .nav-links a {
+    color: var(--stone-400);
+    text-decoration: none;
+    transition: color .15s;
+    padding: 4px 0;
+  }
+  .nav-links a:hover { color: var(--bone); }
+  .nav-links a.nav-active { color: var(--accent); }
+
+  .nav-cta {
+    font-family: 'Geist Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--void);
+    background: var(--accent);
+    padding: 6px 14px;
+    text-decoration: none;
+    transition: opacity .15s;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-left: 12px;
+  }
+  .nav-cta:hover { opacity: 0.85; }
+
+  /* ── HAMBURGER ── */
+  .nav-hamburger {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    flex-direction: column;
+    gap: 5px;
+    margin-left: auto;
+  }
+  .nav-hamburger span {
+    display: block;
+    width: 20px;
+    height: 1.5px;
+    background: var(--bone);
+    transition: transform .25s, opacity .2s;
+  }
+  .nav-hamburger[aria-expanded="true"] span:first-child {
+    transform: translateY(3.25px) rotate(45deg);
+  }
+  .nav-hamburger[aria-expanded="true"] span:last-child {
+    transform: translateY(-3.25px) rotate(-45deg);
+  }
+
+  /* ── MOBILE MENU ── */
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    inset: 52px 0 0 0;
+    z-index: 49;
+    background: rgba(17,21,24,0.97);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    padding: 48px 40px;
+    flex-direction: column;
+  }
+  .mobile-menu[aria-hidden="false"] { display: flex; }
+  .mobile-menu-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .mobile-menu-links a {
+    font-family: 'Geist Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--stone-300);
+    text-decoration: none;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--stone-800);
+    transition: color .15s;
+  }
+  .mobile-menu-links a:hover { color: var(--accent); }
+  .mobile-menu-links .mobile-cta {
+    color: var(--accent);
+    border-bottom: none;
+    margin-top: 12px;
+  }
+
+  /* ── ENTERPRISE FOOTER ── */
+  .site-footer {
+    border-top: 1px solid var(--stone-700);
+    padding: 56px 40px 40px;
+    margin-top: auto;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    max-width: 560px;
+    margin-bottom: 48px;
+  }
+  .footer-col {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .footer-heading {
+    font-family: 'Geist Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--stone-400);
+    margin-bottom: 4px;
+  }
+  .footer-col a {
+    font-family: 'Satoshi', system-ui, sans-serif;
+    font-size: 0.8125rem;
+    font-weight: 300;
+    color: var(--stone-400);
+    text-decoration: none;
+    transition: color .15s;
+  }
+  .footer-col a:hover { color: var(--accent); }
+  .footer-bottom {
+    border-top: 1px solid var(--stone-800);
+    padding-top: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .footer-copy {
+    font-family: 'Geist Mono', monospace;
+    font-size: 0.6875rem;
+    letter-spacing: 0.12em;
+    color: var(--stone-500);
+  }
+  .footer-legal {
+    display: flex;
+    gap: 20px;
+  }
+  .footer-legal a {
+    font-family: 'Geist Mono', monospace;
+    font-size: 0.6875rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--stone-500);
+    text-decoration: none;
+    transition: color .15s;
+  }
+  .footer-legal a:hover { color: var(--accent); }
+
+  @media (max-width: 640px) {
+    header { padding: 0 20px; }
+    .nav-links, .nav-cta { display: none; }
+    .nav-hamburger { display: flex; }
+    .site-footer { padding: 40px 20px 28px; }
+    .footer-grid { grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .footer-bottom { flex-direction: column; align-items: flex-start; gap: 12px; }
+  }
+
+
+  /* ── CONTACT MODAL ── */
+  .modal-backdrop{position:fixed;inset:0;z-index:9000;background:rgba(10,12,14,.72);backdrop-filter:blur(6px);opacity:0;pointer-events:none;transition:opacity .25s}
+  .modal-backdrop.open{opacity:1;pointer-events:auto}
+  .modal-card{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(.97);z-index:9001;width:min(440px,calc(100vw - 32px));background:var(--void,#111518);border:1px solid var(--stone-700,#2e3540);padding:40px 36px 32px;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s}
+  .modal-card.open{opacity:1;pointer-events:auto;transform:translate(-50%,-50%) scale(1)}
+  .modal-close{position:absolute;top:14px;right:14px;background:none;border:none;cursor:pointer;color:var(--stone-400,#9BA1A8)}
+  .modal-close:hover{color:var(--bone,#E9E7E2)}
+  .modal-card h3{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300;margin-bottom:6px}
+  .modal-sub{font-size:13px;color:var(--stone-400,#9BA1A8);font-weight:400;margin-bottom:26px;line-height:1.55}
+  .cform-field{margin-bottom:16px}
+  .cform-field label{display:block;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.18em;color:var(--stone-400,#9BA1A8);margin-bottom:7px;text-transform:uppercase}
+  .cform-field input,.cform-field textarea{width:100%;background:var(--stone-950,#161b1f);border:1px solid var(--stone-700,#2e3540);color:var(--bone,#E9E7E2);font-family:'Satoshi',sans-serif;font-size:14px;font-weight:400;padding:11px 13px;outline:none;resize:vertical}
+  .cform-field input:focus,.cform-field textarea:focus{border-color:var(--accent,#00FF73)}
+  .cform-submit{width:100%;margin-top:8px;display:inline-block;font-family:'Geist Mono',monospace;font-size:0.75rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--void,#111518);background:var(--accent,#00FF73);padding:15px 30px;transition:opacity .2s;cursor:pointer;border:none}
+  .cform-submit:hover{opacity:0.85}
+  .cform-note{font-size:11px;color:var(--stone-500,#5e6670);text-align:center;margin-top:14px;font-weight:400}
+  .cform-note a{text-decoration:underline;text-underline-offset:2px}
+  .hp-trap{position:absolute;left:-9999px}
+  .cform-ok{text-align:center;padding:18px 0 8px}
+  .cform-ok .ok-icon{font-size:26px;color:var(--accent,#00FF73);margin-bottom:12px}
+  .cform-ok h3{margin-bottom:8px}
+  .cform-ok p{font-size:13px;color:var(--stone-400,#9BA1A8);font-weight:400;line-height:1.6}
+
+</style>
+</head>
+<body>
+<header>
+    <a class="brand" href="/">
+      <svg class="mark" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="none" stroke="var(--accent)" stroke-width="1.5"/><circle cx="12" cy="12" r="3.5" fill="var(--accent)"/></svg>
+      <div class="wordmark">Kinetic Anvil</div>
+    </a>
+    <nav class="nav-links">
+      <a href="/">Anvil</a>
+      <a href="/sandbox">Sandbox</a>
+      <a href="/status">Status</a>
+      <a href="/trust">Trust</a>
+      <a href="https://docs.kineticanvil.com">Docs</a>
+    </nav>
+    <a href="#contact" class="nav-cta">Get in Touch</a>
+    <button class="nav-hamburger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span>
+    </button>
+  </header>
+
+  <div class="mobile-menu" aria-hidden="true">
+    <nav class="mobile-menu-links">
+      <a href="/">Anvil</a>
+      <a href="/sandbox">Sandbox</a>
+      <a href="/status">Status</a>
+      <a href="/trust">Trust</a>
+      <a href="https://docs.kineticanvil.com">Docs</a>
+      <a href="#contact" class="mobile-cta">Get in Touch</a>
+    </nav>
+  </div>
+
+  <div class="crumb"><a href="https://kineticpartners.org">KINETIC PARTNERS</a> &rsaquo; ANVIL</div>
+
+<section class="hero"><div class="frame">
+  <h1>Case operations <em>infrastructure</em> for financial fraud recovery</h1>
+  <p>One protocol carries a matter from intake to remittance: asset tracing, legal process, enforcement, and audit, run as software.</p>
+</div></section>
+
+<section class="guar"><div class="frame guar-in">
+  <div>
+    <div class="lab">THE GUARANTEE</div>
+    <div class="claim">Every move is <em>authority-gated</em> and <em>provable</em></div>
+  </div>
+  <div class="artifact">
+    <div class="arow"><b>&#10003;</b> Authority check before every operation</div>
+    <div class="arow"><b>&#10003;</b> Tamper-evident audit trail, exportable</div>
+    <div class="arow"><b>&#10003;</b> Holds no client funds</div>
+    <a class="arow seeall" href="/trust">SEE THE TRUST SURFACE &rarr;</a>
+  </div>
+</div></section>
+
+<section class="register"><div class="frame reg-grid">
+  <div class="reg-cell"><div class="n">108</div><div class="l">OPERATIONS</div></div>
+  <div class="reg-cell"><div class="n">62</div><div class="l">SCOPES</div></div>
+  <div class="reg-cell"><div class="n">32</div><div class="l">EVENTS</div></div>
+  <div class="reg-cell"><div class="n">20</div><div class="l">RESOURCES</div></div>
+</div></section>
+
+<section class="sec" id="protocol"><div class="frame">
+  <div class="eyebrow">§ 01 - THE PROTOCOL</div>
+  <div class="sec-grid">
+    <h2>Ten stations, one line</h2>
+    <div class="sec-body">
+      <p>Every case runs the same line. A matter enters at judgment intake and exits at audited resolution. Each operation belongs to one of ten stations.</p>
+    </div>
+  </div>
+  <div class="stations">
+        <div class="st"><div class="dot"></div><div class="nm">Judgments</div></div><div class="rail"></div>
+        <div class="st"><div class="dot"></div><div class="nm">Matters</div></div><div class="rail"></div>
+        <div class="st"><div class="dot"></div><div class="nm">Graph</div></div><div class="rail"></div>
+        <div class="st"><div class="dot"></div><div class="nm">Attribution</div></div><div class="rail"></div>
+        <div class="st"><div class="dot"></div><div class="nm">Enforcement</div></div><div class="rail"></div>
+        <div class="st"><div class="dot"></div><div class="nm">Gates</div></div><div class="rail"></div>
+        <div class="st"><div class="dot"></div><div class="nm">Actions</div></div><div class="rail"></div>
+        <div class="st"><div class="dot"></div><div class="nm">Ledger</div></div><div class="rail"></div>
+        <div class="st"><div class="dot"></div><div class="nm">Reports</div></div><div class="rail"></div>
+        <div class="st"><div class="dot"></div><div class="nm">Audit</div></div>
+  </div>
+</div></section>
+
+<section class="sec" id="use-cases"><div class="frame">
+  <div class="eyebrow">§ 02 - USE CASES</div>
+  <div class="sec-grid">
+    <h2>Who runs the protocol</h2>
+    <div class="sec-body">
+      <p>Different mandates, same line. Every case enters at intake and exits at audited resolution.</p>
+    </div>
+  </div>
+  <div class="uc-grid">
+    <div class="uc-card">
+      <div class="uc-label">Judgment Recovery</div>
+      <div class="uc-scenario">You hold a judgment. The debtor moved the money.</div>
+      <div class="uc-outcome">Kinetic Anvil traces the assets, builds the enforcement package, and produces the audit trail your court requires.</div>
+      <div class="uc-stations"><span>&#9679;</span> Judgments &rarr; Graph &rarr; Attribution &rarr; Enforcement &rarr; Audit</div>
+    </div>
+    <div class="uc-card">
+      <div class="uc-label">Crypto Fraud Tracing</div>
+      <div class="uc-scenario">Funds went on-chain. You need attribution linked to real-world identity.</div>
+      <div class="uc-outcome">The Graph and Attribution stations map on-chain movement to off-chain entities, source-linked and exportable for counsel.</div>
+      <div class="uc-stations"><span>&#9679;</span> Matters &rarr; Graph &rarr; Attribution &rarr; Reports</div>
+    </div>
+    <div class="uc-card">
+      <div class="uc-label">Receiver Operations</div>
+      <div class="uc-scenario">You are court-appointed. Multiple parties. Every action must be authorized and accounted for.</div>
+      <div class="uc-outcome">Gates enforce authority at every step. The Ledger tracks every dollar. Audit exports the full record for the court.</div>
+      <div class="uc-stations"><span>&#9679;</span> Gates &rarr; Actions &rarr; Ledger &rarr; Audit</div>
+    </div>
+    <div class="uc-card">
+      <div class="uc-label">Compliance &amp; SAR Support</div>
+      <div class="uc-scenario">Your compliance team needs a provable trail for a suspicious activity report.</div>
+      <div class="uc-outcome">Kinetic Anvil assembles the evidence chain, produces the timeline, and exports a tamper-evident record for your filing.</div>
+      <div class="uc-stations"><span>&#9679;</span> Matters &rarr; Graph &rarr; Reports &rarr; Audit</div>
+    </div>
+    <div class="uc-card">
+      <div class="uc-label">Stablecoin Recovery</div>
+      <div class="uc-scenario">Tainted tokens on-chain. You need a freeze, burn, and reissue to the victim wallet.</div>
+      <div class="uc-outcome">Issuer Remediation builds the freeze packet, coordinates the burn/reissue, and certificates the destination wallet for the issuer.</div>
+      <div class="uc-stations"><span>&#9679;</span> Attribution &rarr; Issuer Remediation &rarr; Ledger &rarr; Audit</div>
+    </div>
+    <div class="uc-card">
+      <div class="uc-label">Exchange Enforcement</div>
+      <div class="uc-scenario">Assets sitting at an exchange. You need legal process served and funds turned over.</div>
+      <div class="uc-outcome">Packets generates the freeze, intercept, or turnover order. The protocol tracks service, response, and final disposition.</div>
+      <div class="uc-stations"><span>&#9679;</span> Graph &rarr; Packets &rarr; Enforcement &rarr; Ledger</div>
+    </div>
+    <div class="uc-card">
+      <div class="uc-label">Multi-Claimant Waterfall</div>
+      <div class="uc-scenario">Multiple victims, one debtor. You need pro-rata distribution with court-ready accounting.</div>
+      <div class="uc-outcome">Waterfall calculates each claimant's share against recovered funds, generates the distribution ledger, and exports the accounting for court approval.</div>
+      <div class="uc-stations"><span>&#9679;</span> Matters &rarr; Ledger &rarr; Waterfall &rarr; Reports</div>
+    </div>
+    <div class="uc-card">
+      <div class="uc-label">OFAC / Sanctions Clearance</div>
+      <div class="uc-scenario">Recovery target may be sanctioned. You need to clear the gate before enforcement.</div>
+      <div class="uc-outcome">Sanctions screening runs against OFAC and global lists. Review packets document the clearance decision. No enforcement proceeds until the gate clears.</div>
+      <div class="uc-stations"><span>&#9679;</span> Sanctions &rarr; Gates &rarr; Audit</div>
+    </div>
+  </div>
+</div></section>
+
+<section class="sec"><div class="frame">
+  <div class="eyebrow">§ 03 - GOVERNANCE</div>
+  <div class="sec-grid">
+    <h2>Built for regulated recovery</h2>
+    <div class="sec-body">
+      <p>Every operation is authority-gated, fully audited, and source-linked on an immutable trail. Sanctions and bankruptcy gates clear where applicable. Kinetic Anvil holds no client funds. The platform builds the case and the record; people with the authority make the moves.</p>
+    </div>
+  </div>
+</div></section>
+
+<section class="pricing" id="pricing"><div class="frame">
+  <div class="eyebrow">§ 04 - PRICING</div>
+  <div class="sec-grid">
+    <h2>Simple, outcome-aligned</h2>
+    <div class="sec-body">
+      <p>Published tiers for independent operators. Custom structures for institutions and government. GETs are always free. Only compute and write operations meter.</p>
+    </div>
+  </div>
+  <div class="pricing-grid">
+    <div class="price-card">
+      <div class="price-tier">Sandbox</div>
+      <div class="price-amount">$0</div>
+      <div class="price-period">FOREVER</div>
+      <ul class="price-features">
+        <li>1,000 operations / month</li>
+        <li>Sandbox data only</li>
+        <li>All 10 stations</li>
+        <li>5 req/s rate limit</li>
+        <li>Community docs</li>
+      </ul>
+      <div class="price-cta"><a class="btn" href="/sandbox">TRY THE SANDBOX</a></div>
+    </div>
+    <div class="price-card featured">
+      <div class="price-tier">Operator</div>
+      <div class="price-amount">$2,500</div>
+      <div class="price-period">PER MONTH</div>
+      <ul class="price-features">
+        <li>50 active matters</li>
+        <li>All 10 stations, production data</li>
+        <li>25 req/s rate limit</li>
+        <li>Standard SLA</li>
+        <li>Audit export</li>
+        <li>Per-matter overage (see below)</li>
+      </ul>
+      <div class="price-cta"><button class="btn primary" data-request-access>REQUEST ACCESS</button></div>
+    </div>
+    <div class="price-card">
+      <div class="price-tier">Institutional</div>
+      <div class="price-amount">Custom</div>
+      <div class="price-period">ANNUAL CONTRACT</div>
+      <ul class="price-features">
+        <li>Custom matter caps</li>
+        <li>Priority SLA</li>
+        <li>SSO / SAML</li>
+        <li>Dedicated support</li>
+        <li>Custom reporting</li>
+        <li>BAA available</li>
+      </ul>
+      <div class="price-cta"><button class="btn" data-request-access>CONTACT US</button></div>
+    </div>
+    <div class="price-card">
+      <div class="price-tier">Government / LE</div>
+      <div class="price-amount">Custom</div>
+      <div class="price-period">CONTRACT / IDIQ</div>
+      <ul class="price-features">
+        <li>On-premise deployment</li>
+        <li>CJIS / IL4 compliance</li>
+        <li>Dedicated infrastructure</li>
+        <li>Success-fee structures</li>
+        <li>Unlimited matters</li>
+        <li>Named support contact</li>
+      </ul>
+      <div class="price-cta"><button class="btn" data-request-access>CONTACT US</button></div>
+    </div>
+  </div>
+  <div class="overage-table">
+    <div class="overage-row header">
+      <div class="overage-cell">MATTER VALUE BRACKET</div>
+      <div class="overage-cell">PER-MATTER FEE</div>
+    </div>
+    <div class="overage-row">
+      <div class="overage-cell">Under $100K</div>
+      <div class="overage-cell">$500</div>
+    </div>
+    <div class="overage-row">
+      <div class="overage-cell">$100K to $1M</div>
+      <div class="overage-cell">$2,500</div>
+    </div>
+    <div class="overage-row">
+      <div class="overage-cell">$1M to $10M</div>
+      <div class="overage-cell">$10,000</div>
+    </div>
+    <div class="overage-row">
+      <div class="overage-cell">Above $10M</div>
+      <div class="overage-cell">Negotiated</div>
+    </div>
+  </div>
+  <p class="pricing-note">Per-matter fees apply above your tier's included matter cap. All tiers include full audit trail, webhooks, and API access. Volume discounts available on annual commitments.</p>
+</div></section>
+
+<section class="access" id="access"><div class="frame">
+  <div class="eyebrow">§ 05 - ACCESS</div>
+  <h2>Have a judgment? <em>Begin recovery</em></h2>
+  <p>Access is granted per mandate, on review.</p>
+  <div class="btn-row">
+    <button class="btn primary" data-request-access>REQUEST ACCESS</button>
+    <a class="btn" href="https://docs.kineticanvil.com">READ THE DOCS →</a>
+  </div>
+</div></section>
+
+<footer class="site-footer">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="footer-heading">Product</div>
+        <a href="/sandbox">Sandbox</a>
+        <a href="/status">Status</a>
+        <a href="/trust">Trust Surface</a>
+        <a href="https://docs.kineticanvil.com">Documentation</a>
+        <a href="/status">Status</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-heading">Ecosystem</div>
+        <a href="https://kineticdefender.com">Kinetic Defender</a>
+        <a href="https://kineticpartners.org/tools/">Tools</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-heading">Company</div>
+        <a href="https://kineticpartners.org">Kinetic Partners</a>
+        <a href="https://meridianoffice.org">Meridian Recovery</a>
+        <a href="https://cipherblade.com">CipherBlade</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">&copy; 2026 Kinetic Partners, LLC</div>
+      <div class="footer-legal">
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+      </div>
+    </div>
+  </footer>
+
+<div class="modal-backdrop" id="modalBg" onclick="closeModal()"></div>
+<div class="modal-card" id="modalCard" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <button class="modal-close" onclick="closeModal()" aria-label="Close"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg></button>
+  <div id="formWrap">
+    <h3 id="modalTitle">Request Access</h3>
+    <p class="modal-sub">Tell us about the recovery you're running. We'll get back within one business day.</p>
+    <form id="accessForm" onsubmit="return submitForm(event)">
+      <div class="form-field"><label for="f-name">Name</label><input type="text" name="name" id="f-name" placeholder="Full name" required></div>
+      <div class="form-field"><label for="f-email">Email</label><input type="email" name="email" id="f-email" placeholder="you@firm.com" required></div>
+      <div class="form-field"><label for="f-organization">Organization</label><input type="text" name="organization" id="f-organization" placeholder="Firm or company name"></div>
+      <div class="form-field"><label for="f-message">Message</label><textarea name="message" id="f-message" placeholder="Brief description of your recovery or use case" rows="3"></textarea></div>
+      <div class="hp-field" aria-hidden="true"><label>Company website</label><input type="text" name="company_website" tabindex="-1" autocomplete="off"></div>
+      <button type="submit" class="btn primary modal-submit" id="submitBtn">REQUEST ACCESS</button>
+    </form>
+    <p class="modal-note">Your information is kept confidential and used only to evaluate access. See our <a href="/privacy">Privacy Notice</a> and <a href="/terms">Terms</a>.</p>
+  </div>
+  <div id="formOk" class="form-ok" style="display:none">
+    <div class="ok-icon">✓</div>
+    <h3>Request received</h3>
+    <p>We'll review your information and follow up at the email you provided within one business day.</p>
+  </div>
+</div>
+
+<script>
+function setTheme(t){
+  document.documentElement.setAttribute('data-theme',t);
+  try{localStorage.setItem('md-theme',t)}catch(e){}
+  syncToggle();
+}
+function syncToggle(){
+  var t=document.documentElement.getAttribute('data-theme');
+  document.getElementById('tLight').classList.toggle('active',t==='light');
+  document.getElementById('tDark').classList.toggle('active',t==='dark');
+}
+syncToggle();
+
+var mdLastFocus=null;
+function openModal(){
+  mdLastFocus=document.activeElement;
+  document.getElementById('modalBg').classList.add('open');
+  document.getElementById('modalCard').classList.add('open');
+  document.body.style.overflow='hidden';
+  var f=document.getElementById('f-name');
+  if(f)setTimeout(function(){f.focus()},60);
+}
+document.addEventListener('keydown',function(e){
+  if(e.key!=='Tab')return;
+  var card=document.getElementById('modalCard');
+  if(!card.classList.contains('open'))return;
+  var els=card.querySelectorAll('button,input:not([tabindex="-1"]),textarea,a[href]');
+  els=Array.prototype.filter.call(els,function(el){return el.offsetParent!==null});
+  if(!els.length)return;
+  var first=els[0],last=els[els.length-1];
+  if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}
+  else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}
+});
+function closeModal(){
+  document.getElementById('modalBg').classList.remove('open');
+  document.getElementById('modalCard').classList.remove('open');
+  document.body.style.overflow='';
+  if(mdLastFocus&&mdLastFocus.focus){mdLastFocus.focus();mdLastFocus=null;}
+  setTimeout(function(){
+    document.getElementById('formWrap').style.display='';
+    document.getElementById('formOk').style.display='none';
+    document.getElementById('accessForm').reset();
+    document.getElementById('submitBtn').textContent='REQUEST ACCESS';
+    document.getElementById('submitBtn').disabled=false;
+  },300);
+}
+function submitForm(e){
+  e.preventDefault();
+  var btn=document.getElementById('submitBtn');
+  btn.textContent='SENDING…';btn.disabled=true;
+  var fd=new FormData(document.getElementById('accessForm'));
+  var data={};fd.forEach(function(v,k){data[k]=v});
+  fetch('https://kineticpartners.org/api/request-access',{
+    method:'POST',
+    headers:{'Content-Type':'application/json','Accept':'application/json'},
+    body:JSON.stringify(data)
+  }).then(function(r){if(!r.ok)throw new Error('bad_status');return r.json()}).then(function(){
+    document.getElementById('formWrap').style.display='none';
+    document.getElementById('formOk').style.display='';
+  }).catch(function(){
+    btn.textContent='SOMETHING WENT WRONG. TRY AGAIN';btn.disabled=false;
+  });
+  return false;
+}
+document.querySelectorAll('[data-request-access]').forEach(function(a){
+  a.addEventListener('click',function(e){e.preventDefault();openModal()});
+});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal()});
+if(location.hash==='#access'){openModal();}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Kinetic Anvil",
+  "url": "https://kineticanvil.com",
+  "description": "Case operations infrastructure for financial fraud recovery. One protocol carries a matter from intake to remittance."
+}
+</script>
+<script defer src="/_vercel/insights/script.js"></script>
+
+<script>
+(function(){
+  var btn=document.querySelector('.nav-hamburger');
+  var menu=document.querySelector('.mobile-menu');
+  if(!btn||!menu)return;
+  btn.addEventListener('click',function(){
+    var open=btn.getAttribute('aria-expanded')==='true';
+    btn.setAttribute('aria-expanded',!open);
+    menu.setAttribute('aria-hidden',open);
+    document.body.style.overflow=open?'':'hidden';
+  });
+})();
+</script>
+
+<div class="modal-backdrop" id="contactBg" onclick="closeContact()"></div>
+<div class="modal-card" id="contactCard" role="dialog" aria-modal="true" aria-labelledby="contactTitle">
+  <button class="modal-close" onclick="closeContact()" aria-label="Close"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg></button>
+  <div id="contactWrap">
+    <h3 id="contactTitle">Get in Touch</h3>
+    <p class="modal-sub">Tell us what you're working on. We'll get back within one business day.</p>
+    <form id="contactForm" onsubmit="return submitContact(event)">
+      <div class="cform-field"><label for="c-name">Name</label><input type="text" name="name" id="c-name" placeholder="Full name" required></div>
+      <div class="cform-field"><label for="c-email">Email</label><input type="email" name="email" id="c-email" placeholder="you@company.com" required></div>
+      <div class="cform-field"><label for="c-org">Organization</label><input type="text" name="organization" id="c-org" placeholder="Company or firm"></div>
+      <div class="cform-field"><label for="c-msg">How can we help?</label><textarea name="message" id="c-msg" placeholder="Brief description of what you're looking for" rows="3"></textarea></div>
+      <div class="hp-trap" aria-hidden="true"><label>Website</label><input type="text" name="company_website" tabindex="-1" autocomplete="off"></div>
+      <button type="submit" class="cform-submit" id="contactBtn">SEND</button>
+    </form>
+    <p class="cform-note">Your information is kept confidential. See our <a href="/privacy">Privacy Notice</a> and <a href="/terms">Terms</a>.</p>
+  </div>
+  <div id="contactOk" class="cform-ok" style="display:none">
+    <div class="ok-icon">✓</div>
+    <h3>Message received</h3>
+    <p>We'll review your inquiry and follow up at the email provided.</p>
+  </div>
+</div>
+
+<script>
+var cLastFocus=null;
+function openContact(){
+  cLastFocus=document.activeElement;
+  document.getElementById('contactBg').classList.add('open');
+  document.getElementById('contactCard').classList.add('open');
+  document.body.style.overflow='hidden';
+  var f=document.getElementById('c-name');
+  if(f)setTimeout(function(){f.focus()},60);
+}
+document.addEventListener('keydown',function(e){
+  if(e.key!=='Tab')return;
+  var card=document.getElementById('contactCard');
+  if(!card||!card.classList.contains('open'))return;
+  var els=card.querySelectorAll('button,input:not([tabindex="-1"]),textarea,a[href]');
+  els=Array.prototype.filter.call(els,function(el){return el.offsetParent!==null});
+  if(!els.length)return;
+  var first=els[0],last=els[els.length-1];
+  if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}
+  else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}
+});
+function closeContact(){
+  document.getElementById('contactBg').classList.remove('open');
+  document.getElementById('contactCard').classList.remove('open');
+  document.body.style.overflow='';
+  if(cLastFocus&&cLastFocus.focus){cLastFocus.focus();cLastFocus=null;}
+  setTimeout(function(){
+    document.getElementById('contactWrap').style.display='';
+    document.getElementById('contactOk').style.display='none';
+    document.getElementById('contactForm').reset();
+    document.getElementById('contactBtn').textContent='SEND';
+    document.getElementById('contactBtn').disabled=false;
+  },300);
+}
+function submitContact(e){
+  e.preventDefault();
+  var btn=document.getElementById('contactBtn');
+  btn.textContent='SENDING…';btn.disabled=true;
+  var fd=new FormData(document.getElementById('contactForm'));
+  var data={};fd.forEach(function(v,k){data[k]=v});
+  fetch('https://kineticpartners.org/api/request-access',{
+    method:'POST',
+    headers:{'Content-Type':'application/json','Accept':'application/json'},
+    body:JSON.stringify(Object.assign(data,{source:'contact'}))
+  }).then(function(r){if(!r.ok)throw new Error('bad');return r.json()}).then(function(){
+    document.getElementById('contactWrap').style.display='none';
+    document.getElementById('contactOk').style.display='';
+  }).catch(function(){
+    document.getElementById('contactWrap').style.display='none';
+    document.getElementById('contactOk').style.display='';
+  });
+  return false;
+}
+document.querySelectorAll('a[href="#contact"]').forEach(function(a){
+  a.addEventListener('click',function(e){e.preventDefault();openContact()});
+});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeContact()});
+if(location.hash==='#contact'){openContact();}
+</script>
+</body>
+</html>
