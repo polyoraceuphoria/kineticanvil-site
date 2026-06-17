@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="An illustrative Crucible instance: the operator console where a firm works a judgment, and the branded client view their creditor follows.">
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://kineticanvil.com/crucible/demo">
+<title>Crucible · Instance preview | Kinetic Anvil</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#111518;--ink:#E9E7E2;--muted:#9BA1A8;--faint:#878E96;
+  --hair:rgba(233,231,226,0.13);--green:#00FF73;--panel:#161b1f;
+  --void:#111518;--bone:#E9E7E2;--accent:#00FF73;
+  --stone-950:#161b1f;--stone-900:#1a1f24;--stone-800:#242a32;
+  --stone-700:#2e3540;--stone-600:#3f4650;--stone-500:#5e6670;
+  --stone-400:#9BA1A8;--stone-300:#C5C9CE;
+  /* client-view firm brand placeholders (white-label) */
+  --firm:#C9A24B;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+:focus-visible{outline:2px solid var(--green);outline-offset:2px}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:'Satoshi',system-ui,sans-serif;font-weight:300;-webkit-font-smoothing:antialiased;min-height:100vh;display:flex;flex-direction:column}
+.mono{font-family:'Geist Mono',monospace}
+a{color:inherit;text-decoration:none}
+em{font-style:italic}
+/* site header */
+header{position:sticky;top:0;z-index:50;background:rgba(17,21,24,0.82);-webkit-backdrop-filter:blur(14px) saturate(1.4);backdrop-filter:blur(14px) saturate(1.4);border-bottom:1px solid var(--stone-800);padding:0 40px;display:flex;align-items:center;height:52px}
+.brand{display:flex;align-items:center;gap:9px}
+.smark{width:16px;height:16px;display:block}
+.wordmark{font-family:'Geist Mono',monospace;font-weight:500;font-size:0.8125rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent)}
+.nav-links{display:flex;align-items:center;gap:24px;margin-left:auto;font-family:'Geist Mono',monospace;font-weight:400;font-size:10px;letter-spacing:0.18em;text-transform:uppercase}
+.nav-links a{color:var(--stone-400);transition:color .15s;padding:4px 0}
+.nav-links a:hover{color:var(--bone)}
+.nav-links a.nav-active{color:var(--accent)}
+.nav-cta{font-family:'Geist Mono',monospace;font-size:10px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--void);background:var(--accent);padding:6px 14px;transition:opacity .15s;white-space:nowrap;flex-shrink:0;margin-left:12px}
+@media(max-width:760px){.nav-links{display:none}}
+/* preview banner */
+.pv-banner{background:var(--stone-950);border-bottom:1px solid var(--stone-800);padding:9px 40px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.pv-banner .dot{width:6px;height:6px;border-radius:50%;background:var(--green);flex-shrink:0}
+.pv-banner .txt{font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--stone-400)}
+.pv-banner .back{margin-left:auto;font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--green)}
+/* tab switch */
+.switch-wrap{max-width:1180px;margin:0 auto;width:100%;padding:26px 40px 0}
+.switch{display:inline-flex;border:1px solid var(--stone-700);background:var(--stone-950)}
+.switch button{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--stone-400);background:none;border:none;padding:11px 22px;cursor:pointer;transition:color .15s,background .15s}
+.switch button.on{background:var(--accent);color:var(--void)}
+.switch button:not(.on):hover{color:var(--bone)}
+.view-cap{font-family:'Satoshi',sans-serif;font-size:13px;color:var(--faint);font-weight:400;margin:14px 0 0}
+/* app shell */
+.app{max-width:1180px;margin:0 auto;width:100%;padding:22px 40px 64px}
+.view{display:none}
+.view.show{display:block}
+/* ===== OPERATOR CONSOLE ===== */
+.op{display:grid;grid-template-columns:212px 1fr;gap:0;border:1px solid var(--stone-800);background:var(--stone-950)}
+.op-rail{border-right:1px solid var(--stone-800);padding:20px 0}
+.op-rail .rl-h{font-family:'Geist Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--stone-500);padding:0 20px 12px}
+.op-rail .st{display:flex;align-items:center;gap:10px;padding:9px 20px;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.06em;color:var(--stone-400);border-left:2px solid transparent;cursor:default}
+.op-rail .st .ix{font-size:9px;color:var(--stone-600);width:14px}
+.op-rail .st.done{color:var(--stone-300)}
+.op-rail .st.done .ix{color:var(--green)}
+.op-rail .st.active{color:var(--bone);border-left-color:var(--accent);background:rgba(0,255,115,0.04)}
+.op-rail .st.active .ix{color:var(--accent)}
+.op-main{padding:24px 26px 28px;min-width:0}
+.op-matter{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;flex-wrap:wrap;border-bottom:1px solid var(--stone-800);padding-bottom:18px;margin-bottom:22px}
+.op-matter .m-id{font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--stone-500);margin-bottom:8px}
+.op-matter h2{font-family:'Cormorant Garamond',serif;font-size:25px;font-weight:300;line-height:1.2}
+.op-matter .m-sub{font-size:13px;color:var(--muted);font-weight:400;margin-top:5px}
+.status-pill{font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);border:1px solid var(--accent);padding:6px 12px;white-space:nowrap}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--stone-800);margin-bottom:24px}
+.kpi{padding:18px 18px;border-right:1px solid var(--stone-800)}
+.kpi:last-child{border-right:none}
+.kpi .k-v{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:300;line-height:1}
+.kpi .k-v.g{color:var(--green)}
+.kpi .k-l{font-family:'Geist Mono',monospace;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--stone-500);margin-top:9px}
+.op-cols{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.panel{border:1px solid var(--stone-800);padding:18px 18px 20px}
+.panel .p-h{font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--stone-400);margin-bottom:16px;display:flex;align-items:center;justify-content:space-between}
+.panel .p-h .tag{color:var(--stone-600);font-size:9px}
+/* asset graph */
+.graph{width:100%;height:188px}
+.graph text{font-family:'Geist Mono',monospace;fill:var(--stone-400);font-size:8.5px;letter-spacing:.04em}
+.graph .nlabel{fill:var(--stone-300)}
+.graph .amt{fill:var(--green);font-size:8px}
+/* ledger */
+.ledger{display:flex;flex-direction:column}
+.led{display:grid;grid-template-columns:62px 1fr auto;gap:10px;padding:10px 0;border-top:1px solid var(--stone-800);align-items:baseline}
+.led:first-child{border-top:none}
+.led .l-t{font-family:'Geist Mono',monospace;font-size:9.5px;color:var(--stone-500);letter-spacing:.04em}
+.led .l-d{font-size:12.5px;color:var(--stone-300);font-weight:400;line-height:1.4}
+.led .l-d .src{display:block;font-family:'Geist Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--stone-600);margin-top:3px}
+.led .l-h{font-family:'Geist Mono',monospace;font-size:9px;color:var(--stone-600);white-space:nowrap}
+.led .l-h.add{color:var(--green)}
+/* action queue */
+.aq{display:flex;flex-direction:column;gap:0}
+.act{display:flex;align-items:center;gap:12px;padding:11px 0;border-top:1px solid var(--stone-800)}
+.act:first-child{border-top:none}
+.act .box{width:13px;height:13px;border:1px solid var(--stone-600);flex-shrink:0;position:relative}
+.act.done .box{border-color:var(--green);background:var(--green)}
+.act.done .box::after{content:"";position:absolute;left:3.5px;top:1px;width:4px;height:7px;border:solid var(--void);border-width:0 1.5px 1.5px 0;transform:rotate(45deg)}
+.act .a-t{font-size:13px;color:var(--stone-300);font-weight:400}
+.act.done .a-t{color:var(--stone-500);text-decoration:line-through;text-decoration-color:var(--stone-700)}
+.act .a-meta{margin-left:auto;font-family:'Geist Mono',monospace;font-size:9px;letter-spacing:.06em;color:var(--stone-600);text-transform:uppercase}
+/* ===== CLIENT VIEW ===== */
+.cv-wrap{max-width:760px;margin:0 auto}
+.cv{border:1px solid var(--stone-800);background:var(--stone-950)}
+.cv-head{padding:26px 32px;border-bottom:1px solid var(--stone-800);display:flex;align-items:center;gap:14px}
+.cv-logo{width:34px;height:34px;border:1.5px solid var(--firm);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--firm);flex-shrink:0}
+.cv-firm{font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:400;color:var(--bone);line-height:1.1}
+.cv-firm span{display:block;font-family:'Geist Mono',monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--stone-500);margin-top:5px}
+.cv-body{padding:30px 32px 34px}
+.cv-status{display:flex;align-items:center;gap:11px;margin-bottom:26px}
+.cv-status .d{width:8px;height:8px;border-radius:50%;background:var(--firm)}
+.cv-status .s-t{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--firm)}
+.cv-amt{font-family:'Cormorant Garamond',serif;font-size:46px;font-weight:300;line-height:1;color:var(--bone)}
+.cv-amt-l{font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--stone-500);margin-top:9px}
+.cv-bar{height:6px;background:var(--stone-800);margin:22px 0 6px;position:relative;overflow:hidden}
+.cv-bar i{position:absolute;left:0;top:0;bottom:0;width:65%;background:var(--firm)}
+.cv-bar-l{display:flex;justify-content:space-between;font-family:'Geist Mono',monospace;font-size:10px;color:var(--stone-500);letter-spacing:.06em}
+/* milestone timeline */
+.tl{margin:34px 0 30px;border-top:1px solid var(--stone-800);padding-top:24px}
+.tl-h{font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--stone-500);margin-bottom:20px}
+.ms{display:flex;align-items:center;gap:0;flex-wrap:wrap}
+.ms .node{display:flex;flex-direction:column;align-items:center;gap:9px;flex:0 0 auto;width:88px;text-align:center}
+.ms .node .c{width:13px;height:13px;border-radius:50%;border:1.5px solid var(--stone-600);background:var(--stone-950)}
+.ms .node.done .c{background:var(--firm);border-color:var(--firm)}
+.ms .node.cur .c{border-color:var(--firm);box-shadow:0 0 0 4px rgba(201,162,75,0.18)}
+.ms .node .nl{font-family:'Geist Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--stone-500)}
+.ms .node.done .nl,.ms .node.cur .nl{color:var(--stone-300)}
+.ms .seg{flex:1;height:1.5px;background:var(--stone-700);min-width:8px;margin-bottom:22px}
+.ms .seg.done{background:var(--firm)}
+/* updates */
+.upd{border-top:1px solid var(--stone-800);padding-top:24px}
+.upd-h{font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--stone-500);margin-bottom:18px}
+.note{border-left:2px solid var(--firm);padding:2px 0 2px 16px;margin-bottom:20px}
+.note .n-d{font-family:'Geist Mono',monospace;font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--stone-500);margin-bottom:7px}
+.note .n-t{font-size:14px;color:var(--stone-300);font-weight:400;line-height:1.6}
+.cv-foot{border-top:1px solid var(--stone-800);padding:16px 32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.cv-foot .ff{font-size:11px;color:var(--stone-600);font-weight:400}
+.cv-foot .secured{font-family:'Geist Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--stone-600)}
+.cv-foot .secured b{color:var(--stone-400);font-weight:500}
+/* footer */
+.site-footer{border-top:1px solid var(--stone-700);padding:40px 40px 36px;margin-top:auto;text-align:center}
+.site-footer .fc{font-family:'Geist Mono',monospace;font-size:0.6875rem;letter-spacing:0.12em;color:var(--stone-500)}
+.site-footer a{color:var(--stone-400)}
+.site-footer a:hover{color:var(--accent)}
+@media(max-width:820px){
+  .op{grid-template-columns:1fr}.op-rail{display:none}
+  .kpis{grid-template-columns:repeat(2,1fr)}.kpi:nth-child(2){border-right:none}
+  .op-cols{grid-template-columns:1fr}
+  .switch-wrap,.app,.pv-banner,header{padding-left:20px;padding-right:20px}
+}
+@media(max-width:520px){.ms .node{width:64px}.cv-amt{font-size:36px}}
+</style>
+</head>
+<body>
+  <header>
+    <a class="brand" href="/">
+      <svg class="smark" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="none" stroke="var(--accent)" stroke-width="1.5"/><circle cx="12" cy="12" r="3.5" fill="var(--accent)"/></svg>
+      <div class="wordmark">Kinetic Anvil</div>
+    </a>
+    <nav class="nav-links">
+      <a href="/">Anvil</a>
+      <a href="/crucible">Crucible</a>
+      <a href="/sandbox">Sandbox</a>
+      <a href="/trust">Trust</a>
+    </nav>
+    <a href="/crucible#pricing" class="nav-cta">Start a Crucible</a>
+  </header>
+
+  <div class="pv-banner">
+    <span class="dot"></span>
+    <span class="txt">Illustrative preview &middot; synthetic matter, not live data</span>
+    <a class="back" href="/crucible">&larr; Back to Crucible</a>
+  </div>
+
+  <div class="switch-wrap">
+    <div class="switch">
+      <button id="tab-op" class="on" onclick="showView('op')">Operator Console</button>
+      <button id="tab-cv" onclick="showView('cv')">Client View</button>
+    </div>
+    <p class="view-cap" id="viewCap">What your team works in: the matter on the Anvil protocol, ten stations scoped to one judgment.</p>
+  </div>
+
+  <div class="app">
+    <!-- ===== OPERATOR CONSOLE ===== -->
+    <div class="view show" id="view-op">
+      <div class="op">
+        <aside class="op-rail">
+          <div class="rl-h">Stations</div>
+          <div class="st done"><span class="ix">01</span> Judgments</div>
+          <div class="st done"><span class="ix">02</span> Matters</div>
+          <div class="st done"><span class="ix">03</span> Graph</div>
+          <div class="st done"><span class="ix">04</span> Attribution</div>
+          <div class="st active"><span class="ix">05</span> Enforcement</div>
+          <div class="st"><span class="ix">06</span> Gates</div>
+          <div class="st"><span class="ix">07</span> Actions</div>
+          <div class="st done"><span class="ix">08</span> Ledger</div>
+          <div class="st"><span class="ix">09</span> Reports</div>
+          <div class="st"><span class="ix">10</span> Audit</div>
+        </aside>
+        <div class="op-main">
+          <div class="op-matter">
+            <div>
+              <div class="m-id">Crucible CR-4471 &middot; Halden &amp; Roe LLP</div>
+              <h2>Judgment Creditor v. Respondent Holdings</h2>
+              <div class="m-sub">Money judgment &middot; Superior Court &middot; opened 41 days ago</div>
+            </div>
+            <span class="status-pill">&bull; Enforcement</span>
+          </div>
+
+          <div class="kpis">
+            <div class="kpi"><div class="k-v">$480,000</div><div class="k-l">Judgment</div></div>
+            <div class="kpi"><div class="k-v g">$312,500</div><div class="k-l">Recovered to date</div></div>
+            <div class="kpi"><div class="k-v">3</div><div class="k-l">Open actions</div></div>
+            <div class="kpi"><div class="k-v">5</div><div class="k-l">Linked entities</div></div>
+          </div>
+
+          <div class="op-cols">
+            <div class="panel">
+              <div class="p-h"><span>Asset Graph</span><span class="tag">source-linked</span></div>
+              <svg class="graph" viewBox="0 0 360 188" preserveAspectRatio="xMidYMid meet">
+                <line x1="60" y1="40" x2="60" y2="96" stroke="#2e3540" stroke-width="1"/>
+                <line x1="60" y1="96" x2="180" y2="70" stroke="#2e3540" stroke-width="1"/>
+                <line x1="60" y1="96" x2="180" y2="130" stroke="#2e3540" stroke-width="1"/>
+                <line x1="180" y1="70" x2="300" y2="56" stroke="#00FF73" stroke-width="1.2"/>
+                <line x1="180" y1="130" x2="300" y2="120" stroke="#2e3540" stroke-width="1"/>
+                <line x1="180" y1="130" x2="300" y2="160" stroke="#2e3540" stroke-width="1"/>
+                <circle cx="60" cy="34" r="7" fill="none" stroke="#00FF73" stroke-width="1.5"/>
+                <text class="nlabel" x="60" y="20" text-anchor="middle">Judgment</text>
+                <circle cx="60" cy="96" r="6" fill="#242a32" stroke="#3f4650" stroke-width="1"/>
+                <text x="76" y="99" >Debtor account</text>
+                <circle cx="180" cy="70" r="6" fill="#242a32" stroke="#3f4650" stroke-width="1"/>
+                <text x="194" y="66" >Shell LLC</text>
+                <circle cx="180" cy="130" r="6" fill="#242a32" stroke="#3f4650" stroke-width="1"/>
+                <text x="194" y="134" >OTC desk</text>
+                <circle cx="300" cy="56" r="6" fill="none" stroke="#00FF73" stroke-width="1.5"/>
+                <text x="300" y="42" text-anchor="middle" class="nlabel">Exchange</text>
+                <text x="300" y="78" text-anchor="middle" class="amt">$312.5K frozen</text>
+                <circle cx="300" cy="120" r="5" fill="#242a32" stroke="#3f4650" stroke-width="1"/>
+                <text x="312" y="123">Wallet A</text>
+                <circle cx="300" cy="160" r="5" fill="#242a32" stroke="#3f4650" stroke-width="1"/>
+                <text x="312" y="163">Wallet B</text>
+              </svg>
+            </div>
+            <div class="panel">
+              <div class="p-h"><span>Recovery Ledger</span><span class="tag">append-only</span></div>
+              <div class="ledger">
+                <div class="led"><div class="l-t">D-41</div><div class="l-d">Judgment filed as root authority<span class="src">Station &middot; Judgments</span></div><div class="l-h add">+ entry</div></div>
+                <div class="led"><div class="l-t">D-33</div><div class="l-d">Funds traced across 3 rails into exchange<span class="src">Station &middot; Graph</span></div><div class="l-h add">+ entry</div></div>
+                <div class="led"><div class="l-t">D-21</div><div class="l-d">Exchange account attributed to debtor<span class="src">Station &middot; Attribution</span></div><div class="l-h add">+ entry</div></div>
+                <div class="led"><div class="l-t">D-9</div><div class="l-d">Freeze served, $312.5K restrained<span class="src">Station &middot; Enforcement</span></div><div class="l-h add">+ entry</div></div>
+              </div>
+            </div>
+            <div class="panel">
+              <div class="p-h"><span>Action Queue</span></div>
+              <div class="aq">
+                <div class="act done"><span class="box"></span><span class="a-t">Serve freeze on exchange</span><span class="a-meta">Done</span></div>
+                <div class="act done"><span class="box"></span><span class="a-t">File turnover motion</span><span class="a-meta">Done</span></div>
+                <div class="act"><span class="box"></span><span class="a-t">Garnish OTC desk receivable</span><span class="a-meta">Open</span></div>
+                <div class="act"><span class="box"></span><span class="a-t">Trace Wallet A / Wallet B residual</span><span class="a-meta">Open</span></div>
+                <div class="act"><span class="box"></span><span class="a-t">Prepare distribution accounting</span><span class="a-meta">Open</span></div>
+              </div>
+            </div>
+            <div class="panel">
+              <div class="p-h"><span>Record Integrity</span><span class="tag">tamper-evident</span></div>
+              <div class="ledger">
+                <div class="led"><div class="l-t">Chain</div><div class="l-d">Append-only, 4 sealed entries<span class="src">Hashed &middot; verifiable</span></div><div class="l-h">sealed</div></div>
+                <div class="led"><div class="l-t">Custody</div><div class="l-d">Evidence held under sealed custody<span class="src">Station &middot; Audit</span></div><div class="l-h">on</div></div>
+                <div class="led"><div class="l-t">Export</div><div class="l-d">Court-formatted record available<span class="src">Station &middot; Reports</span></div><div class="l-h add">ready</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== CLIENT VIEW ===== -->
+    <div class="view" id="view-cv">
+      <div class="cv-wrap">
+        <div class="cv">
+          <div class="cv-head">
+            <div class="cv-logo">H</div>
+            <div class="cv-firm">Halden &amp; Roe LLP<span>Recovery Status &middot; Confidential</span></div>
+          </div>
+          <div class="cv-body">
+            <div class="cv-status"><span class="d"></span><span class="s-t">Active &middot; Enforcement phase</span></div>
+            <div class="cv-amt">$312,500</div>
+            <div class="cv-amt-l">Recovered to date &middot; of $480,000 judgment</div>
+            <div class="cv-bar"><i></i></div>
+            <div class="cv-bar-l"><span>65% recovered</span><span>Updated this week</span></div>
+
+            <div class="tl">
+              <div class="tl-h">Where your matter stands</div>
+              <div class="ms">
+                <div class="node done"><span class="c"></span><span class="nl">Intake</span></div>
+                <div class="seg done"></div>
+                <div class="node done"><span class="c"></span><span class="nl">Trace</span></div>
+                <div class="seg done"></div>
+                <div class="node done"><span class="c"></span><span class="nl">Attribution</span></div>
+                <div class="seg done"></div>
+                <div class="node cur"><span class="c"></span><span class="nl">Enforcement</span></div>
+                <div class="seg"></div>
+                <div class="node"><span class="c"></span><span class="nl">Recovery</span></div>
+                <div class="seg"></div>
+                <div class="node"><span class="c"></span><span class="nl">Payout</span></div>
+              </div>
+            </div>
+
+            <div class="upd">
+              <div class="upd-h">Latest updates from your counsel</div>
+              <div class="note">
+                <div class="n-d">9 days ago &middot; Halden &amp; Roe LLP</div>
+                <div class="n-t">We served a freeze on the exchange holding the traced funds and $312,500 is now restrained. We have filed a turnover motion to move those funds toward your judgment. Next, we pursue the remaining balance held downstream.</div>
+              </div>
+              <div class="note">
+                <div class="n-d">21 days ago &middot; Halden &amp; Roe LLP</div>
+                <div class="n-t">The account holding the bulk of the funds has been confirmed as the debtor's. That confirmation is what lets us move to freeze and turnover.</div>
+              </div>
+            </div>
+          </div>
+          <div class="cv-foot">
+            <span class="ff">Halden &amp; Roe LLP &middot; Attorneys at Law</span>
+            <span class="secured">Secured infrastructure by <b>Kinetic Anvil</b></span>
+          </div>
+        </div>
+        <p class="view-cap" style="text-align:center;margin-top:18px">Branded to the firm. The creditor sees momentum and a clear record. Counsel controls what is published.</p>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="fc">Illustrative preview &middot; synthetic matter. <a href="/crucible">Crucible</a> &middot; <a href="/crucible#pricing">Pricing</a> &middot; &copy; 2026 Kinetic Partners, LLC</div>
+  </footer>
+<script>
+function showView(v){
+  var op=document.getElementById('view-op'),cv=document.getElementById('view-cv');
+  var to=document.getElementById('tab-op'),tc=document.getElementById('tab-cv');
+  var cap=document.getElementById('viewCap');
+  if(v==='cv'){cv.classList.add('show');op.classList.remove('show');tc.classList.add('on');to.classList.remove('on');cap.textContent='What your client sees: an attorney-branded progress page, published on your schedule, read-only and secure.';}
+  else{op.classList.add('show');cv.classList.remove('show');to.classList.add('on');tc.classList.remove('on');cap.textContent='What your team works in: the matter on the Anvil protocol, ten stations scoped to one judgment.';}
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>
