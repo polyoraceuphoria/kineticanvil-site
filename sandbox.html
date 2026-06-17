@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Get a Kinetic Anvil sandbox API key in seconds. Self-serve, the full API surface against synthetic data — no production data, no card, no sales call.">
+<meta name="description" content="Get a Kinetic Anvil sandbox API key in seconds. Self-serve, the full API surface against synthetic data: no production data, no card, no sales call.">
 <link rel="canonical" href="https://kineticanvil.com/sandbox">
 <meta property="og:title" content="Sandbox key | Kinetic Anvil">
 <meta property="og:description" content="Self-serve a sandbox key and hit the full API surface against synthetic data. Scoped, rate-limited, sandbox-only.">
@@ -535,7 +535,7 @@ function submitKey(e){
   }).catch(function(e){
     btn.textContent='GENERATE SANDBOX KEY';btn.disabled=false;
     err.textContent = e.message==='rate'
-      ? 'Too many requests from your network — wait a minute and try again.'
+      ? 'Too many requests from your network. Wait a minute and try again.'
       : 'Something went wrong. Email developers@kineticpartners.org and we\u2019ll issue one manually.';
     err.style.display='block';
   });
