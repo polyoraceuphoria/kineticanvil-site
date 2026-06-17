@@ -1,0 +1,5 @@
+Contact: mailto:security@kineticpartners.org
+Expires: 2027-06-17T02:38:50Z
+Preferred-Languages: en
+Canonical: https://kineticanvil.com/.well-known/security.txt
+Policy: https://kineticanvil.com/trust
