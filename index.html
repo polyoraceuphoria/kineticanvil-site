@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -26,19 +26,17 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
 <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
-<script>
-(function(){try{var t=localStorage.getItem('md-theme');if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t);}}catch(e){}})();
-</script>
 <style>
-html[data-theme="dark"]{
+:root{
+  /* canvas + type */
   --bg:#111518; --ink:#E9E7E2; --muted:#9BA1A8; --faint:#878E96;
   --hair:rgba(233,231,226,0.13); --green:#00FF73;
   --panel:#161b1f; --btn-ink-bg:#E9E7E2; --btn-ink-fg:#111518;
-}
-html[data-theme="light"]{
-  --bg:#F2F0ED; --ink:#111518; --muted:#5A6068; --faint:#6E747C;
-  --hair:rgba(28,33,39,0.14); --green:#228B33;
-  --panel:#FAF9F7; --btn-ink-bg:#111518; --btn-ink-fg:#F2F0ED;
+  /* unified Kinetic tokens (shared with kineticpartners.org) */
+  --void:#111518; --bone:#E9E7E2; --accent:#00FF73;
+  --stone-950:#161b1f; --stone-900:#1a1f24; --stone-800:#242a32;
+  --stone-700:#2e3540; --stone-600:#3f4650; --stone-500:#5e6670;
+  --stone-400:#9BA1A8; --stone-300:#C5C9CE;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 :focus-visible{outline:2px solid var(--green);outline-offset:2px}
@@ -97,12 +95,6 @@ footer{padding:28px 0;border-top:1px solid var(--hair)}
 .foot-in{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
 footer .c{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.16em;color:var(--faint)}
 footer a.c:hover{color:var(--ink)}
-.theme-toggle{display:flex;align-items:center;gap:14px}
-.theme-toggle button{background:none;border:none;cursor:pointer;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.16em;color:var(--faint);padding:4px 0;transition:color .15s}
-.theme-toggle button:hover{color:var(--ink)}
-.theme-toggle button.active{color:var(--ink)}
-.theme-toggle button.active::before{content:"";display:inline-block;width:4px;height:4px;border-radius:50%;background:var(--green);margin-right:7px;vertical-align:1px}
-.theme-toggle .sep{width:1px;height:10px;background:var(--hair)}
 
 .modal-backdrop{position:fixed;inset:0;z-index:9000;background:rgba(10,12,14,.72);backdrop-filter:blur(6px);opacity:0;pointer-events:none;transition:opacity .25s}
 .modal-backdrop.open{opacity:1;pointer-events:auto}
@@ -524,15 +516,8 @@ footer a.c:hover{color:var(--ink)}
   </div>
 </div></section>
 
-<section class="register"><div class="frame reg-grid">
-  <div class="reg-cell"><div class="n">108</div><div class="l">OPERATIONS</div></div>
-  <div class="reg-cell"><div class="n">62</div><div class="l">SCOPES</div></div>
-  <div class="reg-cell"><div class="n">32</div><div class="l">EVENTS</div></div>
-  <div class="reg-cell"><div class="n">20</div><div class="l">RESOURCES</div></div>
-</div></section>
-
 <section class="sec" id="protocol"><div class="frame">
-  <div class="eyebrow">§ 01 - THE PROTOCOL</div>
+  <div class="eyebrow">§ 01 · THE PROTOCOL</div>
   <div class="sec-grid">
     <h2>Ten stations, one line</h2>
     <div class="sec-body">
@@ -554,7 +539,7 @@ footer a.c:hover{color:var(--ink)}
 </div></section>
 
 <section class="sec" id="use-cases"><div class="frame">
-  <div class="eyebrow">§ 02 - USE CASES</div>
+  <div class="eyebrow">§ 02 · USE CASES</div>
   <div class="sec-grid">
     <h2>Who runs the protocol</h2>
     <div class="sec-body">
@@ -614,7 +599,7 @@ footer a.c:hover{color:var(--ink)}
 </div></section>
 
 <section class="sec"><div class="frame">
-  <div class="eyebrow">§ 03 - GOVERNANCE</div>
+  <div class="eyebrow">§ 03 · GOVERNANCE</div>
   <div class="sec-grid">
     <h2>Built for regulated recovery</h2>
     <div class="sec-body">
@@ -624,7 +609,7 @@ footer a.c:hover{color:var(--ink)}
 </div></section>
 
 <section class="pricing" id="pricing"><div class="frame">
-  <div class="eyebrow">§ 04 - PRICING</div>
+  <div class="eyebrow">§ 04 · PRICING</div>
   <div class="sec-grid">
     <h2>Simple, outcome-aligned</h2>
     <div class="sec-body">
@@ -714,7 +699,7 @@ footer a.c:hover{color:var(--ink)}
 </div></section>
 
 <section class="access" id="access"><div class="frame">
-  <div class="eyebrow">§ 05 - ACCESS</div>
+  <div class="eyebrow">§ 05 · ACCESS</div>
   <h2>Have a judgment? <em>Begin recovery</em></h2>
   <p>Access is granted per mandate, on review.</p>
   <div class="btn-row">
@@ -810,18 +795,6 @@ footer a.c:hover{color:var(--ink)}
 </div>
 
 <script>
-function setTheme(t){
-  document.documentElement.setAttribute('data-theme',t);
-  try{localStorage.setItem('md-theme',t)}catch(e){}
-  syncToggle();
-}
-function syncToggle(){
-  var t=document.documentElement.getAttribute('data-theme');
-  document.getElementById('tLight').classList.toggle('active',t==='light');
-  document.getElementById('tDark').classList.toggle('active',t==='dark');
-}
-syncToggle();
-
 var mdLastFocus=null;
 function openModal(){
   mdLastFocus=document.activeElement;
