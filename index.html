@@ -46,7 +46,7 @@ body{background:var(--bg);color:var(--ink);font-family:'Satoshi',system-ui,sans-
 a{color:inherit;text-decoration:none}
 .frame{max-width:1080px;margin:0 auto;padding:0 48px}
 
-/* old nav sticky removed — KP unified header handles positioning */
+/* old nav sticky removed: KP unified header handles positioning */
 .nav-in{display:flex;justify-content:space-between;align-items:center;padding:22px 0}
 .brand{display:flex;align-items:center;gap:10px}
 .mark{width:14px;height:14px;border:1px solid var(--ink);border-radius:50%;position:relative}
@@ -156,9 +156,52 @@ footer a.c:hover{color:var(--ink)}
 .overage-row.header .overage-cell{font-size:10px;letter-spacing:.18em;color:var(--faint);padding:14px 0 10px}
 .pricing-note{margin-top:28px;font-size:13px;color:var(--faint);font-weight:400;line-height:1.65;max-width:600px}
 
+/* hero rework */
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.hero-tag{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--green);margin-bottom:24px}
+.hero h1{font-size:56px;max-width:none}
+.hero-lede{margin-top:26px;max-width:520px;font-size:16px;line-height:1.65;color:var(--muted);font-weight:400}
+.hero-cta{margin-top:36px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+/* executable terminal */
+.terminal{background:#0d1114;border:1px solid var(--stone-700);font-family:'Geist Mono',monospace;font-size:12.5px;line-height:1.7}
+.term-bar{display:flex;align-items:center;gap:7px;padding:12px 16px;border-bottom:1px solid var(--stone-800)}
+.term-bar .d{width:8px;height:8px;border-radius:50%;background:var(--stone-600)}
+.term-title{margin-left:10px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--stone-400)}
+.term-run{margin-left:auto;font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--void);background:var(--accent);border:none;padding:6px 14px;cursor:pointer;transition:opacity .15s}
+.term-run:hover{opacity:.85}
+.term-run:disabled{opacity:.5;cursor:default}
+.term-body{padding:18px 18px 20px;white-space:pre-wrap;word-break:break-word;color:var(--stone-300);min-height:200px}
+.term-body .c-mut{color:var(--stone-500)}
+.term-body .c-str{color:#8fe0a8}
+.term-body .c-key{color:var(--accent)}
+.term-note{padding:0 18px 16px;font-size:10px;letter-spacing:.04em;color:var(--stone-500)}
+/* capabilities */
+.caps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:48px;border-top:1px solid var(--hair);border-left:1px solid var(--hair)}
+.cap{padding:30px 26px;border-right:1px solid var(--hair);border-bottom:1px solid var(--hair)}
+.cap .cap-id{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.16em;color:var(--green);margin-bottom:16px}
+.cap .cap-name{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300;line-height:1.2;margin-bottom:12px}
+.cap .cap-desc{font-size:13.5px;line-height:1.6;color:var(--muted);font-weight:400}
+.specs{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:0;border-left:1px solid var(--hair)}
+.spec{padding:26px;border-right:1px solid var(--hair);border-bottom:1px solid var(--hair)}
+.spec .s-val{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:300;line-height:1}
+.spec .s-lbl{font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-top:10px}
+/* use-case cards as links */
+a.uc-card{display:block;transition:background .15s}
+a.uc-card:hover{background:var(--panel)}
+.uc-more{font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);margin-top:16px}
+a.uc-card:hover .uc-more{color:var(--green)}
+.uc-head{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:12px}
+.uc-seeall{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);transition:color .15s}
+.uc-seeall:hover{color:var(--green)}
+
+@media(max-width:980px){
+  .hero-grid{grid-template-columns:1fr;gap:36px}
+  .caps,.specs{grid-template-columns:repeat(2,1fr)}
+}
 @media(max-width:860px){
   .frame{padding:0 24px}
   h1{font-size:42px}
+  .hero h1{font-size:40px}
   .guar-in{flex-direction:column;align-items:flex-start;gap:22px}
   .guar .artifact{border-left:none;padding-left:0;border-top:1px solid var(--hair);padding-top:20px;width:100%}
   .hero{padding:80px 0 64px}
@@ -474,6 +517,7 @@ footer a.c:hover{color:var(--ink)}
     </a>
     <nav class="nav-links">
       <a href="/">Anvil</a>
+      <a href="/use-cases">Use Cases</a>
       <a href="/sandbox">Sandbox</a>
       <a href="/status">Status</a>
       <a href="/trust">Trust</a>
@@ -488,6 +532,7 @@ footer a.c:hover{color:var(--ink)}
   <div class="mobile-menu" aria-hidden="true">
     <nav class="mobile-menu-links">
       <a href="/">Anvil</a>
+      <a href="/use-cases">Use Cases</a>
       <a href="/sandbox">Sandbox</a>
       <a href="/status">Status</a>
       <a href="/trust">Trust</a>
@@ -499,8 +544,30 @@ footer a.c:hover{color:var(--ink)}
   <div class="crumb"><a href="https://kineticpartners.org">KINETIC</a> &rsaquo; ANVIL</div>
 
 <section class="hero"><div class="frame">
-  <h1>Case operations <em>infrastructure</em> for financial fraud recovery</h1>
-  <p>One protocol carries a matter from intake to remittance: asset tracing, legal process, enforcement, and audit, run as software.</p>
+  <div class="hero-grid">
+    <div>
+      <div class="hero-tag">Your hammer. Our anvil.</div>
+      <h1>Case operations <em>infrastructure</em> for financial fraud recovery</h1>
+      <p class="hero-lede">One protocol carries a matter from intake to remittance: asset tracing, legal process, enforcement, and audit, run as software. Authority-gated at every step, provable on an immutable trail.</p>
+      <div class="hero-cta">
+        <button class="btn primary" data-request-access>REQUEST ACCESS</button>
+        <a class="btn" href="/sandbox">TRY THE SANDBOX</a>
+      </div>
+    </div>
+    <div class="terminal" id="term">
+      <div class="term-bar">
+        <span class="d"></span><span class="d"></span><span class="d"></span>
+        <span class="term-title">POST /v1/cases</span>
+        <button class="term-run" id="termRun">&#9654; Run live</button>
+      </div>
+      <div class="term-body" id="termBody"><span class="c-mut">$ curl -X POST https://api.kineticanvil.com/v1/cases \
+  -H</span> <span class="c-str">"Authorization: Bearer kx_test_&hellip;"</span> <span class="c-mut">\
+  -d</span> <span class="c-str">'{ "type": "asset_trace" }'</span>
+
+<span class="c-mut">// Press Run to issue a sandbox key and open a real case.</span></div>
+      <div class="term-note" id="termNote">Live sandbox &middot; synthetic data only &middot; no signup</div>
+    </div>
+  </div>
 </div></section>
 
 <section class="guar"><div class="frame guar-in">
@@ -516,8 +583,30 @@ footer a.c:hover{color:var(--ink)}
   </div>
 </div></section>
 
+<section class="sec" id="capabilities"><div class="frame">
+  <div class="eyebrow">§ 01 · CAPABILITIES</div>
+  <div class="sec-grid">
+    <h2>What Anvil does</h2>
+    <div class="sec-body">
+      <p>Four primitives carry every recovery. Structured intake, sealed custody, asset tracing, and an open API, wired into one case record.</p>
+    </div>
+  </div>
+  <div class="caps">
+    <div class="cap"><div class="cap-id">01</div><div class="cap-name">Case Protocol</div><div class="cap-desc">Structured intake and lifecycle for every matter, from first report to audited resolution.</div></div>
+    <div class="cap"><div class="cap-id">02</div><div class="cap-name">Evidence Custody</div><div class="cap-desc">Sealed, append-only chain of custody. Tamper-evident from collection to court.</div></div>
+    <div class="cap"><div class="cap-id">03</div><div class="cap-name">Asset Tracing</div><div class="cap-desc">On-chain and cross-rail tracing primitives wired directly into the case record.</div></div>
+    <div class="cap"><div class="cap-id">04</div><div class="cap-name">API + SDKs</div><div class="cap-desc">Open spec and typed SDKs. Build on the protocol or integrate your own stack.</div></div>
+  </div>
+  <div class="specs">
+    <div class="spec"><div class="s-val">99.9%</div><div class="s-lbl">Target uptime</div></div>
+    <div class="spec"><div class="s-val">&lt;120ms</div><div class="s-lbl">p50 latency target</div></div>
+    <div class="spec"><div class="s-val">SOC 2</div><div class="s-lbl">Controls track</div></div>
+    <div class="spec"><div class="s-val">Open</div><div class="s-lbl">Spec + SDKs</div></div>
+  </div>
+</div></section>
+
 <section class="sec" id="protocol"><div class="frame">
-  <div class="eyebrow">§ 01 · THE PROTOCOL</div>
+  <div class="eyebrow">§ 02 · THE PROTOCOL</div>
   <div class="sec-grid">
     <h2>Ten stations, one line</h2>
     <div class="sec-body">
@@ -539,67 +628,71 @@ footer a.c:hover{color:var(--ink)}
 </div></section>
 
 <section class="sec" id="use-cases"><div class="frame">
-  <div class="eyebrow">§ 02 · USE CASES</div>
+  <div class="eyebrow">§ 03 · USE CASES</div>
   <div class="sec-grid">
     <h2>Who runs the protocol</h2>
     <div class="sec-body">
-      <p>Different mandates, same line. Every case enters at intake and exits at audited resolution.</p>
+      <p>Different mandates, same line. Every case enters at intake and exits at audited resolution. Open any one to see the protocol run it station by station.</p>
     </div>
   </div>
-  <div class="uc-grid">
-    <div class="uc-card">
+  <div class="uc-head" style="margin-top:42px">
+    <div class="hero-tag" style="margin:0">08 mandates &middot; one protocol</div>
+    <a class="uc-seeall" href="/use-cases">See all use cases &rarr;</a>
+  </div>
+  <div class="uc-grid" style="margin-top:18px">
+    <a class="uc-card" href="/use-cases/judgment-recovery">
       <div class="uc-label">Judgment Recovery</div>
       <div class="uc-scenario">You hold a judgment. The debtor moved the money.</div>
-      <div class="uc-outcome">Kinetic Anvil traces the assets, builds the enforcement package, and produces the audit trail your court requires.</div>
-      <div class="uc-stations"><span>&#9679;</span> Judgments &rarr; Graph &rarr; Attribution &rarr; Enforcement &rarr; Audit</div>
-    </div>
-    <div class="uc-card">
+      <div class="uc-outcome">Freeze, garnishment, and turnover instruments tied directly to traced assets and the controlling order.</div>
+      <div class="uc-more">View use case &rarr;</div>
+    </a>
+    <a class="uc-card" href="/use-cases/crypto-fraud-tracing">
       <div class="uc-label">Crypto Fraud Tracing</div>
-      <div class="uc-scenario">Funds went on-chain. You need attribution linked to real-world identity.</div>
-      <div class="uc-outcome">The Graph and Attribution stations map on-chain movement to off-chain entities, source-linked and exportable for counsel.</div>
-      <div class="uc-stations"><span>&#9679;</span> Matters &rarr; Graph &rarr; Attribution &rarr; Reports</div>
-    </div>
-    <div class="uc-card">
+      <div class="uc-scenario">Funds went on-chain. You need attribution linked to identity.</div>
+      <div class="uc-outcome">Endpoints resolved to real-world entities and the custodians that hold the funds.</div>
+      <div class="uc-more">View use case &rarr;</div>
+    </a>
+    <a class="uc-card" href="/use-cases/receiver-operations">
       <div class="uc-label">Receiver Operations</div>
-      <div class="uc-scenario">You are court-appointed. Multiple parties. Every action must be authorized and accounted for.</div>
-      <div class="uc-outcome">Gates enforce authority at every step. The Ledger tracks every dollar. Audit exports the full record for the court.</div>
-      <div class="uc-stations"><span>&#9679;</span> Gates &rarr; Actions &rarr; Ledger &rarr; Audit</div>
-    </div>
-    <div class="uc-card">
-      <div class="uc-label">Compliance &amp; SAR Support</div>
+      <div class="uc-scenario">You are court-appointed. Every action must be authorized and accounted for.</div>
+      <div class="uc-outcome">No action executes outside the scope the appointing order grants.</div>
+      <div class="uc-more">View use case &rarr;</div>
+    </a>
+    <a class="uc-card" href="/use-cases/sar-support">
+      <div class="uc-label">Compliance & SAR Support</div>
       <div class="uc-scenario">Your compliance team needs a provable trail for a suspicious activity report.</div>
-      <div class="uc-outcome">Kinetic Anvil assembles the evidence chain, produces the timeline, and exports a tamper-evident record for your filing.</div>
-      <div class="uc-stations"><span>&#9679;</span> Matters &rarr; Graph &rarr; Reports &rarr; Audit</div>
-    </div>
-    <div class="uc-card">
+      <div class="uc-outcome">Transactions and counterparties linked, timestamped, and source-attached.</div>
+      <div class="uc-more">View use case &rarr;</div>
+    </a>
+    <a class="uc-card" href="/use-cases/stablecoin-recovery">
       <div class="uc-label">Stablecoin Recovery</div>
-      <div class="uc-scenario">Tainted tokens on-chain. You need a freeze, burn, and reissue to the victim wallet.</div>
-      <div class="uc-outcome">Issuer Remediation builds the freeze packet, coordinates the burn/reissue, and certificates the destination wallet for the issuer.</div>
-      <div class="uc-stations"><span>&#9679;</span> Attribution &rarr; Issuer Remediation &rarr; Ledger &rarr; Audit</div>
-    </div>
-    <div class="uc-card">
+      <div class="uc-scenario">Tainted tokens on-chain. You need a freeze, burn, and reissue.</div>
+      <div class="uc-outcome">Proof of taint and a certified destination the issuer can act on without carrying the risk.</div>
+      <div class="uc-more">View use case &rarr;</div>
+    </a>
+    <a class="uc-card" href="/use-cases/exchange-enforcement">
       <div class="uc-label">Exchange Enforcement</div>
-      <div class="uc-scenario">Assets sitting at an exchange. You need legal process served and funds turned over.</div>
-      <div class="uc-outcome">Packets generates the freeze, intercept, or turnover order. The protocol tracks service, response, and final disposition.</div>
-      <div class="uc-stations"><span>&#9679;</span> Graph &rarr; Packets &rarr; Enforcement &rarr; Ledger</div>
-    </div>
-    <div class="uc-card">
+      <div class="uc-scenario">Assets sitting at an exchange. You need process served and funds turned over.</div>
+      <div class="uc-outcome">Freeze, intercept, or turnover generated for the specific exchange and authority.</div>
+      <div class="uc-more">View use case &rarr;</div>
+    </a>
+    <a class="uc-card" href="/use-cases/multi-claimant-waterfall">
       <div class="uc-label">Multi-Claimant Waterfall</div>
-      <div class="uc-scenario">Multiple victims, one debtor. You need pro-rata distribution with court-ready accounting.</div>
-      <div class="uc-outcome">Waterfall calculates each claimant's share against recovered funds, generates the distribution ledger, and exports the accounting for court approval.</div>
-      <div class="uc-stations"><span>&#9679;</span> Matters &rarr; Ledger &rarr; Waterfall &rarr; Reports</div>
-    </div>
-    <div class="uc-card">
+      <div class="uc-scenario">Many victims, one debtor. You need pro-rata distribution the court will approve.</div>
+      <div class="uc-outcome">A distribution that balances exactly against the recovered pool.</div>
+      <div class="uc-more">View use case &rarr;</div>
+    </a>
+    <a class="uc-card" href="/use-cases/ofac-sanctions-clearance">
       <div class="uc-label">OFAC / Sanctions Clearance</div>
-      <div class="uc-scenario">Recovery target may be sanctioned. You need to clear the gate before enforcement.</div>
-      <div class="uc-outcome">Sanctions screening runs against OFAC and global lists. Review packets document the clearance decision. No enforcement proceeds until the gate clears.</div>
-      <div class="uc-stations"><span>&#9679;</span> Sanctions &rarr; Gates &rarr; Audit</div>
-    </div>
+      <div class="uc-scenario">Your recovery target may be sanctioned. Clear the gate before you act.</div>
+      <div class="uc-outcome">Enforcement against a flagged party is blocked until cleared.</div>
+      <div class="uc-more">View use case &rarr;</div>
+    </a>
   </div>
 </div></section>
 
 <section class="sec"><div class="frame">
-  <div class="eyebrow">§ 03 · GOVERNANCE</div>
+  <div class="eyebrow">§ 04 · GOVERNANCE</div>
   <div class="sec-grid">
     <h2>Built for regulated recovery</h2>
     <div class="sec-body">
@@ -609,7 +702,7 @@ footer a.c:hover{color:var(--ink)}
 </div></section>
 
 <section class="pricing" id="pricing"><div class="frame">
-  <div class="eyebrow">§ 04 · PRICING</div>
+  <div class="eyebrow">§ 05 · PRICING</div>
   <div class="sec-grid">
     <h2>Simple, outcome-aligned</h2>
     <div class="sec-body">
@@ -699,7 +792,7 @@ footer a.c:hover{color:var(--ink)}
 </div></section>
 
 <section class="access" id="access"><div class="frame">
-  <div class="eyebrow">§ 05 · ACCESS</div>
+  <div class="eyebrow">§ 06 · ACCESS</div>
   <h2>Have a judgment? <em>Begin recovery</em></h2>
   <p>Access is granted per mandate, on review.</p>
   <div class="btn-row">
@@ -712,8 +805,9 @@ footer a.c:hover{color:var(--ink)}
     <div class="footer-grid">
       <div class="footer-col">
         <div class="footer-heading">Product</div>
+        <a href="/use-cases">Use Cases</a>
         <a href="/sandbox">Sandbox</a>
-        <a href="/status">Status</a>
+        <a href="/#pricing">Pricing</a>
         <a href="/trust">Trust Surface</a>
         <a href="https://docs.kineticanvil.com">Documentation</a>
         <a href="/status">Status</a>
@@ -851,6 +945,38 @@ document.querySelectorAll('[data-request-access]').forEach(function(a){
 });
 document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal()});
 if(location.hash==='#access'){openModal();}
+</script>
+
+<script>
+/* Hero terminal: real call to the sandbox API (same-origin: works on preview + prod) */
+(function(){
+  var btn=document.getElementById('termRun'),body=document.getElementById('termBody'),note=document.getElementById('termNote');
+  if(!btn||!body)return;
+  function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+  function syntax(j){return esc(j).replace(/("(?:\\.|[^"])*")(\s*:)/g,'<span class="c-key">$1</span>$2').replace(/(:\s*)("(?:\\.|[^"])*")/g,'$1<span class="c-str">$2</span>');}
+  btn.addEventListener('click',function(){
+    btn.disabled=true;btn.innerHTML='Running\u2026';note.textContent='Issuing sandbox key\u2026';
+    body.innerHTML='<span class="c-mut">$ POST /api/sandbox-key</span>\n';
+    var key='';
+    fetch('/api/sandbox-key',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:'sandbox@kineticanvil.com',org:'Live demo'})})
+      .then(function(r){return r.json()})
+      .then(function(d){
+        key=d.key||'kx_test_';var masked=key.slice(0,12)+'\u2026';note.textContent='Opening case\u2026';
+        body.innerHTML='<span class="c-mut">$ curl -X POST https://api.kineticanvil.com/v1/cases \\\n  -H</span> <span class="c-str">"Authorization: Bearer '+masked+'"</span> <span class="c-mut">\\\n  -d</span> <span class="c-str">\'{ "type": "asset_trace" }\'</span>\n\n';
+        return fetch('/v1/cases',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+key},body:JSON.stringify({type:'asset_trace'})});
+      })
+      .then(function(r){return r.json()})
+      .then(function(c){
+        body.innerHTML+=syntax(JSON.stringify(c,null,2));
+        note.textContent='Live sandbox \u00b7 real response \u00b7 synthetic data';
+        btn.innerHTML='\u25b6 Run again';btn.disabled=false;
+      })
+      .catch(function(){
+        body.innerHTML+='<span class="c-mut">// Live on kineticanvil.com. Open the site to run against the sandbox.</span>';
+        note.textContent='Run available on the live domain';btn.innerHTML='\u25b6 Run live';btn.disabled=false;
+      });
+  });
+})();
 </script>
 
 <script type="application/ld+json">
