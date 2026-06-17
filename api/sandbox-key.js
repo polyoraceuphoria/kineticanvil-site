@@ -1,5 +1,5 @@
 'use strict';
-const { cors, preflight, json, readBody, issueKey, rateLimited, clientIp } = require('../lib/anvil');
+const { cors, preflight, json, apiError, readBody, issueKey, rateLimited, clientIp } = require('../lib/anvil');
 
 // POST /api/sandbox-key
 // Self-serve a sandbox key. Stateless + signed: the key is returned once and
@@ -9,13 +9,13 @@ module.exports = async function handler(req, res) {
   cors(req, res);
 
   if (req.method !== 'POST') {
-    return json(res, 405, { error: 'method_not_allowed', message: 'Use POST to generate a sandbox key.' });
+    return apiError(res, 405, 'method_not_allowed', 'Use POST to generate a sandbox key.');
   }
 
   const ip = clientIp(req);
   if (rateLimited('key:' + ip, 10, 60000)) {
     res.setHeader('Retry-After', '60');
-    return json(res, 429, { error: 'rate_limited', message: 'Too many key requests from your network. Wait a minute and try again.' });
+    return apiError(res, 429, 'rate_limited', 'Too many key requests from your network. Wait a minute and try again.');
   }
 
   const body = await readBody(req);
