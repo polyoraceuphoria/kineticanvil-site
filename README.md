@@ -8,9 +8,9 @@ Case operations infrastructure for financial fraud recovery.
 
 ## Pages
 
-- `/` — Landing page
-- `/sandbox` — Sandbox access
-- `/status` — System status
-- `/trust` — Trust surface
-- `/privacy` — Privacy notice
-- `/terms` — Terms of service
+- `/` - Landing page
+- `/sandbox` - Sandbox access
+- `/status` - System status
+- `/trust` - Trust surface
+- `/privacy` - Privacy notice
+- `/terms` - Terms of service

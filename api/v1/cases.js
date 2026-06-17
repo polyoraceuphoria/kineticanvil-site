@@ -1,18 +1,18 @@
 'use strict';
 const {
-  cors, preflight, json, readBody, verifyKey, rateLimited, clientIp, synthId, CASE_TYPES,
+  cors, preflight, json, apiError, readBody, verifyKey, rateLimited, clientIp, synthId, CASE_TYPES,
 } = require('../../lib/anvil');
 
 function authError(res, v) {
   const map = {
     missing_bearer: [401, 'Provide a sandbox key as Authorization: Bearer <key>.'],
-    invalid_prefix: [401, 'Key must be a sandbox key (kx_test_…). Generate one at https://kineticanvil.com/sandbox.'],
+    invalid_prefix: [401, 'Key must be a sandbox key (kx_test_). Generate one at https://kineticanvil.com/sandbox.'],
     malformed: [401, 'Malformed sandbox key.'],
     bad_signature: [401, 'Invalid sandbox key.'],
     live_not_provisioned: [402, 'Live (kx_live_) access is provisioned per organization. Contact us via https://kineticanvil.com/#contact.'],
   };
   const [code, message] = map[v.reason] || [401, 'Unauthorized.'];
-  return json(res, code, { error: v.reason, message, docs: 'https://docs.kineticanvil.com' });
+  return apiError(res, code, v.reason, message);
 }
 
 // POST /v1/cases   create a case (sandbox, synthetic)
@@ -27,7 +27,7 @@ module.exports = async function handler(req, res) {
   const ip = clientIp(req);
   if (rateLimited('v1:' + v.keyId + ':' + ip, 120, 60000)) {
     res.setHeader('Retry-After', '60');
-    return json(res, 429, { error: 'rate_limited', message: 'Sandbox rate limit is 120 req/min.' });
+    return apiError(res, 429, 'rate_limited', 'Sandbox rate limit is 120 req/min.');
   }
 
   if (req.method === 'GET') {
@@ -43,17 +43,13 @@ module.exports = async function handler(req, res) {
   }
 
   if (req.method !== 'POST') {
-    return json(res, 405, { error: 'method_not_allowed', message: 'Use POST to create a case or GET to list.' });
+    return apiError(res, 405, 'method_not_allowed', 'Use POST to create a case or GET to list.');
   }
 
   const body = await readBody(req);
   const type = (body && typeof body.type === 'string') ? body.type : 'asset_trace';
   if (!CASE_TYPES.includes(type)) {
-    return json(res, 422, {
-      error: 'invalid_type',
-      message: 'Unknown case type.',
-      allowed: CASE_TYPES,
-    });
+    return apiError(res, 422, 'invalid_type', 'Unknown case type.', { param: 'type', allowed: CASE_TYPES });
   }
 
   const caseId = synthId('cs', v.keyId, type);
