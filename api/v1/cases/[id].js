@@ -1,5 +1,5 @@
 'use strict';
-const { cors, preflight, json, verifyKey, synthId } = require('../../../lib/anvil');
+const { cors, preflight, json, apiError, verifyKey, synthId } = require('../../../lib/anvil');
 
 // GET /v1/cases/:id   retrieve a synthetic case (sandbox)
 module.exports = async function handler(req, res) {
@@ -9,11 +9,11 @@ module.exports = async function handler(req, res) {
   const v = verifyKey(req.headers.authorization);
   if (!v.ok) {
     const code = v.reason === 'live_not_provisioned' ? 402 : 401;
-    return json(res, code, { error: v.reason, docs: 'https://docs.kineticanvil.com' });
+    return apiError(res, code, v.reason, 'Unauthorized. Provide a valid sandbox key as Authorization: Bearer <key>.');
   }
 
   if (req.method !== 'GET') {
-    return json(res, 405, { error: 'method_not_allowed', message: 'Use GET to retrieve a case.' });
+    return apiError(res, 405, 'method_not_allowed', 'Use GET to retrieve a case.');
   }
 
   const id = (req.query && req.query.id) || 'cs_unknown';
