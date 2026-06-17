@@ -113,6 +113,9 @@ h1{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:54px;line-he
 .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:14px;border-top:1px solid var(--hair);border-left:1px solid var(--hair)}
 .tier{padding:32px 30px 34px;border-right:1px solid var(--hair);border-bottom:1px solid var(--hair);display:flex;flex-direction:column}
 .tier.feature{background:var(--panel)}
+.tier{position:relative}
+.tier .t-tag{position:absolute;top:0;left:0;right:0;background:var(--green);color:var(--bg);font-family:'Geist Mono',monospace;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;text-align:center;padding:6px 0;font-weight:500}
+.tier.feature{padding-top:50px}
 .tier .t-name{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--green);margin-bottom:6px}
 .tier .t-for{font-size:13px;color:var(--faint);font-weight:400;margin-bottom:22px;line-height:1.4}
 .tier .t-price{font-family:'Cormorant Garamond',serif;font-size:40px;font-weight:300;line-height:1;margin-bottom:4px}
@@ -353,7 +356,7 @@ h1{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:54px;line-he
           <div class="t-name">Single Matter</div>
           <div class="t-for">Solo practitioners and shingles collecting one judgment.</div>
           <div class="t-price">$1,500</div>
-          <div class="t-sub">activation &middot; then $500 / mo per matter</div>
+          <div class="t-sub">activation per matter &middot; then $500 / mo per active Mandate</div>
           <ul>
             <li>One Mandate, one judgment</li>
             <li>Up to 3 operator seats</li>
@@ -364,12 +367,13 @@ h1{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:54px;line-he
           <button class="btn primary" data-request-access>START A MANDATE</button>
         </div>
         <div class="tier feature">
+          <div class="t-tag">Most firms start here</div>
           <div class="t-name">Practice</div>
           <div class="t-for">Boutique firms running several recoveries at once.</div>
-          <div class="t-price">$1,000</div>
-          <div class="t-sub">activation per matter &middot; then $1,500 / mo</div>
+          <div class="t-price">$2,500</div>
+          <div class="t-sub">one-time firm activation &middot; then $400 / mo per active Mandate</div>
           <ul>
-            <li>Up to 5 active Mandates, then $300 / mo each</li>
+            <li>Run a book of matters at one flat per-Mandate rate</li>
             <li>Up to 10 operator seats</li>
             <li>Custom client-view subdomain</li>
             <li>Firm-wide branding controls</li>
