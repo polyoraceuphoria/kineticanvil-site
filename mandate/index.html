@@ -123,6 +123,30 @@ h1{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:54px;line-he
 .tier li::before{content:"+";position:absolute;left:0;top:0;color:var(--green);font-family:'Geist Mono',monospace;font-size:12px}
 .tier .btn{text-align:center}
 .price-note{font-size:12.5px;color:var(--faint);font-weight:400;margin-top:22px;max-width:680px;line-height:1.6}
+/* value-anchor band */
+.anchor{margin-top:18px;border:1px solid var(--hair)}
+.anchor-lede{padding:24px 28px;border-bottom:1px solid var(--hair)}
+.anchor-k{font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--green);margin-bottom:12px}
+.anchor-lede p{font-size:15.5px;line-height:1.6;color:var(--stone-300);font-weight:400;max-width:760px}
+.anchor-lede strong{color:var(--bone);font-weight:500}
+.ladder{display:grid;grid-template-columns:1.05fr 1.25fr 1fr 1.2fr}
+.lad-c{padding:15px 22px;border-bottom:1px solid var(--hair);border-right:1px solid var(--hair);display:flex;align-items:center}
+.lad-c:nth-child(4n){border-right:none}
+.lad-c:nth-last-child(-n+4){border-bottom:none}
+.lad-c.keepcol{background:rgba(0,255,73,0.045);box-shadow:inset 2px 0 0 var(--green)}
+.lad-c.h{font-family:'Geist Mono',monospace;font-size:9.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--faint);padding-top:18px;padding-bottom:13px}
+.lad-c.v{font-family:'Cormorant Garamond',serif;font-size:23px;font-weight:300;color:var(--bone)}
+.lad-c.cut{font-family:'Geist Mono',monospace;font-size:15px;color:#E0735C}
+.lad-c.mand{font-family:'Geist Mono',monospace;font-size:15px;color:var(--green)}
+.lad-c.keep{font-family:'Cormorant Garamond',serif;font-size:23px;font-weight:300;color:var(--bone)}
+.anchor-foot{padding:16px 28px;font-size:11.5px;color:var(--faint);font-weight:400;line-height:1.6;border-top:1px solid var(--hair)}
+@media(max-width:860px){
+  .ladder{grid-template-columns:1fr 1fr;border-top:1px solid var(--hair)}
+  .lad-c{border-bottom:1px solid var(--hair)!important}
+  .lad-c:nth-child(2n){border-right:none}
+  .lad-c.h{display:none}
+  .lad-c::before{content:attr(data-l);font-family:'Geist Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);margin-right:10px;min-width:78px;display:inline-block}
+}
 /* lifecycle bar */
 .life{margin-top:24px;display:flex;align-items:stretch;border:1px solid var(--hair);overflow:hidden}
 .life .ph{flex:1;padding:18px 16px;border-right:1px solid var(--hair);min-width:0}
@@ -291,6 +315,39 @@ h1{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:54px;line-he
       <div class="sec-eyebrow">&sect; 05 &middot; PRICING</div>
       <h2>Priced per matter, not per seat.</h2>
       <p style="margin-bottom:8px">An activation fee stands the Mandate up. A monthly operating fee keeps it live for the lifecycle of the judgment. No percentage of recovery, ever.</p>
+      <div class="anchor">
+        <div class="anchor-lede">
+          <div class="anchor-k">&sect; THE MATH</div>
+          <p>A contingency recovery firm takes <strong>20 to 40% of everything you collect</strong>. Mandate is a flat operating fee. You run the matter, you keep the recovery. The cut grows with the win. <strong>The fee does not.</strong></p>
+        </div>
+        <div class="ladder">
+          <div class="lad-c h">Judgment value</div>
+          <div class="lad-c h">Contingency cut (30%)</div>
+          <div class="lad-c h">Mandate fee (flat)</div>
+          <div class="lad-c h">You keep with Mandate</div>
+
+          <div class="lad-c v" data-l="Judgment">$250,000</div>
+          <div class="lad-c cut" data-l="Contingency">-$75,000</div>
+          <div class="lad-c mand" data-l="Mandate">~$4,500</div>
+          <div class="lad-c keep keepcol" data-l="You keep">~$245,500</div>
+
+          <div class="lad-c v" data-l="Judgment">$500,000</div>
+          <div class="lad-c cut" data-l="Contingency">-$150,000</div>
+          <div class="lad-c mand" data-l="Mandate">~$4,500</div>
+          <div class="lad-c keep keepcol" data-l="You keep">~$495,500</div>
+
+          <div class="lad-c v" data-l="Judgment">$1,000,000</div>
+          <div class="lad-c cut" data-l="Contingency">-$300,000</div>
+          <div class="lad-c mand" data-l="Mandate">~$4,500</div>
+          <div class="lad-c keep keepcol" data-l="You keep">~$995,500</div>
+
+          <div class="lad-c v" data-l="Judgment">$2,500,000</div>
+          <div class="lad-c cut" data-l="Contingency">-$750,000</div>
+          <div class="lad-c mand" data-l="Mandate">~$4,500</div>
+          <div class="lad-c keep keepcol" data-l="You keep">~$2,495,500</div>
+        </div>
+        <div class="anchor-foot">Illustrative. Mandate is operating infrastructure, not a collection service and not a guarantee of recovery: you or your counsel run the matter. The flat fee shown is a single Mandate over a six-month recovery ($1,500 activation plus $500 / mo). Contingency rates vary by firm and matter.</div>
+      </div>
       <div class="price-grid">
         <div class="tier">
           <div class="t-name">Single Matter</div>
