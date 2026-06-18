@@ -1,8 +1,8 @@
 /* ============================================================
-   KINETIC VISUAL SYSTEM v2 — LOCKED FOUNDATION
+   KINETIC VISUAL SYSTEM v2 - LOCKED FOUNDATION
    One source of truth for the unified properties:
    Hub · Anvil · Defender · Docs
-   (Meridian + Dispatch are self-contained ops — NOT governed here)
+   (Meridian + Dispatch are self-contained ops - NOT governed here)
    ------------------------------------------------------------
    Rule of the system:
    - One :root. Do not redefine tokens downstream.
@@ -69,7 +69,7 @@ body{background:var(--void-2);color:var(--bone);font-family:var(--sans);font-wei
 .k-btn--primary:hover{opacity:.9}
 .k-btn--ghost{background:transparent;color:var(--bone);border-color:var(--hair)}
 .k-btn--ghost:hover{border-color:var(--stone-500)}
-/* signal button — reserve for the single live/run action per view */
+/* signal button - reserve for the single live/run action per view */
 .k-btn--signal{background:var(--accent);color:var(--void);font-weight:500}
 .k-btn--signal:hover{opacity:.9}
 
@@ -108,7 +108,7 @@ body{background:var(--void-2);color:var(--bone);font-family:var(--sans);font-wei
 @media(max-width:900px){:root{--gutter:20px}.k-nav__links{display:none}}
 
 /* ============================================================
-   v2.1 CONVERGENCE — INSTITUTIONAL LAYER (v3 soul, v2 engine)
+   v2.1 CONVERGENCE - INSTITUTIONAL LAYER (v3 soul, v2 engine)
    Adds the document-register register, numbers-as-hero ledger,
    and the "Built on the API" spec rail as SHARED components.
    Status color discipline:
