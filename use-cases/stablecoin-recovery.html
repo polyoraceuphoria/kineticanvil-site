@@ -16,11 +16,13 @@
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+
+
+<meta name="theme-color" content="#111518">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/kinetic-system.css">
 <style>
 :root{
   --bg:#111518;--ink:#E9E7E2;--muted:#9BA1A8;--faint:#878E96;
@@ -43,7 +45,7 @@ em{font-style:italic}
 header{position:sticky;top:0;z-index:50;background:rgba(17,21,24,0.82);-webkit-backdrop-filter:blur(14px) saturate(1.4);backdrop-filter:blur(14px) saturate(1.4);border-bottom:1px solid var(--stone-800);padding:0 40px;display:flex;align-items:center;height:52px}
 .brand{display:flex;align-items:center;gap:9px}
 .mark{width:16px;height:16px;display:block}
-.wordmark{font-family:'Geist Mono',monospace;font-weight:500;font-size:0.8125rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent)}
+.wordmark{font-family:'Geist Mono',monospace;font-weight:500;font-size:0.8125rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--bone)}
 .nav-links{display:flex;align-items:center;gap:24px;margin-left:auto;font-family:'Geist Mono',monospace;font-weight:400;font-size:10px;letter-spacing:0.18em;text-transform:uppercase}
 .nav-links a{color:var(--stone-400);transition:color .15s;padding:4px 0}
 .nav-links a:hover{color:var(--bone)}
@@ -61,14 +63,10 @@ header{position:sticky;top:0;z-index:50;background:rgba(17,21,24,0.82);-webkit-b
 .mobile-menu-links a:hover{color:var(--accent)}
 .mobile-menu-links .mobile-cta{color:var(--accent);border-bottom:none;margin-top:12px}
 /* crumb */
-.crumb{font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--faint);max-width:1080px;margin:0 auto;padding:18px 48px 0;width:100%}
-.crumb a:hover{color:var(--green)}
-.crumb .sep{margin:0 8px;color:var(--stone-700)}
-.crumb .here{color:var(--stone-400)}
 /* content */
 main{flex:1}
 .uc-hero{padding:64px 0 56px;border-bottom:1px solid var(--hair)}
-.eyebrow{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.2em;color:var(--green);margin-bottom:26px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.eyebrow{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.2em;color:var(--stone-400);margin-bottom:26px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
 .eyebrow .pill{color:var(--faint)}
 h1{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:52px;line-height:1.1;letter-spacing:-0.01em;max-width:760px}
 .uc-lede{margin-top:28px;max-width:600px;font-size:17px;line-height:1.6;color:var(--muted);font-weight:400}
@@ -78,36 +76,36 @@ h1{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:52px;line-he
 .btn.primary{background:var(--accent);color:var(--void);border-color:var(--accent)}
 .sec{padding:64px 0;border-bottom:1px solid var(--hair)}
 .sec:last-of-type{border-bottom:none}
-.sec-eyebrow{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.2em;color:var(--green);margin-bottom:26px}
+.sec-eyebrow{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.2em;color:var(--stone-400);margin-bottom:26px}
 .sec h2{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:32px;line-height:1.15;max-width:620px;margin-bottom:22px}
 .sec p{font-size:15.5px;line-height:1.72;color:var(--muted);font-weight:400;max-width:620px}
 .sec p+p{margin-top:16px}
 /* steps */
 .steps{margin-top:14px;border-top:1px solid var(--hair)}
 .step{display:grid;grid-template-columns:64px 200px 1fr;gap:24px;padding:24px 0;border-bottom:1px solid var(--hair);align-items:start}
-.step .s-n{font-family:'Geist Mono',monospace;font-size:12px;color:var(--green);letter-spacing:.1em;padding-top:3px}
+.step .s-n{font-family:'Geist Mono',monospace;font-size:12px;color:var(--stone-400);letter-spacing:.1em;padding-top:3px}
 .step .s-station{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);padding-top:3px}
 .step .s-desc{font-size:14.5px;line-height:1.65;color:var(--muted);font-weight:400}
 /* outcomes */
 .outs{margin-top:8px;display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid var(--hair);border-left:1px solid var(--hair)}
 .out{padding:26px 28px;border-right:1px solid var(--hair);border-bottom:1px solid var(--hair)}
-.out .o-k{font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--green);margin-bottom:12px}
+.out .o-k{font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--stone-400);margin-bottom:12px}
 .out .o-v{font-size:14.5px;line-height:1.6;color:var(--muted);font-weight:400}
 /* station strip */
 .strip{margin-top:30px;display:flex;align-items:center;flex-wrap:wrap;gap:0;overflow-x:auto;padding-bottom:4px}
 .strip .s{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.08em;color:var(--muted);white-space:nowrap}
-.strip .arr{color:var(--green);margin:0 12px}
+.strip .arr{color:var(--stone-400);margin:0 12px}
 /* related */
 .rel{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:10px;border-top:1px solid var(--hair);border-left:1px solid var(--hair)}
 .rel a{display:block;padding:24px 26px;border-right:1px solid var(--hair);border-bottom:1px solid var(--hair);transition:background .15s}
 .rel a:hover{background:var(--panel)}
-.rel .r-k{font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--green);margin-bottom:8px}
+.rel .r-k{font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--stone-400);margin-bottom:8px}
 .rel .r-v{font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:300;line-height:1.25}
 /* uc index grid */
 .uci-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:48px;border-top:1px solid var(--hair);border-left:1px solid var(--hair)}
 .uci-card{display:block;padding:34px 32px;border-right:1px solid var(--hair);border-bottom:1px solid var(--hair);transition:background .15s}
 .uci-card:hover{background:var(--panel)}
-.uci-label{font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.22em;color:var(--green);margin-bottom:13px;text-transform:uppercase}
+.uci-label{font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.22em;color:var(--stone-400);margin-bottom:13px;text-transform:uppercase}
 .uci-scenario{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300;line-height:1.22;margin-bottom:13px}
 .uci-out{font-size:14px;line-height:1.62;color:var(--muted);font-weight:400;margin-bottom:16px}
 .uci-more{font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.14em;color:var(--faint);text-transform:uppercase}
@@ -150,8 +148,7 @@ h1{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:52px;line-he
 .cform-ok h3{margin-bottom:8px}
 .cform-ok p{font-size:13px;color:var(--stone-400);font-weight:400;line-height:1.6}
 @media(max-width:860px){
-  .frame{padding:0 24px}.crumb{padding:14px 24px 0}
-  h1{font-size:38px}.uc-hero{padding:44px 0 40px}.sec{padding:48px 0}
+  .frame{padding:0 24px}h1{font-size:38px}.uc-hero{padding:44px 0 40px}.sec{padding:48px 0}
   .step{grid-template-columns:48px 1fr;gap:14px}.step .s-desc{grid-column:1/-1}
   .outs,.rel,.uci-grid{grid-template-columns:1fr}
 }
@@ -165,40 +162,29 @@ h1{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:52px;line-he
 </style>
 </head>
 <body>
-  <header>
-    <a class="brand" href="/">
-      <svg class="mark" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="none" stroke="var(--accent)" stroke-width="1.5"/><circle cx="12" cy="12" r="3.5" fill="var(--accent)"/></svg>
-      <div class="wordmark">Kinetic Anvil</div>
+  <nav class="k-nav">
+    <a class="k-nav__brand" href="https://kineticpartners.org" aria-label="Kinetic home">
+      <svg class="k-glyph k-glyph--nav" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 971.44 867.94"><g transform="translate(-487.408020,1507.940550) scale(0.100000,-0.100000)" fill="currentColor" stroke="none"><path d="M7962 15060 c-125 -33 -242 -104 -310 -189 -18 -22 -148 -239 -288 -483 -141 -244 -365 -630 -497 -858 -133 -228 -252 -444 -266 -480 -21 -55 -25 -82 -25 -180 -1 -137 10 -176 90 -311 140 -236 515 -873 889 -1509 388 -660 705 -1200 1126 -1915 131 -223 196 -323 214 -333 28 -14 77 -9 93 11 6 7 67 111 137 232 70 121 162 281 206 356 61 106 79 144 79 174 0 40 -11 60 -610 1080 -81 138 -218 372 -305 520 -87 149 -207 351 -265 450 -560 943 -680 1154 -690 1203 -18 99 -10 117 268 594 142 243 285 489 317 546 67 120 100 156 171 189 l51 23 1364 -2 1364 -3 45 -27 c25 -14 55 -37 67 -50 20 -22 177 -286 531 -893 83 -143 161 -267 174 -275 19 -13 88 -16 423 -18 271 -2 412 0 437 8 44 13 73 58 65 99 -3 15 -41 87 -85 161 -84 143 -474 814 -749 1290 -91 157 -186 316 -211 354 -54 81 -143 158 -228 198 -129 60 -45 58 -1854 57 -1595 0 -1658 -1 -1728 -19z M8885 12211 c-34 -14 -59 -50 -59 -84 1 -22 31 -82 96 -192 52 -88 141 -240 198 -338 73 -126 112 -183 131 -193 24 -12 272 -14 1707 -14 1852 0 1736 4 1823 -63 31 -24 67 -76 142 -202 447 -760 664 -1137 679 -1180 21 -60 23 -126 5 -186 -8 -24 -106 -204 -219 -399 -183 -316 -328 -568 -952 -1655 -115 -200 -179 -301 -207 -327 -77 -70 -51 -68 -843 -68 -659 0 -713 -1 -739 -18 -37 -23 -457 -752 -457 -793 0 -41 9 -58 41 -74 24 -13 183 -15 1131 -15 1216 0 1158 -3 1282 63 116 61 151 107 385 512 442 763 720 1242 941 1620 307 527 539 930 567 985 38 77 56 181 50 289 -8 154 19 99 -462 921 -114 195 -320 549 -457 785 -170 292 -265 445 -297 478 -56 59 -119 100 -197 129 l-59 23 -2105 2 c-1158 1 -2114 -2 -2125 -6z M6098 12118 c-9 -7 -154 -254 -323 -548 -169 -294 -429 -746 -578 -1004 -151 -263 -281 -501 -296 -540 -35 -99 -36 -269 -2 -366 13 -37 108 -207 221 -395 109 -181 326 -546 482 -810 157 -264 368 -619 469 -790 102 -170 281 -474 399 -675 179 -304 226 -375 280 -431 74 -75 176 -130 274 -148 40 -7 392 -11 1067 -11 952 0 1010 1 1067 18 70 22 140 68 181 120 17 20 124 201 239 402 115 201 310 541 434 755 123 215 314 545 423 735 110 190 220 381 245 425 695 1200 960 1666 960 1688 0 23 -18 58 -39 74 -12 9 -129 12 -469 13 -500 0 -496 1 -528 -63 -9 -17 -56 -99 -104 -182 -113 -196 -261 -453 -635 -1105 -169 -294 -419 -728 -555 -965 -136 -236 -309 -538 -384 -670 -150 -263 -184 -305 -269 -330 -75 -22 -1239 -22 -1314 0 -77 23 -122 72 -216 235 -46 80 -146 251 -222 380 -76 129 -255 435 -398 680 -143 245 -350 598 -460 785 -276 467 -273 446 -100 744 688 1193 686 1189 680 1230 -5 33 -384 699 -425 744 -18 20 -80 23 -104 5z"/></g></svg>
+      <span class="k-nav__wm">KINETIC</span>
     </a>
-    <nav class="nav-links">
-      <a href="/">Anvil</a>
-      <a href="/use-cases" class="nav-active">Use Cases</a>
-      <a href="/sandbox">Sandbox</a>
-      <a href="/trust">Trust</a>
-      <a href="https://docs.kineticanvil.com">Docs</a>
-    </nav>
-    <a href="#contact" class="nav-cta">Get in Touch</a>
-    <button class="nav-hamburger" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
-  </header>
-  <div class="mobile-menu" aria-hidden="true">
-    <nav class="mobile-menu-links">
+    <div class="k-nav__links">
       <a href="/">Anvil</a>
       <a href="/use-cases">Use Cases</a>
+      <a href="/mandate">Mandate</a>
       <a href="/sandbox">Sandbox</a>
+      <a href="/status">Status</a>
       <a href="/trust">Trust</a>
       <a href="https://docs.kineticanvil.com">Docs</a>
-      <a href="#contact" class="mobile-cta">Get in Touch</a>
-    </nav>
-  </div>
-  <div class="crumb"><a href="https://kineticpartners.org">KINETIC</a><span class="sep">&rsaquo;</span><a href="/">ANVIL</a><span class="sep">&rsaquo;</span><a href="/use-cases">USE CASES</a><span class="sep">&rsaquo;</span><span class="here">STABLECOIN RECOVERY</span></div>
-  <main>
+    </div>
+    <a href="#contact" class="k-btn k-btn--ghost">Request Access</a>
+  </nav>
+<main>
     <section class="uc-hero"><div class="frame">
-      <div class="eyebrow"><span>USE CASE</span><span class="pill">&middot; 05 / 08</span></div>
-      <h1>Tainted tokens on-chain. You need a freeze, burn, and reissue.</h1>
+<h1>Tainted tokens on-chain. You need a freeze, burn, and reissue.</h1>
       <p class="uc-lede">Stablecoin issuers can freeze and reissue, but only against a request they can defend. Anvil builds the remediation packet, coordinates the burn and reissue, and certifies the destination wallet for the issuer.</p>
       <div class="cta-row">
-        <button class="btn primary" data-request-access>REQUEST ACCESS</button>
-        <a class="btn" href="/sandbox">TRY THE SANDBOX</a>
+        <button class="k-btn k-btn--ghost" data-request-access>REQUEST ACCESS</button>
+        <a class="k-btn k-btn--ghost" href="/sandbox">TRY THE SANDBOX</a>
       </div>
     </div></section>
 
@@ -229,22 +215,50 @@ h1{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:52px;line-he
       <h2>Running this recovery? <em>Begin.</em></h2>
       <p>Access is granted per mandate, on review. Start in the sandbox with synthetic data, or request production access.</p>
       <div class="cta-row" style="margin-top:30px">
-        <button class="btn primary" data-request-access>REQUEST ACCESS</button>
-        <a class="btn" href="https://docs.kineticanvil.com">READ THE DOCS &rarr;</a>
+        <button class="k-btn k-btn--ghost" data-request-access>REQUEST ACCESS</button>
+        <a class="k-btn k-btn--ghost" href="https://docs.kineticanvil.com">READ THE DOCS &rarr;</a>
       </div>
     </div></section>
   </main>
-  <footer class="site-footer">
-    <div class="footer-grid">
-      <div class="footer-col"><div class="footer-heading">Product</div><a href="/use-cases">Use Cases</a><a href="/sandbox">Sandbox</a><a href="/#pricing">Pricing</a><a href="/trust">Trust Surface</a><a href="https://docs.kineticanvil.com">Documentation</a><a href="/status">Status</a></div>
-      <div class="footer-col"><div class="footer-heading">Ecosystem</div><a href="https://kineticdefender.com">Kinetic Defender</a><a href="https://kineticpartners.org/tools/">Tools</a></div>
-      <div class="footer-col"><div class="footer-heading">Company</div><a href="https://kineticpartners.org">Kinetic</a><a href="https://meridianoffice.org">Meridian Recovery</a><a href="https://cipherblade.com">CipherBlade</a></div>
-    </div>
-    <div class="footer-bottom"><a class="footer-mark" href="/" aria-label="Kinetic"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 971.44 867.94" width="971.44" height="867.94"><g transform="translate(-487.408020,1507.940550) scale(0.100000,-0.100000)" fill="currentColor" stroke="none"><path d="M7962 15060 c-125 -33 -242 -104 -310 -189 -18 -22 -148 -239 -288 -483 -141 -244 -365 -630 -497 -858 -133 -228 -252 -444 -266 -480 -21 -55 -25 -82 -25 -180 -1 -137 10 -176 90 -311 140 -236 515 -873 889 -1509 388 -660 705 -1200 1126 -1915 131 -223 196 -323 214 -333 28 -14 77 -9 93 11 6 7 67 111 137 232 70 121 162 281 206 356 61 106 79 144 79 174 0 40 -11 60 -610 1080 -81 138 -218 372 -305 520 -87 149 -207 351 -265 450 -560 943 -680 1154 -690 1203 -18 99 -10 117 268 594 142 243 285 489 317 546 67 120 100 156 171 189 l51 23 1364 -2 1364 -3 45 -27 c25 -14 55 -37 67 -50 20 -22 177 -286 531 -893 83 -143 161 -267 174 -275 19 -13 88 -16 423 -18 271 -2 412 0 437 8 44 13 73 58 65 99 -3 15 -41 87 -85 161 -84 143 -474 814 -749 1290 -91 157 -186 316 -211 354 -54 81 -143 158 -228 198 -129 60 -45 58 -1854 57 -1595 0 -1658 -1 -1728 -19z M8885 12211 c-34 -14 -59 -50 -59 -84 1 -22 31 -82 96 -192 52 -88 141 -240 198 -338 73 -126 112 -183 131 -193 24 -12 272 -14 1707 -14 1852 0 1736 4 1823 -63 31 -24 67 -76 142 -202 447 -760 664 -1137 679 -1180 21 -60 23 -126 5 -186 -8 -24 -106 -204 -219 -399 -183 -316 -328 -568 -952 -1655 -115 -200 -179 -301 -207 -327 -77 -70 -51 -68 -843 -68 -659 0 -713 -1 -739 -18 -37 -23 -457 -752 -457 -793 0 -41 9 -58 41 -74 24 -13 183 -15 1131 -15 1216 0 1158 -3 1282 63 116 61 151 107 385 512 442 763 720 1242 941 1620 307 527 539 930 567 985 38 77 56 181 50 289 -8 154 19 99 -462 921 -114 195 -320 549 -457 785 -170 292 -265 445 -297 478 -56 59 -119 100 -197 129 l-59 23 -2105 2 c-1158 1 -2114 -2 -2125 -6z M6098 12118 c-9 -7 -154 -254 -323 -548 -169 -294 -429 -746 -578 -1004 -151 -263 -281 -501 -296 -540 -35 -99 -36 -269 -2 -366 13 -37 108 -207 221 -395 109 -181 326 -546 482 -810 157 -264 368 -619 469 -790 102 -170 281 -474 399 -675 179 -304 226 -375 280 -431 74 -75 176 -130 274 -148 40 -7 392 -11 1067 -11 952 0 1010 1 1067 18 70 22 140 68 181 120 17 20 124 201 239 402 115 201 310 541 434 755 123 215 314 545 423 735 110 190 220 381 245 425 695 1200 960 1666 960 1688 0 23 -18 58 -39 74 -12 9 -129 12 -469 13 -500 0 -496 1 -528 -63 -9 -17 -56 -99 -104 -182 -113 -196 -261 -453 -635 -1105 -169 -294 -419 -728 -555 -965 -136 -236 -309 -538 -384 -670 -150 -263 -184 -305 -269 -330 -75 -22 -1239 -22 -1314 0 -77 23 -122 72 -216 235 -46 80 -146 251 -222 380 -76 129 -255 435 -398 680 -143 245 -350 598 -460 785 -276 467 -273 446 -100 744 688 1193 686 1189 680 1230 -5 33 -384 699 -425 744 -18 20 -80 23 -104 5z"/></g></svg></a>
-      <div class="footer-copy">&copy; 2026 Kinetic Partners, LLC</div>
-      <div class="footer-legal"><a href="/privacy">Privacy</a><a href="/terms">Terms</a></div>
-    </div>
-  </footer>
+  <footer class="hub-foot">
+      <div class="hub-foot__lede">
+        <div class="hub-foot__tag">Case operations infrastructure for fraud recovery.</div>
+        <a href="#contact" class="k-btn k-btn--ghost">Request Access</a>
+      </div>
+      <div class="hub-foot__grid">
+        <div class="hub-foot__col">
+          <div class="hub-foot__h">Platform</div>
+          <a href="/">Kinetic Anvil</a>
+          <a href="/sandbox">Sandbox</a>
+          <a href="/status">Status</a>
+          <a href="https://docs.kineticanvil.com">Documentation</a>
+        </div>
+        <div class="hub-foot__col">
+          <div class="hub-foot__h">Use Cases</div>
+          <a href="/use-cases">All Use Cases</a>
+          <a href="/mandate">Mandate</a>
+        </div>
+        <div class="hub-foot__col">
+          <div class="hub-foot__h">Ecosystem</div>
+          <a href="https://kineticdefender.com">Kinetic Defender</a>
+          <a href="https://meridianoffice.org">Meridian Recovery</a>
+          <a href="https://cipherblade.com">CipherBlade</a>
+        </div>
+        <div class="hub-foot__col">
+          <div class="hub-foot__h">Company</div>
+          <a href="https://kineticpartners.org">Kinetic</a>
+          <a href="/trust">Trust</a>
+        </div>
+      </div>
+      <div class="hub-foot__bottom">
+        <a class="hub-foot__mark" href="https://kineticpartners.org" aria-label="Kinetic"><svg class="k-glyph k-glyph--foot" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 971.44 867.94"><g transform="translate(-487.408020,1507.940550) scale(0.100000,-0.100000)" fill="currentColor" stroke="none"><path d="M7962 15060 c-125 -33 -242 -104 -310 -189 -18 -22 -148 -239 -288 -483 -141 -244 -365 -630 -497 -858 -133 -228 -252 -444 -266 -480 -21 -55 -25 -82 -25 -180 -1 -137 10 -176 90 -311 140 -236 515 -873 889 -1509 388 -660 705 -1200 1126 -1915 131 -223 196 -323 214 -333 28 -14 77 -9 93 11 6 7 67 111 137 232 70 121 162 281 206 356 61 106 79 144 79 174 0 40 -11 60 -610 1080 -81 138 -218 372 -305 520 -87 149 -207 351 -265 450 -560 943 -680 1154 -690 1203 -18 99 -10 117 268 594 142 243 285 489 317 546 67 120 100 156 171 189 l51 23 1364 -2 1364 -3 45 -27 c25 -14 55 -37 67 -50 20 -22 177 -286 531 -893 83 -143 161 -267 174 -275 19 -13 88 -16 423 -18 271 -2 412 0 437 8 44 13 73 58 65 99 -3 15 -41 87 -85 161 -84 143 -474 814 -749 1290 -91 157 -186 316 -211 354 -54 81 -143 158 -228 198 -129 60 -45 58 -1854 57 -1595 0 -1658 -1 -1728 -19z M8885 12211 c-34 -14 -59 -50 -59 -84 1 -22 31 -82 96 -192 52 -88 141 -240 198 -338 73 -126 112 -183 131 -193 24 -12 272 -14 1707 -14 1852 0 1736 4 1823 -63 31 -24 67 -76 142 -202 447 -760 664 -1137 679 -1180 21 -60 23 -126 5 -186 -8 -24 -106 -204 -219 -399 -183 -316 -328 -568 -952 -1655 -115 -200 -179 -301 -207 -327 -77 -70 -51 -68 -843 -68 -659 0 -713 -1 -739 -18 -37 -23 -457 -752 -457 -793 0 -41 9 -58 41 -74 24 -13 183 -15 1131 -15 1216 0 1158 -3 1282 63 116 61 151 107 385 512 442 763 720 1242 941 1620 307 527 539 930 567 985 38 77 56 181 50 289 -8 154 19 99 -462 921 -114 195 -320 549 -457 785 -170 292 -265 445 -297 478 -56 59 -119 100 -197 129 l-59 23 -2105 2 c-1158 1 -2114 -2 -2125 -6z M6098 12118 c-9 -7 -154 -254 -323 -548 -169 -294 -429 -746 -578 -1004 -151 -263 -281 -501 -296 -540 -35 -99 -36 -269 -2 -366 13 -37 108 -207 221 -395 109 -181 326 -546 482 -810 157 -264 368 -619 469 -790 102 -170 281 -474 399 -675 179 -304 226 -375 280 -431 74 -75 176 -130 274 -148 40 -7 392 -11 1067 -11 952 0 1010 1 1067 18 70 22 140 68 181 120 17 20 124 201 239 402 115 201 310 541 434 755 123 215 314 545 423 735 110 190 220 381 245 425 695 1200 960 1666 960 1688 0 23 -18 58 -39 74 -12 9 -129 12 -469 13 -500 0 -496 1 -528 -63 -9 -17 -56 -99 -104 -182 -113 -196 -261 -453 -635 -1105 -169 -294 -419 -728 -555 -965 -136 -236 -309 -538 -384 -670 -150 -263 -184 -305 -269 -330 -75 -22 -1239 -22 -1314 0 -77 23 -122 72 -216 235 -46 80 -146 251 -222 380 -76 129 -255 435 -398 680 -143 245 -350 598 -460 785 -276 467 -273 446 -100 744 688 1193 686 1189 680 1230 -5 33 -384 699 -425 744 -18 20 -80 23 -104 5z"/></g></svg></a>
+        <div class="hub-foot__copy">&copy; 2026 Kinetic Digital Partners Inc.</div>
+        <div class="hub-foot__legal">
+          <a href="/privacy">Privacy</a>
+          <a href="/terms">Terms</a>
+        </div>
+      </div>
+    </footer>
 <div class="modal-backdrop" id="contactBg" onclick="closeContact()"></div>
 <div class="modal-card" id="contactCard" role="dialog" aria-modal="true" aria-labelledby="contactTitle">
   <button class="modal-close" onclick="closeContact()" aria-label="Close"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg></button>

@@ -1,0 +1,208 @@
+/* ============================================================
+   KINETIC VISUAL SYSTEM v2 — LOCKED FOUNDATION
+   One source of truth for the unified properties:
+   Hub · Anvil · Defender · Docs
+   (Meridian + Dispatch are self-contained ops — NOT governed here)
+   ------------------------------------------------------------
+   Rule of the system:
+   - One :root. Do not redefine tokens downstream.
+   - One serif display voice (Cormorant Garamond) for all headlines.
+   - One mono label voice (Geist Mono) for eyebrows / refs / status.
+   - One sans body voice (Satoshi).
+   - GREEN (#00FF73) = SIGNAL ONLY. Live / active / single primary run.
+     Never a fill, never decoration. Budget: <5% of any view.
+   ============================================================ */
+
+:root{
+  /* canvas */
+  --void:#0E1215; --void-2:#111518;
+  --panel:#161B1F; --panel-2:#1A1F24;
+  /* ink */
+  --bone:#E9E7E2;
+  --stone-300:#C5C9CE; --stone-400:#9BA1A8; --stone-500:#5E6670;
+  --stone-600:#3F4650; --stone-700:#2E3540; --stone-800:#242A32;
+  /* signal */
+  --accent:#00FF73;
+  /* structure */
+  --hair:rgba(233,231,226,.10);
+  --hair-2:rgba(233,231,226,.055);
+  /* type */
+  --mono:'Geist Mono','IBM Plex Mono',ui-monospace,monospace;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'Satoshi',-apple-system,system-ui,sans-serif;
+  /* rhythm */
+  --gutter:40px; --maxw:1240px;
+}
+
+/* ---------- reset + base ---------- */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{font-size:16px;-webkit-font-smoothing:antialiased;scroll-behavior:smooth}
+body{background:var(--void-2);color:var(--bone);font-family:var(--sans);font-weight:300;line-height:1.6}
+::selection{background:var(--accent);color:var(--void)}
+.k-mono{font-family:var(--mono)}
+.k-serif{font-family:var(--serif)}
+
+/* ---------- display voice (the unifier) ---------- */
+.k-h1{font-family:var(--serif);font-weight:400;font-size:clamp(2.6rem,5.6vw,4.4rem);line-height:.98;letter-spacing:-.01em;text-wrap:balance}
+.k-h2{font-family:var(--serif);font-weight:400;font-size:clamp(2rem,3.4vw,2.8rem);line-height:1.02;letter-spacing:-.005em}
+.k-h1 em,.k-h2 em{font-style:italic;color:var(--stone-300)}     /* italic = emphasis, NOT green */
+.k-lede{color:var(--stone-400);font-size:1.0625rem;line-height:1.7;max-width:62ch}
+.k-lede strong{color:var(--stone-300);font-weight:400}
+
+/* ---------- mono label voice ---------- */
+.k-kicker{font-family:var(--mono);font-size:.6875rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent)}
+.k-eyebrow{font-family:var(--mono);font-size:.6875rem;letter-spacing:.16em;text-transform:uppercase;color:var(--stone-400)}
+.k-eyebrow .num{color:var(--accent)}
+.k-ref{font-family:var(--mono);font-size:.625rem;letter-spacing:.16em;text-transform:uppercase;color:var(--stone-500)}
+
+/* ---------- document frame chrome ---------- */
+.k-frameline{display:flex;justify-content:space-between;align-items:center;padding:9px var(--gutter);
+  border-bottom:1px solid var(--hair-2);font-family:var(--mono);font-size:.594rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--stone-600)}
+.k-frameline b{color:var(--accent);font-weight:400}
+
+/* ---------- the one button set ---------- */
+.k-btn{display:inline-flex;align-items:center;gap:.6em;font-family:var(--mono);font-size:.75rem;
+  letter-spacing:.16em;text-transform:uppercase;padding:13px 22px;border:1px solid transparent;
+  text-decoration:none;white-space:nowrap;transition:opacity .2s,background .2s,border-color .2s;cursor:pointer}
+.k-btn--primary{background:var(--bone);color:var(--void)}
+.k-btn--primary:hover{opacity:.9}
+.k-btn--ghost{background:transparent;color:var(--bone);border-color:var(--hair)}
+.k-btn--ghost:hover{border-color:var(--stone-500)}
+/* signal button — reserve for the single live/run action per view */
+.k-btn--signal{background:var(--accent);color:var(--void);font-weight:500}
+.k-btn--signal:hover{opacity:.9}
+
+/* ---------- the one card material ---------- */
+.k-card{position:relative;background:var(--panel);border:1px solid var(--hair);padding:24px}
+.k-card::before{content:"";position:absolute;inset:0 0 auto 0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(233,231,226,.16),transparent)}
+.k-card__tick{position:absolute;top:12px;right:14px;font-family:var(--mono);font-size:10px;color:var(--accent);opacity:.55}
+.k-card__code{font-family:var(--mono);font-size:.625rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.k-card__name{font-family:var(--serif);font-size:1.4rem;color:var(--bone);margin-top:12px;line-height:1.05}
+.k-card__desc{font-size:.8125rem;color:var(--stone-500);margin-top:8px;line-height:1.5}
+
+/* ---------- status tag (defender / consoles) ---------- */
+.k-tag{font-family:var(--mono);font-size:.5625rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--stone-400);border:1px solid var(--hair);padding:3px 8px}
+.k-tag--on{color:var(--accent);border-color:rgba(0,255,115,.3)}   /* the only green tag = ACTIVE/LIVE */
+
+/* ---------- hexagon monogram (shared mark) ---------- */
+.k-hex{width:20px;height:22px;display:block;flex:none}
+/* usage: inline the SVG below in headers
+   <svg class="k-hex" viewBox="0 0 24 26"><path d="M12 1 L22.4 7 V19 L12 25 L1.6 19 V7 Z" fill="none" stroke="#00FF73" stroke-width="1.4"/><path d="M12 7.5 L17 10.4 V16.2 L12 19.1 L7 16.2 V10.4 Z" fill="#00FF73" opacity=".9"/></svg> */
+
+/* ---------- shared header ---------- */
+.k-nav{display:flex;align-items:center;justify-content:space-between;padding:22px var(--gutter);border-bottom:1px solid var(--hair-2)}
+.k-nav__brand{display:flex;align-items:center;gap:12px}
+.k-nav__wm{font-family:var(--mono);font-weight:500;font-size:.875rem;letter-spacing:.22em;color:var(--bone)}
+.k-nav__links{display:flex;gap:30px;font-family:var(--mono);font-size:.6875rem;letter-spacing:.12em;text-transform:uppercase;color:var(--stone-400)}
+.k-nav__links a{color:inherit;text-decoration:none}
+.k-nav__links a:hover,.k-nav__links a[aria-current]{color:var(--bone)}
+
+/* ---------- layout helpers ---------- */
+.k-wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--gutter)}
+.k-hairline{height:1px;background:var(--hair-2);border:0}
+
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+@media(max-width:900px){:root{--gutter:20px}.k-nav__links{display:none}}
+
+/* ============================================================
+   v2.1 CONVERGENCE — INSTITUTIONAL LAYER (v3 soul, v2 engine)
+   Adds the document-register register, numbers-as-hero ledger,
+   and the "Built on the API" spec rail as SHARED components.
+   Status color discipline:
+     GREEN  = live / active / verified-on   (signal, unchanged)
+     GOLD   = in-build / pending             (--verified)
+     STONE  = integrated partner / inert
+   Green budget unchanged: <5%, live markers + one primary only.
+   ============================================================ */
+:root{ --verified:#C9A24B; }
+
+/* operating register bar (document register chrome) */
+.k-docbar{border-bottom:1px solid var(--hair);background:var(--void);font-family:var(--mono);
+  font-size:.656rem;letter-spacing:.14em;text-transform:uppercase;color:var(--stone-500)}
+.k-docbar__in{max-width:var(--maxw);margin:0 auto;padding:9px var(--gutter);display:flex;justify-content:space-between;align-items:center;gap:16px}
+.k-docbar .sig{color:var(--stone-400)}
+.k-livedot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--accent);margin-right:6px;box-shadow:0 0 8px rgba(0,255,115,.5);vertical-align:middle}
+
+/* numbers-as-hero ledger strip */
+.k-ledger{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)}
+.k-ledger .cell{padding:28px 26px;border-right:1px solid var(--hair)}
+.k-ledger .cell:last-child{border-right:none}
+.k-ledger .k{font-family:var(--mono);font-size:.625rem;letter-spacing:.16em;text-transform:uppercase;color:var(--stone-500);margin-bottom:14px}
+.k-ledger .v{font-family:var(--serif);font-weight:400;font-size:2.5rem;line-height:1;color:var(--bone);font-variant-numeric:tabular-nums}
+.k-ledger .v small{font-size:1.125rem;color:var(--stone-400)}
+.k-ledger .meta{font-family:var(--mono);font-size:.625rem;color:var(--stone-500);margin-top:10px;letter-spacing:.04em}
+
+/* section head (marker + serif title) */
+.k-sechead{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:34px}
+.k-secmark{font-family:var(--mono);font-size:.6875rem;letter-spacing:.18em;text-transform:uppercase;color:var(--stone-500)}
+.k-secmark b{color:var(--stone-300);font-weight:500}
+.k-sectitle{font-family:var(--serif);font-weight:400;font-size:1.875rem;color:var(--stone-300)}
+.k-section{padding:76px 0;border-bottom:1px solid var(--hair)}
+
+/* the register (document index of properties) */
+.k-register{border-top:1px solid var(--hair)}
+.k-reg{display:grid;grid-template-columns:92px 1fr 230px 132px 22px;align-items:center;gap:20px;
+  padding:26px 8px;border-bottom:1px solid var(--hair);text-decoration:none;color:inherit;transition:background .2s,padding-left .2s}
+.k-reg:hover{background:var(--panel);padding-left:18px}
+.k-reg__ref{font-family:var(--mono);font-size:.75rem;letter-spacing:.08em;color:var(--stone-400)}
+.k-reg__name{font-family:var(--serif);font-weight:400;font-size:1.5625rem;color:var(--bone);line-height:1.1}
+.k-reg__name .badge{display:inline-block;font-family:var(--mono);font-size:.5625rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--verified);border:1px solid rgba(201,162,75,.35);padding:2px 7px;margin-left:12px;vertical-align:middle}
+.k-reg__desc{font-size:.8438rem;color:var(--stone-400);line-height:1.5}
+.k-reg__status{font-family:var(--mono);font-size:.625rem;letter-spacing:.1em;text-transform:uppercase;color:var(--stone-400);white-space:nowrap}
+.k-reg__status .dot{display:inline-block;width:6px;height:6px;border-radius:50%;margin-right:7px;vertical-align:middle;background:var(--stone-500)}
+.k-reg__status.live .dot{background:var(--accent);box-shadow:0 0 7px rgba(0,255,115,.5)}
+.k-reg__status.live{color:var(--stone-300)}
+.k-reg__status.build .dot{background:var(--verified)}
+.k-reg__arrow{color:var(--stone-600);justify-self:end;transition:color .2s,transform .2s}
+.k-reg:hover .k-reg__arrow{color:var(--bone);transform:translateX(3px)}
+
+/* flagship + the "Built on the API" spec rail (proof block) */
+.k-flagship{background:var(--panel);border:1px solid var(--hair);padding:48px;display:grid;grid-template-columns:1.3fr 1fr;gap:48px;position:relative}
+.k-flagship::before{content:"";position:absolute;top:0;left:0;width:100%;height:1px;background:linear-gradient(90deg,transparent,rgba(233,231,226,.16),transparent)}
+.k-flagship h3{font-family:var(--serif);font-weight:400;font-size:2.375rem;color:var(--bone);margin-bottom:16px;line-height:1.04}
+.k-flagship p{font-size:.9063rem;color:var(--stone-400);max-width:44ch}
+.k-spec{border-left:1px solid var(--hair);padding-left:36px}
+.k-spec__label{font-family:var(--mono);font-size:.625rem;letter-spacing:.16em;text-transform:uppercase;color:var(--stone-500);margin-bottom:14px}
+.k-spec .row{display:flex;justify-content:space-between;gap:18px;padding:13px 0;border-bottom:1px solid var(--hair-2);font-family:var(--mono);font-size:.7188rem}
+.k-spec .row:last-child{border-bottom:none}
+.k-spec .row .k{color:var(--stone-500);letter-spacing:.06em}
+.k-spec .row .v{color:var(--stone-300)}
+.k-spec .row .v.on{color:var(--bone)}
+
+@media(max-width:880px){
+  .k-ledger{grid-template-columns:repeat(2,1fr)}
+  .k-ledger .cell:nth-child(2){border-right:none}
+  .k-reg{grid-template-columns:64px 1fr 20px}
+  .k-reg__desc,.k-reg__status{display:none}
+  .k-flagship{grid-template-columns:1fr;gap:32px;padding:32px}
+  .k-spec{border-left:none;padding-left:0;border-top:1px solid var(--hair);padding-top:24px}
+}
+
+/* ---------- Kinetic glyph ---------- */
+.k-glyph{display:block;fill:currentColor;flex-shrink:0}
+.k-glyph--nav{width:21px;height:auto}
+.k-glyph--foot{width:26px;height:auto}
+.k-nav__brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--bone);transition:color .15s}
+.k-nav__brand:hover{color:var(--accent)}
+
+/* ---------- institutional footer ---------- */
+.hub-foot{padding:72px 0 64px;border-top:1px solid var(--hair);max-width:var(--maxw);margin:0 auto;padding-left:var(--gutter);padding-right:var(--gutter)}
+.hub-foot__lede{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;padding-bottom:48px;border-bottom:1px solid var(--hair)}
+.hub-foot__tag{font-family:var(--serif);font-style:italic;font-size:1.5rem;color:var(--stone-300);max-width:24ch;line-height:1.15}
+.hub-foot__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;max-width:760px;margin:48px 0}
+.hub-foot__col{display:flex;flex-direction:column;gap:11px}
+.hub-foot__h{font-family:var(--mono);font-size:.625rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--stone-400);margin-bottom:4px}
+.hub-foot__col a{font-family:var(--sans);font-size:.8125rem;font-weight:300;color:var(--stone-400);text-decoration:none;transition:color .15s}
+.hub-foot__col a:hover{color:var(--accent)}
+.hub-foot__bottom{display:flex;align-items:center;gap:24px;padding-top:28px;border-top:1px solid var(--hair)}
+.hub-foot__mark{color:var(--stone-400);transition:color .15s;line-height:0}
+.hub-foot__mark:hover{color:var(--accent)}
+.hub-foot__copy{font-family:var(--mono);font-size:.625rem;letter-spacing:.12em;color:var(--stone-500)}
+.hub-foot__legal{display:flex;gap:18px;margin-left:auto}
+.hub-foot__legal a{font-family:var(--mono);font-size:.625rem;letter-spacing:.14em;text-transform:uppercase;color:var(--stone-500);text-decoration:none;transition:color .15s}
+.hub-foot__legal a:hover{color:var(--accent)}
+@media(max-width:880px){.hub-foot__lede{flex-direction:column;align-items:flex-start;gap:24px}.hub-foot__grid{grid-template-columns:repeat(2,1fr);gap:24px}.hub-foot__bottom{flex-wrap:wrap;gap:16px}.hub-foot__legal{margin-left:0}}
