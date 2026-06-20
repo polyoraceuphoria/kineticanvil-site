@@ -346,6 +346,7 @@ a.c:hover{color:var(--ink)}
 
 </style>
 <style id="kp-fmark">.site-footer{display:block}.footer-bottom{position:relative}.footer-mark{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:flex;align-items:center;line-height:0}.footer-mark svg{height:22px;width:auto;display:block;color:rgba(255,255,255,.6);transition:color .15s ease}.footer-mark:hover svg{color:#00FF73}@media(max-width:640px){.footer-bottom{align-items:center}.footer-mark{position:static;transform:none;order:-1;margin-bottom:6px}}</style>
+<script src="/analytics.js"></script>
 </head>
 <body>
 <header>
@@ -531,6 +532,7 @@ function submitKey(e){
     return r.json();
   }).then(function(d){
     if(!d||!d.key)throw new Error('bad');
+    window.kxTrack&&window.kxTrack('apikey_created',{environment_kind:'sandbox',source:'sandbox_form'});
     revealKey(d);
   }).catch(function(e){
     btn.textContent='GENERATE SANDBOX KEY';btn.disabled=false;
