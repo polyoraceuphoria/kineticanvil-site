@@ -508,6 +508,7 @@ a.uc-card:hover .uc-more{color:var(--green)}
 
 </style>
 <style id="kp-fmark">.site-footer{display:block}.footer-bottom{position:relative}.footer-mark{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:flex;align-items:center;line-height:0}.footer-mark svg{height:22px;width:auto;display:block;color:rgba(255,255,255,.6);transition:color .15s ease}.footer-mark:hover svg{color:#00FF73}@media(max-width:640px){.footer-bottom{align-items:center}.footer-mark{position:static;transform:none;order:-1;margin-bottom:6px}}</style>
+<script src="/analytics.js"></script>
 </head>
 <body>
 <header>
@@ -978,6 +979,7 @@ if(location.hash==='#access'){openModal();}
     fetch('/api/sandbox-key',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:'sandbox@kineticanvil.com',org:'Live demo'})})
       .then(function(r){return r.json()})
       .then(function(d){
+        if(d&&d.key)window.kxTrack&&window.kxTrack('apikey_created',{environment_kind:'sandbox',source:'hero_terminal'});
         key=d.key||'kx_test_';var masked=key.slice(0,12)+'\u2026';note.textContent='Opening case\u2026';
         body.innerHTML='<span class="c-mut">$ curl -X POST https://api.kineticanvil.com/v1/cases \\\n  -H</span> <span class="c-str">"Authorization: Bearer '+masked+'"</span> <span class="c-mut">\\\n  -d</span> <span class="c-str">\'{ "type": "asset_trace" }\'</span>\n\n';
         return fetch('/v1/cases',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+key},body:JSON.stringify({type:'asset_trace'})});
@@ -985,6 +987,7 @@ if(location.hash==='#access'){openModal();}
       .then(function(r){return r.json()})
       .then(function(c){
         body.innerHTML+=syntax(JSON.stringify(c,null,2));
+        window.kxTrack&&window.kxTrack('sandbox_first_call',{endpoint:'/v1/cases',source:'hero_terminal'});
         note.textContent='Live sandbox \u00b7 real response \u00b7 synthetic data';
         btn.innerHTML='\u25b6 Run again';btn.disabled=false;
       })
