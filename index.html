@@ -560,14 +560,14 @@ a.uc-card:hover .uc-more{color:var(--green)}
     <div class="terminal" id="term">
       <div class="term-bar">
         <span class="d"></span><span class="d"></span><span class="d"></span>
-        <span class="term-title">POST /v1/cases</span>
+        <span class="term-title">POST /v1/matters</span>
         <button class="term-run" id="termRun">&#9654; Run live</button>
       </div>
-      <div class="term-body" id="termBody"><span class="c-mut">$ curl -X POST https://api.kineticanvil.com/v1/cases \
+      <div class="term-body" id="termBody"><span class="c-mut">$ curl -X POST https://api.kineticanvil.com/v1/matters \
   -H</span> <span class="c-str">"Authorization: Bearer kx_test_&hellip;"</span> <span class="c-mut">\
   -d</span> <span class="c-str">'{ "type": "asset_trace" }'</span>
 
-<span class="c-mut">// Press Run to issue a sandbox key and open a real case.</span></div>
+<span class="c-mut">// Press Run to issue a sandbox key and open a matter.</span></div>
       <div class="term-note" id="termNote">Live sandbox &middot; synthetic data only &middot; no signup</div>
     </div>
   </div>
@@ -875,7 +875,7 @@ a.uc-card:hover .uc-more{color:var(--green)}
 80 -146 251 -222 380 -76 129 -255 435 -398 680 -143 245 -350 598 -460 785
 -276 467 -273 446 -100 744 688 1193 686 1189 680 1230 -5 33 -384 699 -425
 744 -18 20 -80 23 -104 5z"/></g></svg></a>
-      <div class="footer-copy">&copy; 2026 KGS7 Digital LLC</div>
+      <div class="footer-copy">&copy; 2026 Kinetic Digital Partners Inc.</div>
       <div class="footer-legal">
         <a href="/privacy">Privacy</a>
         <a href="/terms">Terms</a>
@@ -980,14 +980,14 @@ if(location.hash==='#access'){openModal();}
       .then(function(r){return r.json()})
       .then(function(d){
         if(d&&d.key)window.kxTrack&&window.kxTrack('apikey_created',{environment_kind:'sandbox',source:'hero_terminal'});
-        key=d.key||'kx_test_';var masked=key.slice(0,12)+'\u2026';note.textContent='Opening case\u2026';
-        body.innerHTML='<span class="c-mut">$ curl -X POST https://api.kineticanvil.com/v1/cases \\\n  -H</span> <span class="c-str">"Authorization: Bearer '+masked+'"</span> <span class="c-mut">\\\n  -d</span> <span class="c-str">\'{ "type": "asset_trace" }\'</span>\n\n';
-        return fetch('/v1/cases',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+key},body:JSON.stringify({type:'asset_trace'})});
+        key=d.key||'kx_test_';var masked=key.slice(0,12)+'\u2026';note.textContent='Opening matter\u2026';
+        body.innerHTML='<span class="c-mut">$ curl -X POST https://api.kineticanvil.com/v1/matters \\\n  -H</span> <span class="c-str">"Authorization: Bearer '+masked+'"</span> <span class="c-mut">\\\n  -d</span> <span class="c-str">\'{ "type": "asset_trace" }\'</span>\n\n';
+        return fetch('/v1/matters',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+key},body:JSON.stringify({type:'asset_trace'})});
       })
       .then(function(r){return r.json()})
       .then(function(c){
         body.innerHTML+=syntax(JSON.stringify(c,null,2));
-        window.kxTrack&&window.kxTrack('sandbox_first_call',{endpoint:'/v1/cases',source:'hero_terminal'});
+        window.kxTrack&&window.kxTrack('sandbox_first_call',{endpoint:'/v1/matters',source:'hero_terminal'});
         note.textContent='Live sandbox \u00b7 real response \u00b7 synthetic data';
         btn.innerHTML='\u25b6 Run again';btn.disabled=false;
       })
