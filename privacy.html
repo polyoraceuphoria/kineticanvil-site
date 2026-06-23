@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="How Kinetic Anvil handles information submitted through kineticpartners.org/api, including Request Access submissions.">
+<meta name="description" content="How Kinetic Anvil handles information submitted through kineticanvil.com, including Request Access submissions.">
 <link rel="canonical" href="https://kineticanvil.com/privacy">
 <title>Privacy Notice | Kinetic Anvil | Kinetic</title>
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
@@ -321,7 +321,7 @@ a.c:hover{color:var(--ink)}
 <div class="kicker">§ PRIVACY</div>
 <h1>Privacy Notice</h1>
 <div class="updated">LAST UPDATED · 2026-06-12</div>
-<p>This notice explains how Kinetic Anvil ("we") handles information submitted through <strong>kineticpartners.org/api</strong>, including the Request Access form. It is written to be read, not skimmed past.</p>
+<p>This notice explains how Kinetic Anvil ("we") handles information submitted through <strong>kineticanvil.com</strong>, including the Request Access form. It is written to be read, not skimmed past.</p>
 
 <h2>What we collect</h2>
 <ul>
@@ -353,8 +353,10 @@ a.c:hover{color:var(--ink)}
     <div class="footer-grid">
       <div class="footer-col">
         <div class="footer-heading">Product</div>
+        <a href="/use-cases">Use Cases</a>
+        <a href="/mandate">Mandate</a>
         <a href="/sandbox">Sandbox</a>
-        <a href="/status">Status</a>
+        <a href="/#pricing">Pricing</a>
         <a href="/trust">Trust Surface</a>
         <a href="https://docs.kineticanvil.com">Documentation</a>
         <a href="/status">Status</a>
@@ -366,9 +368,11 @@ a.c:hover{color:var(--ink)}
       </div>
       <div class="footer-col">
         <div class="footer-heading">Company</div>
+        <a href="/about">About</a>
+        <a href="/company">Company</a>
         <a href="https://kineticpartners.org">Kinetic</a>
         <a href="https://meridianoffice.org">Meridian Recovery</a>
-        <a href="https://cipherblade.com">CipherBlade</a>
+        <a href="https://cipherblade.com">CipherBlade (Integrated Partner)</a>
       </div>
     </div>
     <div class="footer-bottom"><a class="footer-mark" href="/" aria-label="Kinetic"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 971.44 867.94" width="971.44" height="867.94"><g transform="translate(-487.408020,1507.940550) scale(0.100000,-0.100000)" fill="currentColor" stroke="none"><path d="M7962 15060 c-125 -33 -242 -104 -310 -189 -18 -22 -148 -239 -288
@@ -489,7 +493,7 @@ function submitContact(e){
   btn.textContent='SENDING…';btn.disabled=true;
   var fd=new FormData(document.getElementById('contactForm'));
   var data={};fd.forEach(function(v,k){data[k]=v});
-  fetch('https://kineticpartners.org/api/request-access',{
+  fetch('/api/contact',{
     method:'POST',
     headers:{'Content-Type':'application/json','Accept':'application/json'},
     body:JSON.stringify(Object.assign(data,{source:'contact'}))
@@ -497,8 +501,8 @@ function submitContact(e){
     document.getElementById('contactWrap').style.display='none';
     document.getElementById('contactOk').style.display='';
   }).catch(function(){
-    document.getElementById('contactWrap').style.display='none';
-    document.getElementById('contactOk').style.display='';
+    var b=document.getElementById('contactBtn');
+    if(b){b.textContent='SOMETHING WENT WRONG. TRY AGAIN';b.disabled=false;}
   });
   return false;
 }

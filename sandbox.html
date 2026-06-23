@@ -422,6 +422,7 @@ a.c:hover{color:var(--ink)}
           <div class="step"><span class="n">01</span><div>Set your base URL to <code>https://api.kineticanvil.com</code> and send the key as <code>Authorization: Bearer &lt;key&gt;</code>.</div></div>
           <div class="step"><span class="n">02</span><div>Follow the <a href="https://docs.kineticanvil.com/quickstart">Quickstart</a>. First call in under a minute.</div></div>
           <div class="step"><span class="n">03</span><div>Import the <a href="https://docs.kineticanvil.com/#tools">Postman collection</a>. The key drops into <code>{{api_key}}</code>.</div></div>
+          <div class="step"><span class="n">04</span><div>Ready for production? <a href="/#pricing">Move to an Operator plan</a>, or <a href="#contact" data-request-access>get in touch</a> for institutional and government terms.</div></div>
         </div>
       </div>
     </div>
@@ -443,8 +444,10 @@ a.c:hover{color:var(--ink)}
     <div class="footer-grid">
       <div class="footer-col">
         <div class="footer-heading">Product</div>
+        <a href="/use-cases">Use Cases</a>
+        <a href="/mandate">Mandate</a>
         <a href="/sandbox">Sandbox</a>
-        <a href="/status">Status</a>
+        <a href="/#pricing">Pricing</a>
         <a href="/trust">Trust Surface</a>
         <a href="https://docs.kineticanvil.com">Documentation</a>
         <a href="/status">Status</a>
@@ -456,9 +459,11 @@ a.c:hover{color:var(--ink)}
       </div>
       <div class="footer-col">
         <div class="footer-heading">Company</div>
+        <a href="/about">About</a>
+        <a href="/company">Company</a>
         <a href="https://kineticpartners.org">Kinetic</a>
         <a href="https://meridianoffice.org">Meridian Recovery</a>
-        <a href="https://cipherblade.com">CipherBlade</a>
+        <a href="https://cipherblade.com">CipherBlade (Integrated Partner)</a>
       </div>
     </div>
     <div class="footer-bottom"><a class="footer-mark" href="/" aria-label="Kinetic"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 971.44 867.94" width="971.44" height="867.94"><g transform="translate(-487.408020,1507.940550) scale(0.100000,-0.100000)" fill="currentColor" stroke="none"><path d="M7962 15060 c-125 -33 -242 -104 -310 -189 -18 -22 -148 -239 -288
@@ -622,7 +627,7 @@ function submitContact(e){
   btn.textContent='SENDING…';btn.disabled=true;
   var fd=new FormData(document.getElementById('contactForm'));
   var data={};fd.forEach(function(v,k){data[k]=v});
-  fetch('https://kineticpartners.org/api/request-access',{
+  fetch('/api/contact',{
     method:'POST',
     headers:{'Content-Type':'application/json','Accept':'application/json'},
     body:JSON.stringify(Object.assign(data,{source:'contact'}))
@@ -630,8 +635,8 @@ function submitContact(e){
     document.getElementById('contactWrap').style.display='none';
     document.getElementById('contactOk').style.display='';
   }).catch(function(){
-    document.getElementById('contactWrap').style.display='none';
-    document.getElementById('contactOk').style.display='';
+    var b=document.getElementById('contactBtn');
+    if(b){b.textContent='SOMETHING WENT WRONG. TRY AGAIN';b.disabled=false;}
   });
   return false;
 }

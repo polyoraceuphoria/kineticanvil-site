@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Terms governing use of kineticpartners.org/api and the published protocol documentation.">
+<meta name="description" content="Terms governing use of kineticanvil.com and the published protocol documentation.">
 <link rel="canonical" href="https://kineticanvil.com/terms">
 <title>Terms of Use | Kinetic Anvil | Kinetic</title>
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
@@ -321,7 +321,7 @@ a.c:hover{color:var(--ink)}
 <div class="kicker">§ TERMS</div>
 <h1>Terms of Use</h1>
 <div class="updated">LAST UPDATED · 2026-06-12</div>
-<p>These terms govern use of <strong>kineticpartners.org</strong> and the materials published on it, including the protocol documentation at <strong>docs.kineticanvil.com</strong>. Access to the Kinetic Anvil itself is granted under a separate written agreement when an organization is onboarded.</p>
+<p>These terms govern use of <strong>kineticanvil.com</strong> and the materials published on it, including the protocol documentation at <strong>docs.kineticanvil.com</strong>. Access to the Kinetic Anvil itself is granted under a separate written agreement when an organization is onboarded.</p>
 
 <h2>The site</h2>
 <ul>
@@ -346,8 +346,10 @@ a.c:hover{color:var(--ink)}
     <div class="footer-grid">
       <div class="footer-col">
         <div class="footer-heading">Product</div>
+        <a href="/use-cases">Use Cases</a>
+        <a href="/mandate">Mandate</a>
         <a href="/sandbox">Sandbox</a>
-        <a href="/status">Status</a>
+        <a href="/#pricing">Pricing</a>
         <a href="/trust">Trust Surface</a>
         <a href="https://docs.kineticanvil.com">Documentation</a>
         <a href="/status">Status</a>
@@ -359,9 +361,11 @@ a.c:hover{color:var(--ink)}
       </div>
       <div class="footer-col">
         <div class="footer-heading">Company</div>
+        <a href="/about">About</a>
+        <a href="/company">Company</a>
         <a href="https://kineticpartners.org">Kinetic</a>
         <a href="https://meridianoffice.org">Meridian Recovery</a>
-        <a href="https://cipherblade.com">CipherBlade</a>
+        <a href="https://cipherblade.com">CipherBlade (Integrated Partner)</a>
       </div>
     </div>
     <div class="footer-bottom"><a class="footer-mark" href="/" aria-label="Kinetic"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 971.44 867.94" width="971.44" height="867.94"><g transform="translate(-487.408020,1507.940550) scale(0.100000,-0.100000)" fill="currentColor" stroke="none"><path d="M7962 15060 c-125 -33 -242 -104 -310 -189 -18 -22 -148 -239 -288
@@ -482,7 +486,7 @@ function submitContact(e){
   btn.textContent='SENDING…';btn.disabled=true;
   var fd=new FormData(document.getElementById('contactForm'));
   var data={};fd.forEach(function(v,k){data[k]=v});
-  fetch('https://kineticpartners.org/api/request-access',{
+  fetch('/api/contact',{
     method:'POST',
     headers:{'Content-Type':'application/json','Accept':'application/json'},
     body:JSON.stringify(Object.assign(data,{source:'contact'}))
@@ -490,8 +494,8 @@ function submitContact(e){
     document.getElementById('contactWrap').style.display='none';
     document.getElementById('contactOk').style.display='';
   }).catch(function(){
-    document.getElementById('contactWrap').style.display='none';
-    document.getElementById('contactOk').style.display='';
+    var b=document.getElementById('contactBtn');
+    if(b){b.textContent='SOMETHING WENT WRONG. TRY AGAIN';b.disabled=false;}
   });
   return false;
 }
