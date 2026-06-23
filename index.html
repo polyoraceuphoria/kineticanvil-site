@@ -565,7 +565,7 @@ a.uc-card:hover .uc-more{color:var(--green)}
       </div>
       <div class="term-body" id="termBody"><span class="c-mut">$ curl -X POST https://api.kineticanvil.com/v1/matters \
   -H</span> <span class="c-str">"Authorization: Bearer kx_test_&hellip;"</span> <span class="c-mut">\
-  -d</span> <span class="c-str">'{ "type": "asset_trace" }'</span>
+  -d</span> <span class="c-str">'{ "name": "Atlas v. Halcyon", "mode": "enforcement" }'</span>
 
 <span class="c-mut">// Press Run to issue a sandbox key and open a matter.</span></div>
       <div class="term-note" id="termNote">Live sandbox &middot; synthetic data only &middot; no signup</div>
@@ -984,8 +984,8 @@ if(location.hash==='#access'){openModal();}
       .then(function(d){
         if(d&&d.key)window.kxTrack&&window.kxTrack('apikey_created',{environment_kind:'sandbox',source:'hero_terminal'});
         key=d.key||'kx_test_';var masked=key.slice(0,12)+'\u2026';note.textContent='Opening matter\u2026';
-        body.innerHTML='<span class="c-mut">$ curl -X POST https://api.kineticanvil.com/v1/matters \\\n  -H</span> <span class="c-str">"Authorization: Bearer '+masked+'"</span> <span class="c-mut">\\\n  -d</span> <span class="c-str">\'{ "type": "asset_trace" }\'</span>\n\n';
-        return fetch('/v1/matters',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+key},body:JSON.stringify({type:'asset_trace'})});
+        body.innerHTML='<span class="c-mut">$ curl -X POST https://api.kineticanvil.com/v1/matters \\\n  -H</span> <span class="c-str">"Authorization: Bearer '+masked+'"</span> <span class="c-mut">\\\n  -d</span> <span class="c-str">\'{ "name": "Atlas v. Halcyon", "mode": "enforcement" }\'</span>\n\n';
+        return fetch('https://api.kineticanvil.com/v1/matters',{method:'POST',headers:{'Content-Type':'application/json','Anvil-Version':'2026-06-11','Authorization':'Bearer '+key},body:JSON.stringify({name:'Atlas v. Halcyon',mode:'enforcement',lead_counsel:'Calloway & Marsh LLP'})});
       })
       .then(function(r){return r.json()})
       .then(function(c){
