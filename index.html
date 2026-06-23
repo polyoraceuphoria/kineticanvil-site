@@ -662,8 +662,8 @@ a.uc-card:hover .uc-more{color:var(--green)}
       <div class="uc-more">View use case &rarr;</div>
     </a>
     <a class="uc-card" href="/use-cases/sar-support">
-      <div class="uc-label">Compliance & SAR Support</div>
-      <div class="uc-scenario">Your compliance team needs a provable trail for a suspicious activity report.</div>
+      <div class="uc-label">Crypto Exchange SAR Support</div>
+      <div class="uc-scenario">Your exchange's compliance desk needs a provable trail behind every SAR.</div>
       <div class="uc-outcome">Transactions and counterparties linked, timestamped, and source-attached.</div>
       <div class="uc-more">View use case &rarr;</div>
     </a>
@@ -723,7 +723,8 @@ a.uc-card:hover .uc-more{color:var(--green)}
   <div class="sec-grid">
     <h2>Outcome-aligned</h2>
     <div class="sec-body">
-      <p>Published tiers for independent operators. Custom structures for institutions and government. GETs are always free. Only compute and write operations meter.</p>
+      <p>Anvil is wholesale enforcement infrastructure, not a seat-based tool. A single published entry tier exists for vetted operators. Institutions, agencies, and recovery counsel are scoped directly against caseload and outcome. GETs are always free. Only compute and write operations meter.</p>
+      <p>Running recoveries one matter at a time? Counsel start with <a href="/mandate">Kinetic Mandate</a>: priced per active matter, no platform subscription.</p>
     </div>
   </div>
   <div class="pricing-grid">
@@ -752,7 +753,7 @@ a.uc-card:hover .uc-more{color:var(--green)}
         <li>Audit export</li>
         <li>Per-matter overage (see below)</li>
       </ul>
-      <div class="price-cta"><a class="btn primary" href="https://hooks.kineticdefender.com/api/checkout?plan=anvil_operator&amp;return_to=https://kineticanvil.com">GET STARTED</a></div>
+      <div class="price-cta"><a class="btn primary" href="https://hooks.kineticdefender.com/api/checkout?plan=anvil_operator&amp;return_to=https://kineticanvil.com">START ON OPERATOR</a></div>
     </div>
     <div class="price-card">
       <div class="price-tier">Institutional</div>
@@ -786,7 +787,7 @@ a.uc-card:hover .uc-more{color:var(--green)}
   <div class="overage-table">
     <div class="overage-row header">
       <div class="overage-cell">MATTER VALUE BRACKET</div>
-      <div class="overage-cell">PER-MATTER FEE</div>
+      <div class="overage-cell">INDICATIVE PER-MATTER</div>
     </div>
     <div class="overage-row">
       <div class="overage-cell">Under $100K</div>
@@ -805,7 +806,7 @@ a.uc-card:hover .uc-more{color:var(--green)}
       <div class="overage-cell">Negotiated</div>
     </div>
   </div>
-  <p class="pricing-note">Per-matter fees apply above your tier's included matter cap. All tiers include full audit trail, webhooks, and API access. Volume discounts available on annual commitments.</p>
+  <p class="pricing-note">Per-matter structures apply above your tier's included cap and are scoped on annual commitment, not metered as automated charges. All tiers include full audit trail, webhooks, and API access.</p>
 </div></section>
 
 <section class="access" id="access"><div class="frame">
@@ -837,9 +838,11 @@ a.uc-card:hover .uc-more{color:var(--green)}
       </div>
       <div class="footer-col">
         <div class="footer-heading">Company</div>
+        <a href="/about">About</a>
+        <a href="/company">Company</a>
         <a href="https://kineticpartners.org">Kinetic</a>
         <a href="https://meridianoffice.org">Meridian Recovery</a>
-        <a href="https://cipherblade.com">CipherBlade</a>
+        <a href="https://cipherblade.com">CipherBlade (Integrated Partner)</a>
       </div>
     </div>
     <div class="footer-bottom"><a class="footer-mark" href="/" aria-label="Kinetic"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 971.44 867.94" width="971.44" height="867.94"><g transform="translate(-487.408020,1507.940550) scale(0.100000,-0.100000)" fill="currentColor" stroke="none"><path d="M7962 15060 c-125 -33 -242 -104 -310 -189 -18 -22 -148 -239 -288
@@ -946,7 +949,7 @@ function submitForm(e){
   btn.textContent='SENDING…';btn.disabled=true;
   var fd=new FormData(document.getElementById('accessForm'));
   var data={};fd.forEach(function(v,k){data[k]=v});
-  fetch('https://kineticpartners.org/api/request-access',{
+  fetch('/api/contact',{
     method:'POST',
     headers:{'Content-Type':'application/json','Accept':'application/json'},
     body:JSON.stringify(data)
@@ -1087,7 +1090,7 @@ function submitContact(e){
   btn.textContent='SENDING…';btn.disabled=true;
   var fd=new FormData(document.getElementById('contactForm'));
   var data={};fd.forEach(function(v,k){data[k]=v});
-  fetch('https://kineticpartners.org/api/request-access',{
+  fetch('/api/contact',{
     method:'POST',
     headers:{'Content-Type':'application/json','Accept':'application/json'},
     body:JSON.stringify(Object.assign(data,{source:'contact'}))
@@ -1095,8 +1098,8 @@ function submitContact(e){
     document.getElementById('contactWrap').style.display='none';
     document.getElementById('contactOk').style.display='';
   }).catch(function(){
-    document.getElementById('contactWrap').style.display='none';
-    document.getElementById('contactOk').style.display='';
+    var b=document.getElementById('contactBtn');
+    if(b){b.textContent='SOMETHING WENT WRONG. TRY AGAIN';b.disabled=false;}
   });
   return false;
 }
