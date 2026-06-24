@@ -3,20 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Kinetic Anvil: case operations infrastructure for financial fraud recovery. One protocol carries a matter from intake to remittance.">
+<meta name="description" content="Anvil is enforcement infrastructure for fraud recovery. Trace the money on-chain, produce the court-recognized order, and serve a freeze at the exchange that holds it. Tracing tools stop at the wallet. Anvil takes it back.">
 <link rel="canonical" href="https://kineticanvil.com/">
-<meta property="og:title" content="Kinetic Anvil: Case operations infrastructure for financial fraud recovery">
-<meta property="og:description" content="One protocol carries a matter from intake to remittance: asset tracing, legal process, enforcement, and audit, run as software.">
+<meta property="og:title" content="Kinetic Anvil: turn a wallet address into a freeze">
+<meta property="og:description" content="Anvil is enforcement infrastructure for fraud recovery. Trace the money on-chain, produce the court-recognized order, and serve a freeze at the exchange that holds it. Tracing tools stop at the wallet. Anvil takes it back.">
 <meta property="og:url" content="https://kineticanvil.com/">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://kineticanvil.com/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Kinetic Anvil: Case operations infrastructure for financial fraud recovery">
-<meta name="twitter:description" content="One protocol carries a matter from intake to remittance: asset tracing, legal process, enforcement, and audit, run as software.">
+<meta name="twitter:title" content="Kinetic Anvil: turn a wallet address into a freeze">
+<meta name="twitter:description" content="Anvil is enforcement infrastructure for fraud recovery. Trace the money on-chain, produce the court-recognized order, and serve a freeze at the exchange that holds it. Tracing tools stop at the wallet. Anvil takes it back.">
 <meta name="twitter:image" content="https://kineticanvil.com/og.png">
-<title>Anvil · Case infrastructure for fraud recovery | Kinetic</title>
+<title>Kinetic Anvil · Turn a wallet address into a freeze</title>
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
@@ -181,6 +181,13 @@ footer a.c:hover{color:var(--ink)}
 .cap .cap-id{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.16em;color:var(--green);margin-bottom:16px}
 .cap .cap-name{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300;line-height:1.2;margin-bottom:12px}
 .cap .cap-desc{font-size:13.5px;line-height:1.6;color:var(--muted);font-weight:400}
+.diff{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:48px;border-top:1px solid var(--hair);border-left:1px solid var(--hair)}
+.dcard{padding:30px 26px;border-right:1px solid var(--hair);border-bottom:1px solid var(--hair)}
+.dcard.is-anvil{background:rgba(60,180,75,0.04)}
+.dcard .d-who{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:16px}
+.dcard.is-anvil .d-who{color:var(--green)}
+.dcard .d-line{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300;line-height:1.25;margin-bottom:12px}
+.dcard .d-sub{font-size:13.5px;line-height:1.6;color:var(--muted);font-weight:400}
 .specs{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:0;border-left:1px solid var(--hair)}
 .spec{padding:26px;border-right:1px solid var(--hair);border-bottom:1px solid var(--hair)}
 .spec .s-val{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:300;line-height:1}
@@ -197,6 +204,7 @@ a.uc-card:hover .uc-more{color:var(--green)}
 @media(max-width:980px){
   .hero-grid{grid-template-columns:1fr;gap:36px}
   .caps,.specs{grid-template-columns:repeat(2,1fr)}
+  .diff{grid-template-columns:1fr}
 }
 @media(max-width:860px){
   .frame{padding:0 24px}
@@ -549,9 +557,9 @@ a.uc-card:hover .uc-more{color:var(--green)}
 <section class="hero"><div class="frame">
   <div class="hero-grid">
     <div>
-      <div class="hero-tag">Your hammer. Our anvil.</div>
-      <h1>Case operations <em>infrastructure</em> for financial fraud recovery</h1>
-      <p class="hero-lede">One protocol carries a matter from intake to remittance: asset tracing, legal process, enforcement, and audit, run as software. Authority-gated at every step, provable on an immutable trail.</p>
+      <div class="hero-tag">Kinetic &rsaquo; Anvil &middot; Enforcement infrastructure</div>
+      <h1>Turn a wallet address into a <em>freeze</em></h1>
+      <p class="hero-lede">Anvil is enforcement infrastructure for fraud recovery. Trace the money on-chain, generate the court-recognized instrument, and serve a freeze at the exchange that holds it. The whole line runs as software, authority-gated and provable at every step. Tracing tools tell you where the money went. Anvil takes it back.</p>
       <div class="hero-cta">
         <a class="btn primary" href="/sandbox">START IN THE SANDBOX</a>
         <a class="btn" href="https://docs.kineticanvil.com">READ THE DOCS</a>
@@ -583,6 +591,33 @@ a.uc-card:hover .uc-more{color:var(--green)}
     <div class="arow"><b>&#10003;</b> Tamper-evident audit trail, exportable</div>
     <div class="arow"><b>&#10003;</b> Holds no client funds</div>
     <a class="arow seeall" href="/trust">SEE THE TRUST SURFACE &rarr;</a>
+  </div>
+</div></section>
+
+<section class="sec" id="why"><div class="frame">
+  <div class="eyebrow">§ 00 · WHY ANVIL</div>
+  <div class="sec-grid">
+    <h2>Not a tracing tool</h2>
+    <div class="sec-body">
+      <p>Everyone in fraud recovery owns one slice of the line. Anvil is the only place the whole line runs as software, from the trace to the freeze at the venue holding the money.</p>
+    </div>
+  </div>
+  <div class="diff">
+    <div class="dcard">
+      <div class="d-who">Intelligence tools</div>
+      <div class="d-line">Map the money, then hand you a PDF.</div>
+      <div class="d-sub">On-chain attribution that ends at the wallet. The report is the deliverable. The money never moves.</div>
+    </div>
+    <div class="dcard">
+      <div class="d-who">Recovery counsel</div>
+      <div class="d-line">Pursue process by hand.</div>
+      <div class="d-sub">Skilled, but bespoke and serial. No engine, no rail, one matter and one motion at a time.</div>
+    </div>
+    <div class="dcard is-anvil">
+      <div class="d-who">Anvil</div>
+      <div class="d-line">Runs trace &rarr; order &rarr; freeze &rarr; release.</div>
+      <div class="d-sub">One authority-gated protocol carries the matter the whole way. The only place the full loop exists as software.</div>
+    </div>
   </div>
 </div></section>
 
@@ -1008,7 +1043,7 @@ if(location.hash==='#access'){openModal();}
   "@type": "Organization",
   "name": "Kinetic Anvil",
   "url": "https://kineticanvil.com",
-  "description": "Case operations infrastructure for financial fraud recovery. One protocol carries a matter from intake to remittance."
+  "description": "Anvil is enforcement infrastructure for fraud recovery. Trace the money on-chain, produce the court-recognized order, and serve a freeze at the exchange that holds it. Tracing tools stop at the wallet. Anvil takes it back."
 }
 </script>
 <script defer src="/_vercel/insights/script.js"></script>
