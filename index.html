@@ -188,6 +188,20 @@ footer a.c:hover{color:var(--ink)}
 .dcard.is-anvil .d-who{color:var(--green)}
 .dcard .d-line{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300;line-height:1.25;margin-bottom:12px}
 .dcard .d-sub{font-size:13.5px;line-height:1.6;color:var(--muted);font-weight:400}
+/* verb rail */
+.vrail{display:grid;grid-template-columns:repeat(5,1fr);gap:0;margin-top:48px;border-top:1px solid var(--hair);border-left:1px solid var(--hair)}
+.vstage{padding:26px 22px;border-right:1px solid var(--hair);border-bottom:1px solid var(--hair);position:relative}
+.vstage.live{background:rgba(0,255,115,0.04)}
+.vstage-h{font-family:'Geist Mono',monospace;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--stone-400);margin-bottom:18px}
+.vstage.live .vstage-h{color:var(--green)}
+.vchip{font-family:'Geist Mono',monospace;font-size:12.5px;color:var(--stone-500);padding:5px 0;letter-spacing:.01em}
+.vchip.on{color:var(--bone)}
+.vchip.on::before{content:'\2022';color:var(--green);margin-right:8px;font-size:14px;vertical-align:middle}
+.vchip.off::before{content:'\2022';color:var(--stone-700);margin-right:8px;font-size:14px;vertical-align:middle}
+.vstatus{margin-top:16px;font-family:'Geist Mono',monospace;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--stone-600)}
+.vstage.live .vstatus{color:var(--green)}
+@media(max-width:880px){.vrail{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.vrail{grid-template-columns:1fr}}
 .specs{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:0;border-left:1px solid var(--hair)}
 .spec{padding:26px;border-right:1px solid var(--hair);border-bottom:1px solid var(--hair)}
 .spec .s-val{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:300;line-height:1}
@@ -568,15 +582,28 @@ a.uc-card:hover .uc-more{color:var(--green)}
     <div class="terminal" id="term">
       <div class="term-bar">
         <span class="d"></span><span class="d"></span><span class="d"></span>
-        <span class="term-title">POST /v1/matters</span>
+        <span class="term-title">crypto.trace</span>
         <button class="term-run" id="termRun">&#9654; Run live</button>
       </div>
-      <div class="term-body" id="termBody"><span class="c-mut">$ curl -X POST https://api.kineticanvil.com/v1/matters \
+      <div class="term-body" id="termBody"><span class="c-mut">$ curl -X POST https://api.kineticanvil.com/v1/crypto/asset-map \
   -H</span> <span class="c-str">"Authorization: Bearer kx_test_&hellip;"</span> <span class="c-mut">\
-  -d</span> <span class="c-str">'{ "type": "asset_trace" }'</span>
+  -d</span> <span class="c-str">'{ "wallets": ["0xd8dA&hellip;6045"], "chains": ["ethereum"] }'</span>
 
-<span class="c-mut">// Press Run to issue a sandbox key and open a matter.</span></div>
-      <div class="term-note" id="termNote">Live sandbox &middot; synthetic data only &middot; no signup</div>
+<span class="c-mut">202 accepted &middot; crypto.trace dispatched</span>
+{
+  <span class="c-key">"object"</span>: <span class="c-str">"crypto_asset_map"</span>,
+  <span class="c-key">"status"</span>: <span class="c-str">"complete"</span>,
+  <span class="c-key">"wallets"</span>: [ <span class="c-mut">&hellip; 53 nodes &middot; 5 hops deep &hellip;</span> ],
+  <span class="c-key">"exchange_hypotheses"</span>: [
+    { <span class="c-key">"exchange"</span>: <span class="c-str">"unidentified high-volume service"</span>,
+      <span class="c-key">"basis"</span>: <span class="c-str">"100+ txs &middot; consolidation point"</span>,
+      <span class="c-key">"confidence"</span>: <span class="c-str">"low"</span> }
+  ]
+}
+
+<span class="c-mut">// 53 wallets &middot; 5 hops &middot; 13 terminal venues</span>
+<span class="c-mut">// trace &rarr; freeze.package &rarr; freeze.serve</span></div>
+      <div class="term-note" id="termNote">Live trace &middot; real on-chain data &middot; bounded demo seed</div>
     </div>
   </div>
 </div></section>
@@ -617,6 +644,48 @@ a.uc-card:hover .uc-more{color:var(--green)}
       <div class="d-who">Anvil</div>
       <div class="d-line">Runs trace &rarr; order &rarr; freeze &rarr; release.</div>
       <div class="d-sub">One authority-gated protocol carries the matter the whole way. The only place the full loop exists as software.</div>
+    </div>
+  </div>
+</div></section>
+
+<section class="sec" id="surface"><div class="frame">
+  <div class="eyebrow">THE PROTOCOL SURFACE</div>
+  <div class="sec-grid">
+    <h2>One verb starts it. The rail finishes it.</h2>
+    <div class="sec-body">
+      <p>Every capability is a single call. Tracing is live today. The enforcement verbs come online as the rail extends to each venue, so a matter moves from a wallet address to a freeze the off-ramp is bound to honor.</p>
+    </div>
+  </div>
+  <div class="vrail">
+    <div class="vstage live">
+      <div class="vstage-h">01 &middot; Trace</div>
+      <div class="vchip on">crypto.trace</div>
+      <div class="vchip on">crypto.attribute</div>
+      <div class="vstatus">Live</div>
+    </div>
+    <div class="vstage">
+      <div class="vstage-h">02 &middot; Disclose</div>
+      <div class="vchip off">disclose.norwich</div>
+      <div class="vchip off">disclose.s1782</div>
+      <div class="vstatus">Coming online</div>
+    </div>
+    <div class="vstage">
+      <div class="vstage-h">03 &middot; Restrain</div>
+      <div class="vchip off">restrain.wfo</div>
+      <div class="vchip off">restrain.proprietary</div>
+      <div class="vstatus">Coming online</div>
+    </div>
+    <div class="vstage">
+      <div class="vstage-h">04 &middot; Domesticate</div>
+      <div class="vchip off">judgment.domesticate</div>
+      <div class="vchip off">judgment.recognize</div>
+      <div class="vstatus">Coming online</div>
+    </div>
+    <div class="vstage">
+      <div class="vstage-h">05 &middot; Execute</div>
+      <div class="vchip off">execute.turnover</div>
+      <div class="vchip off">freeze.serve</div>
+      <div class="vstatus">Coming online</div>
     </div>
   </div>
 </div></section>
@@ -1004,35 +1073,65 @@ if(location.hash==='#access'){openModal();}
 </script>
 
 <script>
-/* Hero terminal: real call to the sandbox API (same-origin: works on preview + prod) */
+/* Hero terminal: real crypto.trace against the live API (bounded demo seed; runs on the prod domain) */
 (function(){
   var btn=document.getElementById('termRun'),body=document.getElementById('termBody'),note=document.getElementById('termNote');
   if(!btn||!body)return;
+  var API='https://api.kineticanvil.com';
+  var SEED='0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045'; /* fixed public demo address */
   function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
-  function syntax(j){return esc(j).replace(/("(?:\\.|[^"])*")(\s*:)/g,'<span class="c-key">$1</span>$2').replace(/(:\s*)("(?:\\.|[^"])*")/g,'$1<span class="c-str">$2</span>');}
+  function mut(t){return '<span class="c-mut">'+t+'</span>';}
+  function k(t){return '<span class="c-key">'+t+'</span>';}
+  function s(t){return '<span class="c-str">'+t+'</span>';}
+  function shrink(a){return a.slice(0,6)+'\u2026'+a.slice(-4);}
+  function fail(){
+    body.innerHTML+='\n'+mut('// crypto.trace runs live on kineticanvil.com. Open the site to trace the demo seed against the engine.');
+    note.textContent='Run available on the live domain';btn.innerHTML='\u25b6 Run live';btn.disabled=false;
+  }
   btn.addEventListener('click',function(){
     btn.disabled=true;btn.innerHTML='Running\u2026';note.textContent='Issuing sandbox key\u2026';
-    body.innerHTML='<span class="c-mut">$ POST /api/sandbox-key</span>\n';
-    var key='';
+    body.innerHTML=mut('$ POST /api/sandbox-key')+'\n';
+    var key='',mapId='';
     fetch('/api/sandbox-key',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:'sandbox@kineticanvil.com',org:'Live demo'})})
       .then(function(r){return r.json()})
       .then(function(d){
         if(d&&d.key)window.kxTrack&&window.kxTrack('apikey_created',{environment_kind:'sandbox',source:'hero_terminal'});
-        key=d.key||'kx_test_';var masked=key.slice(0,12)+'\u2026';note.textContent='Opening matter\u2026';
-        body.innerHTML='<span class="c-mut">$ curl -X POST https://api.kineticanvil.com/v1/matters \\\n  -H</span> <span class="c-str">"Authorization: Bearer '+masked+'"</span> <span class="c-mut">\\\n  -d</span> <span class="c-str">\'{ "type": "asset_trace" }\'</span>\n\n';
-        return fetch('/v1/matters',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+key},body:JSON.stringify({type:'asset_trace'})});
+        key=d.key||'kx_test_';var masked=key.slice(0,12)+'\u2026';note.textContent='Dispatching crypto.trace\u2026';
+        body.innerHTML=mut('$ curl -X POST '+API+'/v1/crypto/asset-map \\\n  -H')+' '+s('"Authorization: Bearer '+masked+'"')+' '+mut('\\\n  -d')+' '+s('\'{ "wallets": ["'+shrink(SEED)+'"], "chains": ["ethereum"] }\'')+'\n\n';
+        return fetch(API+'/v1/crypto/asset-map',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+key},body:JSON.stringify({wallets:[SEED],chains:['ethereum'],include_exchanges:true})});
       })
       .then(function(r){return r.json()})
-      .then(function(c){
-        body.innerHTML+=syntax(JSON.stringify(c,null,2));
-        window.kxTrack&&window.kxTrack('sandbox_first_call',{endpoint:'/v1/matters',source:'hero_terminal'});
-        note.textContent='Live sandbox \u00b7 real response \u00b7 synthetic data';
+      .then(function(d){
+        if(!d||!d.map_id)throw new Error('no map');
+        mapId=d.map_id;
+        body.innerHTML+=mut('202 accepted \u00b7 crypto.trace dispatched \u00b7 '+esc(mapId))+'\n'+mut('// tracing on-chain \u00b7 outflow BFS \u00b7 ~30s')+'\n';
+        window.kxTrack&&window.kxTrack('sandbox_first_call',{endpoint:'/v1/crypto/asset-map',source:'hero_terminal'});
+        note.textContent='Tracing on-chain\u2026';
+        var tries=0,dots=document.createElement('span');dots.className='c-mut';body.appendChild(dots);
+        return new Promise(function(resolve,reject){
+          var iv=setInterval(function(){
+            tries++;dots.textContent='\n'+'\u2022'.repeat(Math.min(tries,18));
+            if(tries>22){clearInterval(iv);reject(new Error('timeout'));return;}
+            fetch(API+'/v1/crypto/asset-map/'+mapId,{headers:{'Authorization':'Bearer '+key}})
+              .then(function(r){return r.json()})
+              .then(function(m){
+                if(m&&m.status==='complete'){clearInterval(iv);resolve(m);}
+                else if(m&&m.status==='failed'){clearInterval(iv);reject(new Error('failed'));}
+              }).catch(function(){});
+          },2600);
+        });
+      })
+      .then(function(m){
+        var w=(m.wallets||[]),eh=(m.exchange_hypotheses||[]);
+        var hops=w.reduce(function(a,x){return Math.max(a,x.hop||0)},0);
+        var term=w.filter(function(x){return x.role==='terminal'}).length;
+        var top=eh[0]||{};
+        var out='{\n  '+k('"object"')+': '+s('"crypto_asset_map"')+',\n  '+k('"status"')+': '+s('"complete"')+',\n  '+k('"wallets"')+': [ '+mut(w.length+' nodes \u00b7 '+hops+' hops deep')+' ],\n  '+k('"exchange_hypotheses"')+': [\n    { '+k('"exchange"')+': '+s('"'+esc((top.exchange||'unidentified service'))+'"')+',\n      '+k('"basis"')+': '+s('"'+esc((top.basis||'high-volume consolidation point'))+'"')+',\n      '+k('"confidence"')+': '+s('"'+esc((top.confidence||'low'))+'"')+' }\n  ]\n}';
+        body.innerHTML+='\n'+out+'\n\n'+mut('// '+w.length+' wallets \u00b7 '+hops+' hops \u00b7 '+eh.length+' terminal venues')+'\n'+mut('// trace \u2192 freeze.package \u2192 freeze.serve');
+        note.textContent='Live trace \u00b7 real on-chain data \u00b7 bounded demo seed';
         btn.innerHTML='\u25b6 Run again';btn.disabled=false;
       })
-      .catch(function(){
-        body.innerHTML+='<span class="c-mut">// Live on kineticanvil.com. Open the site to run against the sandbox.</span>';
-        note.textContent='Run available on the live domain';btn.innerHTML='\u25b6 Run live';btn.disabled=false;
-      });
+      .catch(fail);
   });
 })();
 </script>
