@@ -136,7 +136,9 @@ footer a.c:hover{color:var(--ink)}
 .uc-stations span{color:var(--green)}
 
 .pricing{padding:88px 0;border-bottom:1px solid var(--hair)}
-.pricing-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:48px;border-top:1px solid var(--hair);border-left:1px solid var(--hair)}
+.pricing-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0;margin-top:48px;border-top:1px solid var(--hair);border-left:1px solid var(--hair)}
+.price-sub{font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.14em;color:var(--green);margin:-18px 0 22px}
+.price-cta .btn+.btn{margin-top:10px}
 .price-card{padding:36px 28px;border-right:1px solid var(--hair);border-bottom:1px solid var(--hair);display:flex;flex-direction:column}
 .price-card.featured{background:var(--panel)}
 .price-tier{font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.22em;color:var(--green);margin-bottom:16px;text-transform:uppercase}
@@ -721,98 +723,53 @@ a.uc-card:hover .uc-more{color:var(--green)}
 <section class="pricing" id="pricing"><div class="frame">
   <div class="eyebrow">§ 06 · PRICING</div>
   <div class="sec-grid">
-    <h2>Outcome-aligned</h2>
+    <h2>Open protocol, operated for institutions</h2>
     <div class="sec-body">
-      <p>Anvil is wholesale enforcement infrastructure, not a seat-based tool. A single published entry tier exists for vetted operators. Institutions, agencies, and recovery counsel are scoped directly against caseload and outcome. GETs are always free. Only compute and write operations meter.</p>
+      <p>The protocol is open. Build on it, run it in production, no contract and no card. When the matter is sensitive and the stakes are real, Kinetic deploys and operates Anvil inside your own environment.</p>
       <p>Running recoveries one matter at a time? Counsel start with <a href="/mandate">Kinetic Mandate</a>: priced per active matter, no platform subscription.</p>
     </div>
   </div>
   <div class="pricing-grid">
     <div class="price-card">
-      <div class="price-tier">Sandbox</div>
-      <div class="price-amount">$0</div>
-      <div class="price-period">FOREVER</div>
+      <div class="price-tier">Protocol</div>
+      <div class="price-amount">Open</div>
+      <div class="price-period">FREE TO BUILD</div>
+      <div class="price-sub">No contract, no card</div>
       <ul class="price-features">
-        <li>1,000 operations / month</li>
-        <li>Sandbox data only</li>
-        <li>All 10 stations</li>
-        <li>5 req/s rate limit</li>
-        <li>Community docs</li>
+        <li>The full protocol: all 10 stations</li>
+        <li>Sandbox and production keys</li>
+        <li>Spec, SDKs, and webhooks</li>
+        <li>Complete audit trail and export</li>
+        <li>Issue a key and start in minutes</li>
       </ul>
-      <div class="price-cta"><a class="btn" href="https://docs.kineticanvil.com">READ THE DOCS</a></div>
+      <div class="price-cta">
+        <a class="btn primary" href="/sandbox">ISSUE A KEY</a>
+        <a class="btn" href="https://docs.kineticanvil.com">READ THE DOCS</a>
+      </div>
     </div>
     <div class="price-card featured">
-      <div class="price-tier">Operator</div>
-      <div class="price-amount">$2,500</div>
-      <div class="price-period">PER MONTH</div>
-      <ul class="price-features">
-        <li>50 active matters</li>
-        <li>All 10 stations, production data</li>
-        <li>25 req/s rate limit</li>
-        <li>Standard SLA</li>
-        <li>Audit export</li>
-        <li>Per-matter overage (see below)</li>
-      </ul>
-      <div class="price-cta"><a class="btn primary" href="https://hooks.kineticdefender.com/api/checkout?plan=anvil_operator&amp;return_to=https://kineticanvil.com">START ON OPERATOR</a></div>
-    </div>
-    <div class="price-card">
-      <div class="price-tier">Institutional</div>
+      <div class="price-tier">Anvil Managed</div>
       <div class="price-amount">Custom</div>
-      <div class="price-period">ANNUAL CONTRACT</div>
+      <div class="price-period">SCOPED TO CASELOAD &amp; OUTCOME</div>
+      <div class="price-sub">Deployed in your environment, run by Kinetic</div>
       <ul class="price-features">
-        <li>Custom matter caps</li>
-        <li>Priority SLA</li>
-        <li>SSO / SAML</li>
-        <li>Dedicated support</li>
-        <li>Custom reporting</li>
-        <li>BAA available</li>
+        <li>Your matter data never leaves your environment</li>
+        <li>On-premise, your VPC, or a dedicated tenant</li>
+        <li>Operated by Kinetic: priority SLA, named support</li>
+        <li>SSO / SAML, BAA, full chain of custody</li>
+        <li>Government / LE: CJIS / IL4, IDIQ, success-fee</li>
+        <li>Institutions, agencies, and recovery counsel</li>
       </ul>
-      <div class="price-cta"><button class="btn" data-request-access>CONTACT US</button></div>
-    </div>
-    <div class="price-card">
-      <div class="price-tier">Government / LE</div>
-      <div class="price-amount">Custom</div>
-      <div class="price-period">CONTRACT / IDIQ</div>
-      <ul class="price-features">
-        <li>On-premise deployment</li>
-        <li>CJIS / IL4 compliance</li>
-        <li>Dedicated infrastructure</li>
-        <li>Success-fee structures</li>
-        <li>Unlimited matters</li>
-        <li>Named support contact</li>
-      </ul>
-      <div class="price-cta"><button class="btn" data-request-access>CONTACT US</button></div>
+      <div class="price-cta"><button class="btn primary" data-request-access>REQUEST A DEPLOYMENT</button></div>
     </div>
   </div>
-  <div class="overage-table">
-    <div class="overage-row header">
-      <div class="overage-cell">MATTER VALUE BRACKET</div>
-      <div class="overage-cell">INDICATIVE PER-MATTER</div>
-    </div>
-    <div class="overage-row">
-      <div class="overage-cell">Under $100K</div>
-      <div class="overage-cell">$500</div>
-    </div>
-    <div class="overage-row">
-      <div class="overage-cell">$100K to $1M</div>
-      <div class="overage-cell">$2,500</div>
-    </div>
-    <div class="overage-row">
-      <div class="overage-cell">$1M to $10M</div>
-      <div class="overage-cell">$10,000</div>
-    </div>
-    <div class="overage-row">
-      <div class="overage-cell">Above $10M</div>
-      <div class="overage-cell">Negotiated</div>
-    </div>
-  </div>
-  <p class="pricing-note">Per-matter structures apply above your tier's included cap and are scoped on annual commitment, not metered as automated charges. All tiers include full audit trail, webhooks, and API access.</p>
+  <p class="pricing-note">The open protocol runs on Kinetic's infrastructure with synthetic data in the sandbox and your own data in production. Anvil Managed runs the same engine inside your perimeter: data stays resident, scoped on annual commitment, never metered as automated charges.</p>
 </div></section>
 
 <section class="access" id="access"><div class="frame">
   <div class="eyebrow">§ 07 · ACCESS</div>
   <h2>Have a judgment? <em>Begin recovery</em></h2>
-  <p>The sandbox runs on synthetic data. Move to production on an Operator plan when you are ready.</p>
+  <p>The sandbox runs on synthetic data. Issue a production key when you are ready, no contract and no card.</p>
   <div class="btn-row">
     <a class="btn primary" href="/sandbox">START IN THE SANDBOX</a>
     <a class="btn" href="https://docs.kineticanvil.com">READ THE DOCS →</a>
