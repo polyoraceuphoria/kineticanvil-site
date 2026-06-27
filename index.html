@@ -753,7 +753,7 @@ a.uc-card:hover .uc-more{color:var(--green)}
         <li>Audit export</li>
         <li>Per-matter overage (see below)</li>
       </ul>
-      <div class="price-cta"><a class="btn primary" href="https://hooks.kineticdefender.com/api/checkout?plan=anvil_operator&amp;return_to=https://kineticanvil.com">START ON OPERATOR</a></div>
+      <div class="price-cta"><button class="btn primary" data-request-access>BOOK A DEMO</button></div>
     </div>
     <div class="price-card">
       <div class="price-tier">Institutional</div>
@@ -767,7 +767,7 @@ a.uc-card:hover .uc-more{color:var(--green)}
         <li>Custom reporting</li>
         <li>BAA available</li>
       </ul>
-      <div class="price-cta"><button class="btn" data-request-access>CONTACT US</button></div>
+      <div class="price-cta"><button class="btn" data-request-access>BOOK A DEMO</button></div>
     </div>
     <div class="price-card">
       <div class="price-tier">Government / LE</div>
@@ -781,7 +781,7 @@ a.uc-card:hover .uc-more{color:var(--green)}
         <li>Unlimited matters</li>
         <li>Named support contact</li>
       </ul>
-      <div class="price-cta"><button class="btn" data-request-access>CONTACT US</button></div>
+      <div class="price-cta"><button class="btn" data-request-access>BOOK A DEMO</button></div>
     </div>
   </div>
   <div class="overage-table">
@@ -889,7 +889,7 @@ a.uc-card:hover .uc-more{color:var(--green)}
 <div class="modal-card" id="modalCard" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
   <button class="modal-close" onclick="closeModal()" aria-label="Close"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg></button>
   <div id="formWrap">
-    <h3 id="modalTitle">Request Access</h3>
+    <h3 id="modalTitle">Book a demo</h3>
     <p class="modal-sub">Tell us about the recovery you're running. We'll get back within one business day.</p>
     <form id="accessForm" onsubmit="return submitForm(event)">
       <div class="form-field"><label for="f-name">Name</label><input type="text" name="name" id="f-name" placeholder="Full name" required></div>
@@ -897,7 +897,7 @@ a.uc-card:hover .uc-more{color:var(--green)}
       <div class="form-field"><label for="f-organization">Organization</label><input type="text" name="organization" id="f-organization" placeholder="Firm or company name"></div>
       <div class="form-field"><label for="f-message">Message</label><textarea name="message" id="f-message" placeholder="Brief description of your recovery or use case" rows="3"></textarea></div>
       <div class="hp-field" aria-hidden="true"><label>Company website</label><input type="text" name="company_website" tabindex="-1" autocomplete="off"></div>
-      <button type="submit" class="btn primary modal-submit" id="submitBtn">REQUEST ACCESS</button>
+      <button type="submit" class="btn primary modal-submit" id="submitBtn">BOOK A DEMO</button>
     </form>
     <p class="modal-note">Your information is kept confidential and used only to evaluate access. See our <a href="/privacy">Privacy Notice</a> and <a href="/terms">Terms</a>.</p>
   </div>
@@ -938,7 +938,7 @@ function closeModal(){
     document.getElementById('formWrap').style.display='';
     document.getElementById('formOk').style.display='none';
     document.getElementById('accessForm').reset();
-    document.getElementById('submitBtn').textContent='REQUEST ACCESS';
+    document.getElementById('submitBtn').textContent='BOOK A DEMO';
     document.getElementById('submitBtn').disabled=false;
   },300);
 }
