@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Kinetic Anvil service status, uptime target, and support response commitments.">
+<meta name="description" content="Live operational status and support response targets for Kinetic Anvil.">
 <link rel="canonical" href="https://kineticanvil.com/status">
 <meta property="og:title" content="Status | Kinetic Anvil">
-<meta property="og:description" content="Service status, 99.9% uptime target, and support response commitments for Kinetic Anvil.">
+<meta property="og:description" content="Live operational status and support response targets for Kinetic Anvil.">
 <meta property="og:url" content="https://kineticanvil.com/status">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://kineticanvil.com/og.png">
@@ -48,6 +48,22 @@ h1{font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:300;line-he
 .statbar .t{font-size:16px;font-weight:500}
 .statbar .s{font-size:13px;color:var(--muted);font-weight:400;margin-top:2px}
 .updated{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.14em;color:var(--faint);margin-top:14px}
+.statbar[data-state="loading"]{border-color:var(--hair)}
+.statbar[data-state="loading"] .dot{background:var(--faint);box-shadow:0 0 0 4px rgba(155,161,168,.14)}
+.statbar[data-state="degraded"]{border-color:rgba(224,168,62,.45)}
+.statbar[data-state="degraded"] .dot{background:#E0A83E;box-shadow:0 0 0 4px rgba(224,168,62,.18)}
+.statbar[data-state="outage"]{border-color:rgba(217,83,79,.45)}
+.statbar[data-state="outage"] .dot{background:#D9534F;box-shadow:0 0 0 4px rgba(217,83,79,.18)}
+.components{border:1px solid var(--hair);border-radius:4px;overflow:hidden}
+.comp-row{display:flex;align-items:center;gap:14px;padding:16px 20px;border-bottom:1px solid var(--hair);background:var(--panel)}
+.comp-row:last-child{border-bottom:none}
+.comp-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;background:var(--green);box-shadow:0 0 0 3px rgba(60,180,75,.16)}
+.comp-dot[data-s="degraded"]{background:#E0A83E;box-shadow:0 0 0 3px rgba(224,168,62,.16)}
+.comp-dot[data-s="outage"]{background:#D9534F;box-shadow:0 0 0 3px rgba(217,83,79,.16)}
+.comp-name{font-size:14px;font-weight:500;color:var(--ink);min-width:90px}
+.comp-state{font-family:'Geist Mono',monospace;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.comp-lat{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--faint);margin-left:auto}
+.comp-loading,.comp-error{padding:20px;font-size:13.5px;color:var(--muted);font-weight:400;background:var(--panel)}
 
 .sec{margin-top:58px}
 .eyebrow{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.24em;color:var(--faint);margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--hair)}
@@ -345,19 +361,18 @@ a.c:hover{color:var(--ink)}
 <main><div class="frame">
 <div class="kicker">§ STATUS</div>
 <h1>Service status</h1>
-<p class="lede">Live operational status and the commitments we hold ourselves to.</p>
+<p class="lede">Live operational status across the Anvil platform.</p>
 
-<div class="statbar">
-  <span class="dot"></span>
-  <div><div class="t">All systems operational</div><div class="s">API, dashboard, and webhooks reporting normal</div></div>
+<div class="statbar" id="statbar" data-state="loading">
+  <span class="dot" id="statdot"></span>
+  <div><div class="t" id="stat-title">Checking systems</div><div class="s" id="stat-sub">Running live checks</div></div>
 </div>
-<div class="updated">REFRESHED &middot; 2026-06-23</div>
+<div class="updated" id="stat-updated">CHECKING&hellip;</div>
 
 <div class="sec">
-  <div class="eyebrow">§ 01 &middot; COMMITMENTS</div>
-  <div class="metrics">
-    <div class="metric"><div class="n">99.9%</div><div class="l">UPTIME TARGET</div><div class="d">Monthly availability target for the production API and dashboard</div></div>
-    <div class="metric"><div class="n">24&times;7</div><div class="l">MONITORING</div><div class="d">Continuous health checks with automated alerting and on-call escalation</div></div>
+  <div class="eyebrow">§ 01 &middot; COMPONENTS</div>
+  <div class="components" id="components">
+    <div class="comp-loading" id="comp-loading">Loading component checks&hellip;</div>
   </div>
 </div>
 
@@ -372,7 +387,7 @@ a.c:hover{color:var(--ink)}
       <tr><td>P4 &middot; Low</td><td>Feature request or general inquiry</td><td>2 business days</td></tr>
     </tbody>
   </table>
-  <p class="note">These targets meet or exceed prevailing industry standards for infrastructure of this class. Contractual SLAs, including availability credits, are set per engagement. <a href="/#access" data-request-access>Inquire</a> for terms. Incident history and post-incident reviews will publish to the status feed once live.</p>
+  <p class="note">Contractual SLAs, including availability credits, are set per engagement. <a href="/#access" data-request-access>Inquire</a> for terms.</p>
 </div>
 
 </div></main>
@@ -441,6 +456,49 @@ a.c:hover{color:var(--ink)}
       </div>
     </div>
   </footer>
+<script>
+(function(){
+  var LABELS={operational:'Operational',degraded:'Degraded',outage:'Outage'};
+  var HEADLINE={operational:'All systems operational',degraded:'Degraded performance',outage:'Service disruption'};
+  var SUB={operational:'All components reporting normal',degraded:'One or more components responding slowly',outage:'One or more components unreachable'};
+  function esc(s){var d=document.createElement('div');d.textContent=s;return d.innerHTML;}
+  function render(data){
+    var bar=document.getElementById('statbar');
+    bar.setAttribute('data-state',data.overall);
+    document.getElementById('stat-title').textContent=HEADLINE[data.overall]||'Status unknown';
+    document.getElementById('stat-sub').textContent=SUB[data.overall]||'';
+    var when=new Date(data.checked_at);
+    document.getElementById('stat-updated').textContent='CHECKED '+when.toISOString().replace('T',' ').slice(0,19)+' UTC';
+    var rows=data.components.map(function(c){
+      var lat=c.latency_ms==null?'--':c.latency_ms+' ms';
+      return '<div class="comp-row">'
+        +'<span class="comp-dot" data-s="'+esc(c.status)+'"></span>'
+        +'<span class="comp-name">'+esc(c.name)+'</span>'
+        +'<span class="comp-state">'+esc(LABELS[c.status]||c.status)+'</span>'
+        +'<span class="comp-lat">'+lat+'</span>'
+        +'</div>';
+    }).join('');
+    document.getElementById('components').innerHTML=rows;
+  }
+  function fail(){
+    var bar=document.getElementById('statbar');
+    bar.setAttribute('data-state','loading');
+    document.getElementById('stat-title').textContent='Status check unavailable';
+    document.getElementById('stat-sub').textContent='The status endpoint did not respond. Retrying shortly.';
+    document.getElementById('stat-updated').textContent='CHECK FAILED';
+    document.getElementById('components').innerHTML='<div class="comp-error">Component checks are temporarily unavailable. This page retries every 60 seconds.</div>';
+  }
+  function load(){
+    fetch('/api/status',{headers:{'Accept':'application/json'}})
+      .then(function(r){if(!r.ok)throw new Error('bad');return r.json();})
+      .then(render)
+      .catch(fail);
+  }
+  load();
+  setInterval(load,60000);
+})();
+</script>
+
 <script>
 document.querySelectorAll('[data-request-access]').forEach(function(a){
   a.addEventListener('click',function(e){e.preventDefault();location.href='/#access';});
