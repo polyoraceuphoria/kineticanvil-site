@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Quickstart: run your first Anvil matter end-to-end in under 10 minutes. Copy-paste curl steps from key mint to chain-verified audit.">
+<link rel="canonical" href="https://kineticanvil.com/quickstart">
+<meta property="og:title" content="Quickstart: first matter in under 10 minutes | Kinetic Anvil">
+<meta property="og:description" content="Mint a sandbox key, open a matter, trace a wallet, build an enforcement packet, and verify the audit chain. Under 10 minutes, start to finish.">
+<meta property="og:url" content="https://kineticanvil.com/quickstart">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://kineticanvil.com/og.png">
+<meta name="robots" content="noindex">
+<title>Quickstart: first matter in under 10 minutes | Kinetic Anvil</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>
+(function(){try{var t=localStorage.getItem('md-theme');if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t);}}catch(e){}})();
+</script>
+<style>
+html[data-theme="dark"]{--bg:#111518;--ink:#E9E7E2;--muted:#9BA1A8;--faint:#6A7077;--hair:rgba(233,231,226,0.13);--green:#00FF73;--panel:#161b1f;--stone-950:#161b1f;--stone-900:#1a1f24;--stone-800:#242a32;--stone-700:#2e3540;--stone-600:#3f4650;--stone-500:#5e6670;--stone-400:#9BA1A8;--stone-300:#C5C9CE;--void:#111518;--bone:#E9E7E2;--accent:#00FF73}
+html[data-theme="light"]{--bg:#F2F0ED;--ink:#111518;--muted:#5A6068;--faint:#8B9097;--hair:rgba(28,33,39,0.14);--green:#228B33;--panel:#FAF9F7;--stone-950:#FAF9F7;--stone-900:#F0EDE9;--stone-800:#E0DDD8;--stone-700:#C5C2BC;--stone-600:#9B9893;--stone-500:#6A6762;--stone-400:#5A6068;--stone-300:#444A50;--void:#111518;--bone:#E9E7E2;--accent:#228B33}
+*{margin:0;padding:0;box-sizing:border-box}
+:focus-visible{outline:2px solid var(--green);outline-offset:2px}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:'Satoshi',system-ui,sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+.mono{font-family:'Geist Mono',monospace}
+a{color:inherit;text-decoration:none}
+.frame{max-width:900px;margin:0 auto;padding:0 48px}
+
+/* ── HEADER NAV ── */
+header{position:sticky;top:0;z-index:50;background:rgba(17,21,24,0.82);-webkit-backdrop-filter:blur(14px) saturate(1.4);backdrop-filter:blur(14px) saturate(1.4);border-bottom:1px solid var(--stone-800);padding:0 40px;height:52px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.mark{width:16px;height:16px;display:block}
+a.brand{color:inherit;text-decoration:none}
+.wordmark{font-family:'Geist Mono',monospace;font-weight:500;font-size:0.8125rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent)}
+.nav-links{display:flex;align-items:center;gap:28px;margin-left:auto;font-family:'Geist Mono',monospace;font-weight:400;font-size:10px;letter-spacing:0.18em;text-transform:uppercase}
+.nav-links a{color:var(--stone-400);text-decoration:none;transition:color .15s;padding:4px 0}
+.nav-links a:hover{color:var(--bone)}
+.nav-links a.nav-active{color:var(--accent)}
+.nav-cta{font-family:'Geist Mono',monospace;font-size:10px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--void);background:var(--accent);padding:6px 14px;text-decoration:none;transition:opacity .15s;white-space:nowrap;flex-shrink:0;margin-left:12px}
+.nav-cta:hover{opacity:0.85}
+.nav-hamburger{display:none;background:none;border:none;cursor:pointer;padding:6px;flex-direction:column;gap:5px;margin-left:auto}
+.nav-hamburger span{display:block;width:20px;height:1.5px;background:var(--bone);transition:transform .2s,opacity .2s}
+.mobile-menu{display:none;position:fixed;top:52px;left:0;right:0;bottom:0;z-index:49;background:var(--bg);padding:32px 40px;overflow-y:auto}
+.mobile-menu[aria-hidden="false"]{display:block}
+.mobile-menu-links{display:flex;flex-direction:column;gap:20px}
+.mobile-menu-links a{font-family:'Geist Mono',monospace;font-size:13px;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);padding:8px 0;border-bottom:1px solid var(--hair)}
+.mobile-menu-links a:hover{color:var(--bone)}
+.mobile-cta{color:var(--accent) !important}
+
+/* ── PAGE ── */
+main{padding:80px 0 100px}
+.kicker{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.24em;color:var(--green);margin-bottom:18px}
+h1{font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:300;line-height:1.08;margin-bottom:14px;max-width:720px}
+h1 em{font-style:italic}
+.lede{font-size:17px;line-height:1.7;color:var(--muted);font-weight:400;max-width:640px;margin-bottom:0}
+
+/* timing band */
+.timing-band{display:flex;gap:10px;flex-wrap:wrap;margin:32px 0 0}
+.timing-band span{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.04em;color:var(--muted);border:1px solid var(--hair);border-radius:3px;padding:7px 11px}
+.timing-band span b{color:var(--green);font-weight:500}
+
+/* step blocks */
+.steps-list{margin-top:56px;display:flex;flex-direction:column;gap:0}
+.step-block{border-top:1px solid var(--hair);padding:40px 0}
+.step-block:last-child{border-bottom:1px solid var(--hair)}
+.step-header{display:grid;grid-template-columns:56px 1fr;gap:20px;align-items:baseline;margin-bottom:18px}
+.step-num{font-family:'Geist Mono',monospace;font-size:13px;letter-spacing:.18em;color:var(--green)}
+.step-title{font-size:18px;font-weight:500;color:var(--ink)}
+.step-purpose{font-size:14px;line-height:1.65;color:var(--muted);font-weight:400;margin:0 0 22px 76px;max-width:620px}
+.code-wrap{margin-left:76px}
+.code-block{background:#0d1114;border:1px solid var(--stone-700);border-radius:4px;overflow:hidden}
+.code-bar{display:flex;align-items:center;justify-content:space-between;padding:10px 16px;border-bottom:1px solid var(--stone-800)}
+.code-label{font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--stone-400)}
+.code-copy{font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;background:none;border:1px solid var(--stone-700);color:var(--stone-400);padding:5px 10px;cursor:pointer;border-radius:2px;transition:color .15s,border-color .15s}
+.code-copy:hover{color:var(--bone);border-color:var(--stone-500)}
+.code-copy.copied{color:var(--green);border-color:rgba(0,255,115,.4)}
+.code-body{padding:18px;overflow-x:auto}
+.code-body pre{font-family:'Geist Mono',monospace;font-size:12.5px;line-height:1.7;color:var(--stone-300);white-space:pre;margin:0}
+.c-comment{color:var(--stone-500)}
+.c-key{color:var(--accent)}
+.c-str{color:#8fe0a8}
+.c-num{color:#C9A227}
+.c-kw{color:#8fa8e0}
+
+/* response blocks */
+.resp-block{background:var(--panel);border:1px solid var(--hair);border-radius:4px;margin-top:14px;overflow:hidden}
+.resp-bar{display:flex;align-items:center;gap:10px;padding:10px 16px;border-bottom:1px solid var(--hair)}
+.resp-status{font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.12em;color:var(--green);font-weight:500}
+.resp-label{font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--stone-500)}
+.resp-body{padding:16px 18px;overflow-x:auto}
+.resp-body pre{font-family:'Geist Mono',monospace;font-size:12px;line-height:1.65;color:var(--muted);white-space:pre;margin:0}
+
+/* inline note */
+.step-note{margin:14px 0 0 76px;font-size:13px;line-height:1.65;color:var(--faint);font-weight:400;max-width:620px}
+.step-note code{font-family:'Geist Mono',monospace;font-size:12px;color:var(--muted);background:var(--panel);padding:1px 6px;border-radius:3px;border:1px solid var(--hair)}
+.step-note a{color:var(--muted);text-decoration:underline;text-underline-offset:2px}
+
+/* CTA block */
+.cta-block{margin-top:72px;border:1px solid var(--hair);border-radius:4px;background:var(--panel);padding:40px 44px;display:flex;align-items:flex-start;justify-content:space-between;gap:40px;flex-wrap:wrap}
+.cta-block .cta-left h2{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:300;line-height:1.18;margin-bottom:10px}
+.cta-block .cta-left h2 em{font-style:italic}
+.cta-block .cta-left p{font-size:14px;line-height:1.7;color:var(--muted);font-weight:400;max-width:420px}
+.cta-btns{display:flex;flex-direction:column;gap:12px;flex-shrink:0;align-items:flex-start;justify-content:center}
+.btn{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;padding:12px 22px;border:1px solid var(--ink);text-decoration:none;color:var(--ink);transition:opacity .15s;display:inline-block;white-space:nowrap}
+.btn:hover{opacity:.8}
+.btn.primary{background:var(--ink);color:var(--bg)}
+
+/* footer */
+.site-footer{padding:56px 40px 32px;border-top:1px solid var(--hair);margin-top:80px}
+.footer-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;margin-bottom:48px}
+.footer-heading{font-family:'Geist Mono',monospace;font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);margin-bottom:16px}
+.footer-col{display:flex;flex-direction:column;gap:10px}
+.footer-col a{font-size:13px;color:var(--muted);font-weight:400;text-decoration:none;transition:color .15s}
+.footer-col a:hover{color:var(--accent)}
+.footer-bottom{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;position:relative;padding-top:20px;border-top:1px solid var(--hair)}
+.footer-copy{font-family:'Geist Mono',monospace;font-size:10.5px;letter-spacing:.18em;color:var(--faint)}
+.footer-legal{display:flex;gap:20px}
+.footer-legal a{font-family:'Geist Mono',monospace;font-size:10.5px;letter-spacing:.18em;color:var(--faint);text-decoration:none;transition:color .15s}
+.footer-legal a:hover{color:var(--accent)}
+.footer-mark{display:flex;align-items:center;line-height:0;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%)}
+.footer-mark svg{height:22px;width:auto;display:block;color:rgba(255,255,255,.4);transition:color .15s}
+.footer-mark:hover svg{color:var(--accent)}
+
+@media(max-width:720px){
+  .frame{padding:0 24px}
+  h1{font-size:38px}
+  .step-header{grid-template-columns:40px 1fr}
+  .step-purpose,.code-wrap,.step-note{margin-left:60px}
+  .cta-block{padding:28px}
+  .footer-grid{grid-template-columns:repeat(2,1fr)}
+  .footer-mark{position:static;transform:none}
+  .footer-bottom{flex-direction:column;align-items:flex-start;gap:12px}
+}
+@media(max-width:640px){
+  header{padding:0 20px}
+  .nav-links,.nav-cta{display:none}
+  .nav-hamburger{display:flex}
+  .footer-grid{grid-template-columns:1fr}
+}
+</style>
+<style id="kp-fmark">.site-footer{display:block}.footer-bottom{position:relative}.footer-mark{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:flex;align-items:center;line-height:0}.footer-mark svg{height:22px;width:auto;display:block;color:rgba(255,255,255,.6);transition:color .15s ease}.footer-mark:hover svg{color:#00FF73}@media(max-width:640px){.footer-bottom{align-items:center}.footer-mark{position:static;transform:none;order:-1;margin-bottom:6px}}</style>
+<script src="/analytics.js"></script>
+</head>
+<body>
+<header>
+  <a class="brand" href="/">
+    <svg class="mark" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="none" stroke="var(--accent)" stroke-width="1.5"/><circle cx="12" cy="12" r="3.5" fill="var(--accent)"/></svg>
+    <div class="wordmark">Kinetic Anvil</div>
+  </a>
+  <nav class="nav-links">
+    <a href="/">Anvil</a>
+    <a href="/use-cases">Use Cases</a>
+    <a href="/mandate">Mandate</a>
+    <a href="/quickstart" class="nav-active">Quickstart</a>
+    <a href="/sandbox">Sandbox</a>
+    <a href="/status">Status</a>
+    <a href="/trust">Trust</a>
+    <a href="https://docs.kineticanvil.com">Docs</a>
+  </nav>
+  <a href="#contact" class="nav-cta">Get in Touch</a>
+  <button class="nav-hamburger" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span>
+  </button>
+</header>
+
+<div class="mobile-menu" aria-hidden="true">
+  <nav class="mobile-menu-links">
+    <a href="/">Anvil</a>
+    <a href="/use-cases">Use Cases</a>
+    <a href="/mandate">Mandate</a>
+    <a href="/quickstart">Quickstart</a>
+    <a href="/sandbox">Sandbox</a>
+    <a href="/status">Status</a>
+    <a href="/trust">Trust</a>
+    <a href="https://docs.kineticanvil.com">Docs</a>
+    <a href="#contact" class="mobile-cta">Get in Touch</a>
+  </nav>
+</div>
+
+<main><div class="frame">
+
+<div class="kicker">QUICKSTART</div>
+<h1>Your first matter <em>in under 10 minutes</em></h1>
+<p class="lede">Mint a sandbox key, open a matter, add parties, attach a judgment, trace a wallet, build an enforcement packet, and verify the audit chain. Every step is a copy-paste curl command against the live sandbox API.</p>
+
+<div class="timing-band">
+  <span><b>API version</b> 2026-07-05</span>
+  <span><b>45 ops</b> / 11 resources</span>
+  <span><b>Wall clock</b> ~4 min live</span>
+  <span><b>Base URL</b> api.kineticanvil.com</span>
+</div>
+
+<div class="steps-list">
+
+<!-- STEP K: MINT KEY -->
+<div class="step-block" id="step-key">
+  <div class="step-header">
+    <div class="step-num">KEY</div>
+    <div class="step-title">Mint a sandbox key</div>
+  </div>
+  <p class="step-purpose">Issue a scoped sandbox key from the site passthrough. Shown once; copy it before you close the tab.</p>
+  <div class="code-wrap">
+    <div class="code-block">
+      <div class="code-bar">
+        <span class="code-label">curl</span>
+        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+      </div>
+      <div class="code-body"><pre>curl -s -X POST https://kineticanvil.com/api/sandbox-key \
+  -H "Content-Type: application/json" \
+  -H "User-Agent: curl/8.5.0" \
+  -d '{}'</pre></div>
+    </div>
+    <div class="resp-block">
+      <div class="resp-bar">
+        <span class="resp-status">201</span>
+        <span class="resp-label">Response</span>
+      </div>
+      <div class="resp-body"><pre>{
+  "key": "kx_test_...",
+  "key_id": "key_b019d27c0687",
+  "environment": "sandbox",
+  "scope": "sandbox:read sandbox:write",
+  "base_url": "https://api.kineticanvil.com",
+  "rate_limit": "5000 req/min per key",
+  "note": "Shown once. This key is signed, not stored - it cannot be recovered. Lost it? Generate a new one.",
+  "docs": "https://docs.kineticanvil.com"
+}</pre></div>
+    </div>
+  </div>
+  <p class="step-note">Save the key as <code>ANVIL_KEY</code>. The scope label is a display string; the key carries all ~55 non-privileged sandbox grants.</p>
+</div>
+
+<!-- STEP 0: HEALTH -->
+<div class="step-block" id="step-0">
+  <div class="step-header">
+    <div class="step-num">00</div>
+    <div class="step-title">Health check</div>
+  </div>
+  <p class="step-purpose">Confirm the runtime is up and note the API version. No auth required.</p>
+  <div class="code-wrap">
+    <div class="code-block">
+      <div class="code-bar">
+        <span class="code-label">curl</span>
+        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+      </div>
+      <div class="code-body"><pre>curl -s https://api.kineticanvil.com/v1/health</pre></div>
+    </div>
+    <div class="resp-block">
+      <div class="resp-bar">
+        <span class="resp-status">200</span>
+        <span class="resp-label">Response</span>
+      </div>
+      <div class="resp-body"><pre>{
+  "status": "ok",
+  "object": "health",
+  "version": "2026-07-05",
+  "environment": "sandbox",
+  "store": "neon",
+  "timestamp": "2026-07-05T20:33:33.971Z"
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- STEP 1: CREATE MATTER -->
+<div class="step-block" id="step-1">
+  <div class="step-header">
+    <div class="step-num">01</div>
+    <div class="step-title">Open a matter</div>
+  </div>
+  <p class="step-purpose">Create the case record. Everything else anchors to the <code>matter_id</code> returned here.</p>
+  <div class="code-wrap">
+    <div class="code-block">
+      <div class="code-bar">
+        <span class="code-label">curl &middot; POST /v1/matters</span>
+        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+      </div>
+      <div class="code-body"><pre>curl -s -X POST https://api.kineticanvil.com/v1/matters \
+  -H "Authorization: Bearer $ANVIL_KEY" \
+  -H "Content-Type: application/json" \
+  -H "Idempotency-Key: gp-matter-$(date +%s)" \
+  -d '{
+    "name": "Varela v. Zhao - BTC Recovery",
+    "mode": "recovery",
+    "lead_counsel": "Sarah L. Varela, Esq."
+  }'</pre></div>
+    </div>
+    <div class="resp-block">
+      <div class="resp-bar">
+        <span class="resp-status">201</span>
+        <span class="resp-label">Response</span>
+      </div>
+      <div class="resp-body"><pre>{
+  "name": "Varela v. Zhao - BTC Recovery",
+  "mode": "recovery",
+  "lead_counsel": "Sarah L. Varela, Esq.",
+  "matter_id": "matter_3ee6c9d0418fz52bdq",
+  "id": "matter_3ee6c9d0418fz52bdq",
+  "organization_id": "org_8eefaa57986d",
+  "status": "active",
+  "created_at": "2026-07-05T20:33:57.005Z"
+}</pre></div>
+    </div>
+  </div>
+  <p class="step-note">Note the <code>matter_id</code>. Substitute it wherever you see <code>matter_3ee6c9d0418fz52bdq</code> in the steps below.</p>
+</div>
+
+<!-- STEP 2: ADD PARTIES -->
+<div class="step-block" id="step-2">
+  <div class="step-header">
+    <div class="step-num">02</div>
+    <div class="step-title">Add parties</div>
+  </div>
+  <p class="step-purpose">Register the debtor and claimant against the matter. Run both calls; each returns a <code>party_id</code>.</p>
+  <div class="code-wrap">
+    <div class="code-block">
+      <div class="code-bar">
+        <span class="code-label">curl &middot; POST /v1/parties (debtor)</span>
+        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+      </div>
+      <div class="code-body"><pre>curl -s -X POST https://api.kineticanvil.com/v1/parties \
+  -H "Authorization: Bearer $ANVIL_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "matter_id": "matter_3ee6c9d0418fz52bdq",
+    "role": "debtor",
+    "name": "Wei Zhao",
+    "notes": "Known BTC wallet 1A1zP1eP5QGefi2DMPTfTL5SLmv7Divfna"
+  }'</pre></div>
+    </div>
+    <div class="resp-block">
+      <div class="resp-bar">
+        <span class="resp-status">201</span>
+        <span class="resp-label">Response</span>
+      </div>
+      <div class="resp-body"><pre>{
+  "matter_id": "matter_3ee6c9d0418fz52bdq",
+  "role": "debtor",
+  "name": "Wei Zhao",
+  "party_id": "party_3b1fc5ebeeebrsaxnx",
+  "id": "party_3b1fc5ebeeebrsaxnx",
+  "object": "party",
+  "status": "active",
+  "created_at": "2026-07-05T20:34:07.762Z"
+}</pre></div>
+    </div>
+    <div class="code-block" style="margin-top:14px">
+      <div class="code-bar">
+        <span class="code-label">curl &middot; POST /v1/parties (claimant)</span>
+        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+      </div>
+      <div class="code-body"><pre>curl -s -X POST https://api.kineticanvil.com/v1/parties \
+  -H "Authorization: Bearer $ANVIL_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "matter_id": "matter_3ee6c9d0418fz52bdq",
+    "role": "claimant",
+    "name": "Elena Varela",
+    "share": 1.0
+  }'</pre></div>
+    </div>
+    <div class="resp-block">
+      <div class="resp-bar">
+        <span class="resp-status">201</span>
+        <span class="resp-label">Response</span>
+      </div>
+      <div class="resp-body"><pre>{
+  "matter_id": "matter_3ee6c9d0418fz52bdq",
+  "role": "claimant",
+  "name": "Elena Varela",
+  "party_id": "party_f964f9cd5f49zgtl8y",
+  "id": "party_f964f9cd5f49zgtl8y",
+  "object": "party",
+  "status": "active",
+  "created_at": "2026-07-05T20:34:07.954Z"
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- STEP 3: INTAKE JUDGMENT -->
+<div class="step-block" id="step-3">
+  <div class="step-header">
+    <div class="step-num">03</div>
+    <div class="step-title">Attach the judgment</div>
+  </div>
+  <p class="step-purpose">Record the underlying judgment. All seven required fields must be present at intake; they cannot be added by PATCH later.</p>
+  <div class="code-wrap">
+    <div class="code-block">
+      <div class="code-bar">
+        <span class="code-label">curl &middot; POST /v1/judgments/intake</span>
+        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+      </div>
+      <div class="code-body"><pre>curl -s -X POST https://api.kineticanvil.com/v1/judgments/intake \
+  -H "Authorization: Bearer $ANVIL_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "matter_id": "matter_3ee6c9d0418fz52bdq",
+    "amount": 285000,
+    "court": "Southern District of New York",
+    "case_number": "1:24-cv-04471",
+    "date_entered": "2024-11-15",
+    "jurisdiction": "United States - SDNY",
+    "creditor": "Elena Varela",
+    "debtor": "Wei Zhao"
+  }'</pre></div>
+    </div>
+    <div class="resp-block">
+      <div class="resp-bar">
+        <span class="resp-status">201</span>
+        <span class="resp-label">Response</span>
+      </div>
+      <div class="resp-body"><pre>{
+  "matter_id": "matter_3ee6c9d0418fz52bdq",
+  "court": "Southern District of New York",
+  "case_number": "1:24-cv-04471",
+  "jurisdiction": "United States - SDNY",
+  "creditor": "Elena Varela",
+  "debtor": "Wei Zhao",
+  "amount": 285000,
+  "date_entered": "2024-11-15",
+  "judgment_id": "judgment_7c716919f8eftbuwa5",
+  "id": "judgment_7c716919f8eftbuwa5",
+  "object": "judgment",
+  "status": "active",
+  "created_at": "2026-07-05T20:34:21.005Z"
+}</pre></div>
+    </div>
+  </div>
+  <p class="step-note">Required at intake: <code>matter_id</code>, <code>amount</code>, <code>court</code>, <code>case_number</code>, <code>date_entered</code>, <code>jurisdiction</code>, <code>creditor</code>, <code>debtor</code>. A missing field returns a 422 listing exactly what is absent.</p>
+</div>
+
+<!-- STEP 4: VALIDATE -->
+<div class="step-block" id="step-4">
+  <div class="step-header">
+    <div class="step-num">04</div>
+    <div class="step-title">Validate the judgment</div>
+  </div>
+  <p class="step-purpose">Run the protocol-level validity check. Returns the judgment's computed status and any field-level issues.</p>
+  <div class="code-wrap">
+    <div class="code-block">
+      <div class="code-bar">
+        <span class="code-label">curl &middot; POST /v1/judgments/{id}/validate</span>
+        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+      </div>
+      <div class="code-body"><pre>curl -s -X POST \
+  https://api.kineticanvil.com/v1/judgments/judgment_7c716919f8eftbuwa5/validate \
+  -H "Authorization: Bearer $ANVIL_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{}'</pre></div>
+    </div>
+    <div class="resp-block">
+      <div class="resp-bar">
+        <span class="resp-status">200</span>
+        <span class="resp-label">Response</span>
+      </div>
+      <div class="resp-body"><pre>{
+  "judgment_id": "judgment_7c716919f8eftbuwa5",
+  "object": "judgment_validation",
+  "valid": true,
+  "issues": [],
+  "validated_at": "2026-07-05T20:34:55.115Z"
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- STEP 5: SET ENFORCEMENT -->
+<div class="step-block" id="step-5">
+  <div class="step-header">
+    <div class="step-num">05</div>
+    <div class="step-title">Set enforcement posture</div>
+  </div>
+  <p class="step-purpose">Declare strategy and target venues. This gates downstream enforcement operations and is recorded to the audit trail.</p>
+  <div class="code-wrap">
+    <div class="code-block">
+      <div class="code-bar">
+        <span class="code-label">curl &middot; POST /v1/judgments/{id}/enforcement</span>
+        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+      </div>
+      <div class="code-body"><pre>curl -s -X POST \
+  https://api.kineticanvil.com/v1/judgments/judgment_7c716919f8eftbuwa5/enforcement \
+  -H "Authorization: Bearer $ANVIL_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "strategy": "crypto_trace_and_freeze",
+    "venues": ["binance","okx"],
+    "priorities": ["trace","freeze","disclose"]
+  }'</pre></div>
+    </div>
+    <div class="resp-block">
+      <div class="resp-bar">
+        <span class="resp-status">200</span>
+        <span class="resp-label">Response</span>
+      </div>
+      <div class="resp-body"><pre>{
+  "object": "enforcement",
+  "judgment_id": "judgment_7c716919f8eftbuwa5",
+  "review_required": true,
+  "updated_at": "2026-07-05T20:35:08.192Z",
+  "strategy": "crypto_trace_and_freeze",
+  "venues": ["binance","okx"],
+  "priorities": ["trace","freeze","disclose"]
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- STEP 6: DISPATCH TRACE -->
+<div class="step-block" id="step-6">
+  <div class="step-header">
+    <div class="step-num">06</div>
+    <div class="step-title">Dispatch crypto trace</div>
+  </div>
+  <p class="step-purpose">Submit a wallet cluster for asynchronous tracing. Returns 202 immediately; a background worker runs the multi-hop flow map.</p>
+  <div class="code-wrap">
+    <div class="code-block">
+      <div class="code-bar">
+        <span class="code-label">curl &middot; POST /v1/crypto/asset-map</span>
+        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+      </div>
+      <div class="code-body"><pre>curl -s -X POST https://api.kineticanvil.com/v1/crypto/asset-map \
+  -H "Authorization: Bearer $ANVIL_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "matter_id": "matter_3ee6c9d0418fz52bdq",
+    "wallets": ["1A1zP1eP5QGefi2DMPTfTL5SLmv7Divfna"],
+    "chains": ["bitcoin"],
+    "include_exchanges": true
+  }'</pre></div>
+    </div>
+    <div class="resp-block">
+      <div class="resp-bar">
+        <span class="resp-status">202</span>
+        <span class="resp-label">Response (dispatched)</span>
+      </div>
+      <div class="resp-body"><pre>{
+  "object": "crypto_asset_map",
+  "map_id": "amap_21cb17f7cf53pu1u73",
+  "wallets": [],
+  "token_exposures": [],
+  "exchange_hypotheses": [],
+  "stablecoin_exposure": [],
+  "status": "processing",
+  "job_id": "job_21cb17f7cf531bvizm"
+}</pre></div>
+    </div>
+  </div>
+  <p class="step-note">Note the <code>job_id</code> for the next step. The 202 confirms the job is queued; status is not yet <code>complete</code>.</p>
+</div>
+
+<!-- STEP 7: POLL JOB -->
+<div class="step-block" id="step-7">
+  <div class="step-header">
+    <div class="step-num">07</div>
+    <div class="step-title">Poll job status</div>
+  </div>
+  <p class="step-purpose">Poll until status is <code>succeeded</code>. Typical wait is 4 to 60 seconds depending on wallet activity depth.</p>
+  <div class="code-wrap">
+    <div class="code-block">
+      <div class="code-bar">
+        <span class="code-label">curl &middot; GET /v1/jobs/{id}</span>
+        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+      </div>
+      <div class="code-body"><pre>curl -s https://api.kineticanvil.com/v1/jobs/job_21cb17f7cf531bvizm \
+  -H "Authorization: Bearer $ANVIL_KEY"</pre></div>
+    </div>
+    <div class="resp-block">
+      <div class="resp-bar">
+        <span class="resp-status">200</span>
+        <span class="resp-label">Response (terminal)</span>
+      </div>
+      <div class="resp-body"><pre>{
+  "job_id": "job_21cb17f7cf531bvizm",
+  "object": "job",
+  "type": "crypto.trace",
+  "status": "succeeded",
+  "input": {
+    "kind": "asset_map",
+    "chains": ["bitcoin"],
+    "map_id": "amap_21cb17f7cf53pu1u73",
+    "wallets": ["1A1zP1eP5QGefi2DMPTfTL5SLmv7Divfna"],
+    "max_hops": 5,
+    "direction": "outflow",
+    "matter_id": "matter_3ee6c9d0418fz52bdq"
+  },
+  "result": {
+    "hops": 5,
+    "chain": "btc",
+    "edges": [],
+    "flows": [],
+    "object": "crypto_asset_map",
+    "source": "mempool.space",
+    "wallets": [
+      {
+        "hop": 0,
+        "role": "subject",
+        "address": "1A1zP1eP5QGefi2DMPTfTL5SLmv7Divfna",
+        "network": "btc",
+        "wallet_id": "w_0",
+        "confidence": "high"
+      }
+    ],
+    "subjects": ["1A1zP1eP5QGefi2DMPTfTL5SLmv7Divfna"],
+    "terminals": [],
+    "traced_at": "2026-07-05T20:35:22.343Z",
+    "edge_count": 0,
+    "node_count": 1,
+    "exchange_hypotheses": []
+  },
+  "error": null,
+  "matter_id": "matter_3ee6c9d0418fz52bdq",
+  "attempts": 1,
+  "created_at": "2026-07-05T20:35:18.690Z",
+  "updated_at": "2026-07-05T20:35:22.401Z"
+}</pre></div>
+    </div>
+  </div>
+  <p class="step-note">The BTC genesis address has no outgoing transactions so <code>edges</code> and <code>exchange_hypotheses</code> are empty; the trace is technically correct. For multi-hop output in a real matter, use an address with spending history. The job <code>status</code> field uses <code>succeeded</code>; the asset map object uses <code>complete</code> as its terminal value.</p>
+</div>
+
+<!-- STEP 8: RECORD RECOVERY -->
+<div class="step-block" id="step-8">
+  <div class="step-header">
+    <div class="step-num">08</div>
+    <div class="step-title">Record recovery event</div>
+  </div>
+  <p class="step-purpose">Post a ledger entry recording traced value. The required field is <code>gross_amount</code>, not <code>usd_value</code>.</p>
+  <div class="code-wrap">
+    <div class="code-block">
+      <div class="code-bar">
+        <span class="code-label">curl &middot; POST /v1/ledger/recovery-events</span>
+        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+      </div>
+      <div class="code-body"><pre>curl -s -X POST https://api.kineticanvil.com/v1/ledger/recovery-events \
+  -H "Authorization: Bearer $ANVIL_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "matter_id": "matter_3ee6c9d0418fz52bdq",
+    "source": "crypto_trace",
+    "gross_amount": 128000,
+    "description": "BTC wallet cluster traced to Binance deposit address via mempool.space"
+  }'</pre></div>
+    </div>
+    <div class="resp-block">
+      <div class="resp-bar">
+        <span class="resp-status">201</span>
+        <span class="resp-label">Response</span>
+      </div>
+      <div class="resp-body"><pre>{
+  "recovery_event_id": "rcv_e4007d3a1ad6iz4rkg",
+  "matter_id": "matter_3ee6c9d0418fz52bdq",
+  "event_type": "recovery",
+  "asset": "USD",
+  "gross_amount": 128000,
+  "network": null,
+  "usd_value": 128000,
+  "source": "crypto_trace",
+  "packet_id": null,
+  "status": "recorded",
+  "audit": {
+    "request_id": "req_e4007d3a1ad6b2757380",
+    "matter_id": "matter_3ee6c9d0418fz52bdq",
+    "timestamp": "2026-07-05T20:36:45.428Z"
+  },
+  "object": "recovery_event",
+  "id": "rcv_e4007d3a1ad6iz4rkg"
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- STEP 9: BUILD PACKET -->
+<div class="step-block" id="step-9">
+  <div class="step-header">
+    <div class="step-num">09</div>
+    <div class="step-title">Build an enforcement packet</div>
+  </div>
+  <p class="step-purpose">Assemble the judgment, recovery event, and wallet set into a signed enforcement artifact. Packet type must be <code>exchange_freeze</code> for a VASP freeze request.</p>
+  <div class="code-wrap">
+    <div class="code-block">
+      <div class="code-bar">
+        <span class="code-label">curl &middot; POST /v1/packets</span>
+        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+      </div>
+      <div class="code-body"><pre>curl -s -X POST https://api.kineticanvil.com/v1/packets \
+  -H "Authorization: Bearer $ANVIL_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "matter_id": "matter_3ee6c9d0418fz52bdq",
+    "type": "exchange_freeze",
+    "judgment_id": "judgment_7c716919f8eftbuwa5",
+    "recovery_event_ids": ["rcv_e4007d3a1ad6iz4rkg"],
+    "wallets": ["1A1zP1eP5QGefi2DMPTfTL5SLmv7Divfna"],
+    "target_venue": "binance"
+  }'</pre></div>
+    </div>
+    <div class="resp-block">
+      <div class="resp-bar">
+        <span class="resp-status">201</span>
+        <span class="resp-label">Response</span>
+      </div>
+      <div class="resp-body"><pre>{
+  "packet_id": "pkt_5e9dbd285597mfdews",
+  "matter_id": "matter_3ee6c9d0418fz52bdq",
+  "type": "exchange_freeze",
+  "status": "assembled",
+  "judgment_id": "judgment_7c716919f8eftbuwa5",
+  "wallets": ["1A1zP1eP5QGefi2DMPTfTL5SLmv7Divfna"],
+  "freeze_targets": ["1A1zP1eP5QGefi2DMPTfTL5SLmv7Divfna"],
+  "recovery_event_ids": ["rcv_e4007d3a1ad6iz4rkg"],
+  "content_hash": "771b4ff541528cedb5dcac95a107a8e553f80d1c670ea2213936cd108b6aa395",
+  "review_state": {
+    "review_required": true,
+    "review_status": "pending",
+    "review_owner": "",
+    "review_notes": ""
+  },
+  "audit": {
+    "request_id": "req_5e9dbd2855970416eaf6",
+    "matter_id": "matter_3ee6c9d0418fz52bdq",
+    "timestamp": "2026-07-05T20:36:59.649Z"
+  },
+  "object": "packet"
+}</pre></div>
+    </div>
+  </div>
+  <p class="step-note">Valid packet types include <code>exchange_freeze</code>, <code>exchange_turnover</code>, <code>vasp_legal_process</code>, <code>law_enforcement_referral</code>, and others. <code>freeze_package</code> is not a valid type; passing it returns a 422 with the full allowed list.</p>
+</div>
+
+<!-- STEP 10: EXPORT -->
+<div class="step-block" id="step-10">
+  <div class="step-header">
+    <div class="step-num">10</div>
+    <div class="step-title">Export the packet</div>
+  </div>
+  <p class="step-purpose">Produce a chain-of-custody PDF artifact with a content hash that can be independently verified.</p>
+  <div class="code-wrap">
+    <div class="code-block">
+      <div class="code-bar">
+        <span class="code-label">curl &middot; POST /v1/packets/{id}/export</span>
+        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+      </div>
+      <div class="code-body"><pre>curl -s -X POST \
+  https://api.kineticanvil.com/v1/packets/pkt_5e9dbd285597mfdews/export \
+  -H "Authorization: Bearer $ANVIL_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"format":"pdf","include_chain_of_custody":true}'</pre></div>
+    </div>
+    <div class="resp-block">
+      <div class="resp-bar">
+        <span class="resp-status">201</span>
+        <span class="resp-label">Response</span>
+      </div>
+      <div class="resp-body"><pre>{
+  "export_id": "pex_22c437966cb5ujl78w",
+  "object_type": "packet",
+  "object_id": "pkt_5e9dbd285597mfdews",
+  "format": "pdf",
+  "status": "available",
+  "download_url": "https://api.kineticanvil.com/v1/exports/pex_22c437966cb5ujl78w.pdf",
+  "audit_id": "req_22c437966cb58606da82",
+  "export_hash": "d9cd3e861f2642acd08e3dd17ce7aa3a2644b2ec0cd31d9d4bc4c3c298dcd1e0",
+  "packet_hash": "771b4ff541528cedb5dcac95a107a8e553f80d1c670ea2213936cd108b6aa395",
+  "object": "packet_export"
+}</pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- STEP 11: DASHBOARD -->
+<div class="step-block" id="step-11">
+  <div class="step-header">
+    <div class="step-num">11</div>
+    <div class="step-title">Read the matter dashboard</div>
+  </div>
+  <p class="step-purpose">Pull the live phase snapshot. Shows recovery value, open packets, and the current phase on the enforcement state machine.</p>
+  <div class="code-wrap">
+    <div class="code-block">
+      <div class="code-bar">
+        <span class="code-label">curl &middot; GET /v1/matters/{id}/dashboard</span>
+        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+      </div>
+      <div class="code-body"><pre>curl -s \
+  https://api.kineticanvil.com/v1/matters/matter_3ee6c9d0418fz52bdq/dashboard \
+  -H "Authorization: Bearer $ANVIL_KEY"</pre></div>
+    </div>
+    <div class="resp-block">
+      <div class="resp-bar">
+        <span class="resp-status">200</span>
+        <span class="resp-label">Response</span>
+      </div>
+      <div class="resp-body"><pre>{
+  "matter_id": "matter_3ee6c9d0418fz52bdq",
+  "judgment_value": { "amount": 128000, "currency": "USD" },
+  "known_crypto_exposure": { "amount": 128000, "currency": "USD" },
+  "open_actions": 1,
+  "open_packets": 1,
+  "alerts": 0,
+  "recovery_events": 1,
+  "recovery_phase": "dispatched",
+  "phase_index": 3,
+  "remittances": 0,
+  "packets": 1
+}</pre></div>
+    </div>
+  </div>
+  <p class="step-note">Phase machine: <code>intake</code> &rarr; <code>traced</code> &rarr; <code>packaged</code> &rarr; <code>dispatched</code> &rarr; <code>remitting</code> &rarr; <code>settled</code> &rarr; <code>closed</code>. Phase <code>dispatched</code> (index 3) is expected here.</p>
+</div>
+
+<!-- STEP 12: VERIFY CHAIN -->
+<div class="step-block" id="step-12">
+  <div class="step-header">
+    <div class="step-num">12</div>
+    <div class="step-title">Verify the audit chain</div>
+  </div>
+  <p class="step-purpose">Confirm the tamper-evident event log is unbroken. Returns the chain head hash and a count of verified events.</p>
+  <div class="code-wrap">
+    <div class="code-block">
+      <div class="code-bar">
+        <span class="code-label">curl &middot; GET /v1/events/verify-chain</span>
+        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+      </div>
+      <div class="code-body"><pre>curl -s https://api.kineticanvil.com/v1/events/verify-chain \
+  -H "Authorization: Bearer $ANVIL_KEY"</pre></div>
+    </div>
+    <div class="resp-block">
+      <div class="resp-bar">
+        <span class="resp-status">200</span>
+        <span class="resp-label">Response</span>
+      </div>
+      <div class="resp-body"><pre>{
+  "object": "chain_verification",
+  "valid": true,
+  "events_checked": 17,
+  "first_break": null,
+  "head": "ed246d2ef5eb2c8c5b688f054bccb3545bb82e28adf55a965dba252b49ab0d44",
+  "verified_at": "2026-07-05T20:37:35.406Z"
+}</pre></div>
+    </div>
+  </div>
+  <p class="step-note">Chain valid. 17 events. No breaks. The same endpoint can be called at any point in a matter lifecycle to confirm integrity.</p>
+</div>
+
+</div><!-- /steps-list -->
+
+<div class="cta-block">
+  <div class="cta-left">
+    <h2>Ready to run a <em>real matter</em>?</h2>
+    <p>Get a sandbox key, explore the full 45-operation surface, and request production access when you are ready to move a matter.</p>
+  </div>
+  <div class="cta-btns">
+    <a class="btn primary" href="/sandbox">GET SANDBOX KEY</a>
+    <a class="btn" href="/#pricing">VIEW PRICING</a>
+    <a class="btn" href="https://docs.kineticanvil.com">FULL API DOCS</a>
+  </div>
+</div>
+
+</div></main>
+
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div class="footer-col">
+      <div class="footer-heading">Product</div>
+      <a href="/use-cases">Use Cases</a>
+      <a href="/mandate">Mandate</a>
+      <a href="/quickstart">Quickstart</a>
+      <a href="/sandbox">Sandbox</a>
+      <a href="/#pricing">Pricing</a>
+      <a href="/trust">Trust Surface</a>
+      <a href="https://docs.kineticanvil.com">Documentation</a>
+      <a href="/status">Status</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-heading">Ecosystem</div>
+      <a href="https://kineticpartners.org/tools/">Tools</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-heading">Company</div>
+      <a href="/about">About</a>
+      <a href="/company">Company</a>
+      <a href="https://kineticpartners.org">Kinetic</a>
+      <a href="https://meridianoffice.org">Meridian Recovery</a>
+      <a href="https://cipherblade.com">CipherBlade (Integrated Partner)</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <a class="footer-mark" href="/" aria-label="Kinetic"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 971.44 867.94" width="971.44" height="867.94"><g transform="translate(-487.408020,1507.940550) scale(0.100000,-0.100000)" fill="currentColor" stroke="none"><path d="M7962 15060 c-125 -33 -242 -104 -310 -189 -18 -22 -148 -239 -288
+-483 -141 -244 -365 -630 -497 -858 -133 -228 -252 -444 -266 -480 -21 -55
+-25 -82 -25 -180 -1 -137 10 -176 90 -311 140 -236 515 -873 889 -1509 388
+-660 705 -1200 1126 -1915 131 -223 196 -323 214 -333 28 -14 77 -9 93 11 6 7
+67 111 137 232 70 121 162 281 206 356 61 106 79 144 79 174 0 40 -11 60 -610
+1080 -81 138 -218 372 -305 520 -87 149 -207 351 -265 450 -560 943 -680 1154
+-690 1203 -18 99 -10 117 268 594 142 243 285 489 317 546 67 120 100 156 171
+189 l51 23 1364 -2 1364 -3 45 -27 c25 -14 55 -37 67 -50 20 -22 177 -286 531
+-893 83 -143 161 -267 174 -275 19 -13 88 -16 423 -18 271 -2 412 0 437 8 44
+13 73 58 65 99 -3 15 -41 87 -85 161 -84 143 -474 814 -749 1290 -91 157 -186
+316 -211 354 -54 81 -143 158 -228 198 -129 60 -45 58 -1854 57 -1595 0 -1658
+-1 -1728 -19z M8885 12211 c-34 -14 -59 -50 -59 -84 1 -22 31 -82 96 -192 52 -88
+141 -240 198 -338 73 -126 112 -183 131 -193 24 -12 272 -14 1707 -14 1852 0
+1736 4 1823 -63 31 -24 67 -76 142 -202 447 -760 664 -1137 679 -1180 21 -60
+23 -126 5 -186 -8 -24 -106 -204 -219 -399 -183 -316 -328 -568 -952 -1655
+-115 -200 -179 -301 -207 -327 -77 -70 -51 -68 -843 -68 -659 0 -713 -1 -739
+-18 -37 -23 -457 -752 -457 -793 0 -41 9 -58 41 -74 24 -13 183 -15 1131 -15
+1216 0 1158 -3 1282 63 116 61 151 107 385 512 442 763 720 1242 941 1620 307
+527 539 930 567 985 38 77 56 181 50 289 -8 154 19 99 -462 921 -114 195 -320
+549 -457 785 -170 292 -265 445 -297 478 -56 59 -119 100 -197 129 l-59 23
+-2105 2 c-1158 1 -2114 -2 -2125 -6z M6098 12118 c-9 -7 -154 -254 -323 -548 -169 -294 -429 -746 -578
+-1004 -151 -263 -281 -501 -296 -540 -35 -99 -36 -269 -2 -366 13 -37 108
+-207 221 -395 109 -181 326 -546 482 -810 157 -264 368 -619 469 -790 102
+-170 281 -474 399 -675 179 -304 226 -375 280 -431 74 -75 176 -130 274 -148
+40 -7 392 -11 1067 -11 952 0 1010 1 1067 18 70 22 140 68 181 120 17 20 124
+201 239 402 115 201 310 541 434 755 123 215 314 545 423 735 110 190 220 381
+245 425 695 1200 960 1666 960 1688 0 23 -18 58 -39 74 -12 9 -129 12 -469 13
+-500 0 -496 1 -528 -63 -9 -17 -56 -99 -104 -182 -113 -196 -261 -453 -635
+-1105 -169 -294 -419 -728 -555 -965 -136 -236 -309 -538 -384 -670 -150 -263
+-184 -305 -269 -330 -75 -22 -1239 -22 -1314 0 -77 23 -122 72 -216 235 -46
+80 -146 251 -222 380 -76 129 -255 435 -398 680 -143 245 -350 598 -460 785
+-276 467 -273 446 -100 744 688 1193 686 1189 680 1230 -5 33 -384 699 -425
+744 -18 20 -80 23 -104 5z"/></g></svg></a>
+    <div class="footer-copy">&copy; 2026 Kinetic Digital Partners Inc.</div>
+    <div class="footer-legal">
+      <a href="/privacy">Privacy</a>
+      <a href="/terms">Terms</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var btn=document.querySelector('.nav-hamburger');
+  var menu=document.querySelector('.mobile-menu');
+  if(!btn||!menu)return;
+  btn.addEventListener('click',function(){
+    var open=btn.getAttribute('aria-expanded')==='true';
+    btn.setAttribute('aria-expanded',String(!open));
+    menu.setAttribute('aria-hidden',String(open));
+    document.body.style.overflow=open?'':'hidden';
+  });
+})();
+function copyCode(btn){
+  var block=btn.closest('.code-block');
+  var pre=block.querySelector('pre');
+  if(!pre)return;
+  navigator.clipboard.writeText(pre.textContent).then(function(){
+    btn.textContent='Copied';
+    btn.classList.add('copied');
+    setTimeout(function(){btn.textContent='Copy';btn.classList.remove('copied');},1600);
+  });
+}
+</script>
+</body>
+</html>
