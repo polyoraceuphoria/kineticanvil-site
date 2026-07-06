@@ -128,7 +128,7 @@ a.c:hover{color:var(--ink)}
     font-size: 0.8125rem;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--accent);
+    color: var(--bone);
   }
 
   .nav-links {
@@ -149,7 +149,7 @@ a.c:hover{color:var(--ink)}
     padding: 4px 0;
   }
   .nav-links a:hover { color: var(--bone); }
-  .nav-links a.nav-active { color: var(--accent); }
+  .nav-links a.nav-active { color: var(--bone); }
 
   .nav-cta {
     font-family: 'Geist Mono', monospace;
@@ -157,8 +157,8 @@ a.c:hover{color:var(--ink)}
     font-weight: 500;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--void);
-    background: var(--accent);
+    color: var(--bone);
+    background: transparent; border: 1px solid var(--stone-700, #2e3540);
     padding: 6px 14px;
     text-decoration: none;
     transition: opacity .15s;
@@ -166,7 +166,7 @@ a.c:hover{color:var(--ink)}
     flex-shrink: 0;
     margin-left: 12px;
   }
-  .nav-cta:hover { opacity: 0.85; }
+  .nav-cta:hover { border-color: var(--stone-500, #5e6670); }
 
   /* ── HAMBURGER ── */
   .nav-hamburger {
@@ -224,7 +224,7 @@ a.c:hover{color:var(--ink)}
   }
   .mobile-menu-links a:hover { color: var(--accent); }
   .mobile-menu-links .mobile-cta {
-    color: var(--accent);
+    color: var(--bone);
     border-bottom: none;
     margin-top: 12px;
   }
@@ -337,6 +337,8 @@ a.c:hover{color:var(--ink)}
     </a>
     <nav class="nav-links">
       <a href="/">Anvil</a>
+      <a href="/use-cases">Use Cases</a>
+      <a href="/mandate">Mandate</a>
       <a href="/sandbox">Sandbox</a>
       <a href="/status">Status</a>
       <a href="/trust">Trust</a>
@@ -351,6 +353,8 @@ a.c:hover{color:var(--ink)}
   <div class="mobile-menu" aria-hidden="true">
     <nav class="mobile-menu-links">
       <a href="/">Anvil</a>
+      <a href="/use-cases">Use Cases</a>
+      <a href="/mandate">Mandate</a>
       <a href="/sandbox">Sandbox</a>
       <a href="/status">Status</a>
       <a href="/trust">Trust</a>
