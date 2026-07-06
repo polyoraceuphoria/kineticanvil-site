@@ -89,7 +89,7 @@ h2 em{font-style:italic}
 .btn-row{margin-top:44px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
 .btn{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.16em;padding:13px 26px;border:1px solid var(--ink);cursor:pointer;background:none;color:var(--ink);transition:opacity .15s}
 .btn:hover{opacity:.8}
-.btn.primary{background:var(--btn-ink-bg);color:var(--btn-ink-fg)}
+.btn.primary{background:var(--accent);color:var(--void);border-color:var(--accent)}
 
 footer{padding:28px 0;border-top:1px solid var(--hair)}
 .foot-in{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
@@ -167,8 +167,8 @@ footer a.c:hover{color:var(--ink)}
 .term-bar{display:flex;align-items:center;gap:7px;padding:12px 16px;border-bottom:1px solid var(--stone-800)}
 .term-bar .d{width:8px;height:8px;border-radius:50%;background:var(--stone-600)}
 .term-title{margin-left:10px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--stone-400)}
-.term-run{margin-left:auto;font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--void);background:var(--accent);border:none;padding:6px 14px;cursor:pointer;transition:opacity .15s}
-.term-run:hover{opacity:.85}
+.term-run{margin-left:auto;font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);background:transparent;border:1px solid var(--hair);padding:6px 14px;cursor:pointer;transition:opacity .15s}
+.term-run:hover{border-color:var(--accent)}
 .term-run:disabled{opacity:.5;cursor:default}
 .term-body{padding:18px 18px 20px;white-space:pre-wrap;word-break:break-word;color:var(--stone-300);min-height:200px}
 .term-body .c-mut{color:var(--stone-500)}
@@ -308,7 +308,7 @@ a.uc-card:hover .uc-more{color:var(--green)}
     font-size: 0.8125rem;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--accent);
+    color: var(--bone);
   }
 
   .nav-links {
@@ -329,7 +329,7 @@ a.uc-card:hover .uc-more{color:var(--green)}
     padding: 4px 0;
   }
   .nav-links a:hover { color: var(--bone); }
-  .nav-links a.nav-active { color: var(--accent); }
+  .nav-links a.nav-active { color: var(--bone); }
 
   .nav-cta {
     font-family: 'Geist Mono', monospace;
@@ -337,8 +337,8 @@ a.uc-card:hover .uc-more{color:var(--green)}
     font-weight: 500;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--void);
-    background: var(--accent);
+    color: var(--bone);
+    background: transparent; border: 1px solid var(--stone-700, #2e3540);
     padding: 6px 14px;
     text-decoration: none;
     transition: opacity .15s;
@@ -346,7 +346,7 @@ a.uc-card:hover .uc-more{color:var(--green)}
     flex-shrink: 0;
     margin-left: 12px;
   }
-  .nav-cta:hover { opacity: 0.85; }
+  .nav-cta:hover { border-color: var(--stone-500, #5e6670); }
 
   /* ── HAMBURGER ── */
   .nav-hamburger {
@@ -404,7 +404,7 @@ a.uc-card:hover .uc-more{color:var(--green)}
   }
   .mobile-menu-links a:hover { color: var(--accent); }
   .mobile-menu-links .mobile-cta {
-    color: var(--accent);
+    color: var(--bone);
     border-bottom: none;
     margin-top: 12px;
   }
