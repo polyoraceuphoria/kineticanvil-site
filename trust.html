@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="How Kinetic Anvil secures case operations: authority-gated actions, tamper-evident audit trail, third-party custody, data residency, and certification roadmap.">
+<meta name="description" content="How Kinetic Anvil handles access, data, and security: scoped keys, audit trail, no client funds, encryption, and responsible disclosure.">
 <link rel="canonical" href="https://kineticanvil.com/trust">
 <meta property="og:title" content="Trust | Kinetic Anvil">
-<meta property="og:description" content="Authority-gated by design. Every move is provable. How Kinetic Anvil handles custody, data, encryption, and compliance.">
+<meta property="og:description" content="Plain statements on how Kinetic Anvil handles access, data, and security.">
 <meta property="og:url" content="https://kineticanvil.com/trust">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://kineticanvil.com/og.png">
@@ -46,32 +46,14 @@ h1 em{font-style:italic}
 .lede{font-size:17px;line-height:1.7;color:var(--muted);font-weight:400;max-width:600px;margin-bottom:8px}
 .updated{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.14em;color:var(--faint);margin:26px 0 0}
 
-/* Guarantee band */
-.guarantee{margin:50px 0 8px;border:1px solid var(--hair);border-radius:4px;background:var(--panel);padding:34px 36px}
-.guarantee .lab{font-family:'Geist Mono',monospace;font-size:10.5px;letter-spacing:.22em;color:var(--green);margin-bottom:14px}
-.guarantee .claim{font-family:'Cormorant Garamond',serif;font-size:30px;line-height:1.18;font-weight:300}
-.guarantee .claim em{font-style:italic}
-.proof{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
-.proof span{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.04em;color:var(--muted);border:1px solid var(--hair);border-radius:3px;padding:7px 11px}
-.proof span b{color:var(--green);font-weight:500}
-
 .sec{margin-top:62px}
 .eyebrow{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.24em;color:var(--faint);margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--hair)}
 .pillars{display:grid;grid-template-columns:1fr 1fr;gap:30px 40px}
 .pillar h3{font-size:15px;font-weight:500;margin-bottom:9px;display:flex;align-items:center;gap:9px}
 .pillar p{font-size:14px;line-height:1.7;color:var(--muted);font-weight:400}
 .pillar p a{color:var(--ink);text-decoration:underline;text-underline-offset:2px}
-.badge{font-family:'Geist Mono',monospace;font-size:9.5px;letter-spacing:.1em;padding:3px 7px;border-radius:3px;border:1px solid var(--hair);color:var(--faint);text-transform:uppercase}
-.badge.live{color:var(--green);border-color:rgba(60,180,75,.4)}
-.badge.prog{color:#C9A227;border-color:rgba(201,162,39,.4)}
-
-/* Cert roadmap */
-.certs{display:flex;flex-direction:column;gap:0;border:1px solid var(--hair);border-radius:4px;overflow:hidden}
-.certrow{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 22px;border-bottom:1px solid var(--hair)}
-.certrow:last-child{border-bottom:none}
-.certrow .nm{font-size:14.5px;font-weight:500}
-.certrow .sub{font-size:13px;color:var(--muted);font-weight:400;margin-top:3px}
-.certrow .meta{text-align:right;flex-shrink:0}
+.plain{font-size:14px;line-height:1.7;color:var(--muted);font-weight:400;max-width:600px}
+.plain a{color:var(--ink);text-decoration:underline;text-underline-offset:2px}
 
 /* Disclosure form */
 .dform{border:1px solid var(--hair);border-radius:4px;background:var(--panel);padding:30px 34px;margin-top:8px}
@@ -96,7 +78,7 @@ footer{border-top:1px solid var(--hair);margin-top:80px}
 .c{font-family:'Geist Mono',monospace;font-size:10.5px;letter-spacing:.18em;color:var(--faint)}
 a.c:hover{color:var(--ink)}
 .foot-links{display:flex;gap:20px}
-@media(max-width:720px){.frame{padding:0 24px}h1{font-size:40px}.pillars{grid-template-columns:1fr}.guarantee .claim{font-size:25px}.certrow{flex-direction:column;align-items:flex-start;gap:8px}.certrow .meta{text-align:left}}
+@media(max-width:720px){.frame{padding:0 24px}h1{font-size:40px}.pillars{grid-template-columns:1fr}}
 
   .crumb a:hover { color: var(--green); }
   .crumb .num { color: var(--green); }
@@ -373,63 +355,35 @@ a.c:hover{color:var(--ink)}
   </div>
 <main><div class="frame">
 <div class="kicker">§ TRUST</div>
-<h1>Authority-gated <em>by design</em></h1>
-<p class="lede">Every action is gated by authority and recorded in a tamper-evident trail. This page states what we do, what is verified, and what is in progress.</p>
-<div class="updated">LAST UPDATED &middot; 2026-06-14</div>
-
-<div class="guarantee">
-  <div class="lab">THE GUARANTEE</div>
-  <div class="claim">Every move is <em>authority-gated</em> and <em>provable</em></div>
-  <div class="proof">
-    <span><b>114</b> authority-scoped operations</span>
-    <span><b>64</b> permission scopes</span>
-    <span><b>32</b> audited event types</span>
-    <span><b>Tamper-evident</b> trail, exportable</span>
-  </div>
-</div>
+<h1>Trust</h1>
+<p class="lede">Plain statements on how Kinetic Anvil handles access, data, and security. We state what is true today, nothing ahead of it.</p>
+<div class="updated">LAST UPDATED &middot; 2026-07-07</div>
 
 <div class="sec">
-  <div class="eyebrow">§ 01 &middot; HOW WE HANDLE YOUR MATTER</div>
+  <div class="eyebrow">§ 01 &middot; THE BASICS</div>
   <div class="pillars">
     <div class="pillar">
-      <h3>Authority gating</h3>
-      <p>No operation runs without an authority check. An action outside granted authority is refused. The default is closed.</p>
+      <h3>Scoped access</h3>
+      <p>Every API key carries an explicit set of permissions, and each organization's data is isolated. A request outside a key's permissions is refused.</p>
     </div>
     <div class="pillar">
-      <h3>Provable audit trail</h3>
-      <p>Every action emits a typed, append-only event. A matter's full history can be reconstructed and handed to counsel or an auditor.</p>
+      <h3>Audit trail</h3>
+      <p>Every operation writes an event to the record. A matter's full history is exportable at any time.</p>
     </div>
     <div class="pillar">
-      <h3>We hold no client funds</h3>
-      <p>Kinetic Anvil never takes custody of recovered funds. Custody and disbursement run through vetted third-party custody and legal partners. <a href="/#access" data-request-access>Inquire</a> for the structure relevant to your matter.</p>
+      <h3>No client funds</h3>
+      <p>Kinetic Anvil never takes custody of funds. Custody and disbursement run through counsel and vetted third parties.</p>
     </div>
     <div class="pillar">
-      <h3>Data residency</h3>
-      <p>Client case data stays in the region where your matter is run and is not moved without your instruction.</p>
-    </div>
-    <div class="pillar">
-      <h3>Encryption <span class="badge prog">In progress</span></h3>
-      <p>Encryption at rest and in transit is being hardened to a published, audited specification. Exact controls will be stated here once verified.</p>
-    </div>
-    <div class="pillar">
-      <h3>Access &amp; confidentiality</h3>
-      <p>Case details are treated as confidential and reached only by personnel and systems with a need to act on the matter. See our <a href="/privacy">Privacy Notice</a> for collection, use, and retention.</p>
+      <h3>Encryption &amp; confidentiality</h3>
+      <p>Data is encrypted in transit and at rest. Matter data is reached only by people and systems that need it to do the work. See our <a href="/privacy">Privacy Notice</a>.</p>
     </div>
   </div>
 </div>
 
 <div class="sec">
-  <div class="eyebrow">§ 02 &middot; CERTIFICATION ROADMAP</div>
-  <div class="certs">
-    <div class="certrow">
-      <div><div class="nm">SOC 2</div><div class="sub">Independent audit of security, availability, and confidentiality controls</div></div>
-      <div class="meta"><span class="badge prog">In progress</span><div class="sub mono" style="margin-top:7px">TARGET 2026-07-01</div></div>
-    </div>
-    <div class="certrow">
-      <div><div class="nm">FedRAMP</div><div class="sub">Authorization path for U.S. public-sector deployment</div></div>
-      <div class="meta"><span class="badge prog">In progress</span></div>
-    </div>
-  </div>
+  <div class="eyebrow">§ 02 &middot; COMPLIANCE</div>
+  <p class="plain">A SOC 2 examination is underway. Controls are published here once verified, not before. For a specific requirement, write to <a href="mailto:security@kineticpartners.org">security@kineticpartners.org</a>.</p>
 </div>
 
 <div class="sec" id="disclosure">
