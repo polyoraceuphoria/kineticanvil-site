@@ -75,6 +75,7 @@ h1 em{font-style:italic}
 h2{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:34px;line-height:1.15}
 h2 em{font-style:italic}
 .sec-body p{font-size:15px;line-height:1.7;color:var(--muted);font-weight:400;max-width:560px}
+.sec-body p a{color:var(--ink);text-decoration:underline;text-underline-offset:2px}
 
 .stations{display:flex;align-items:center;margin-top:56px;overflow-x:auto;padding-bottom:6px}
 .st{display:flex;flex-direction:column;align-items:center;gap:10px;flex:0 0 auto;padding:0 5px}
@@ -117,16 +118,6 @@ footer a.c:hover{color:var(--ink)}
 .form-ok h3{margin-bottom:8px}
 .form-ok p{font-size:13px;color:var(--muted);font-weight:400;line-height:1.6}
 
-.guar{border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)}
-.guar-in{display:flex;align-items:center;gap:40px;padding-top:30px;padding-bottom:30px}
-.guar .lab{font-family:'Geist Mono',monospace;font-size:10.5px;letter-spacing:.22em;color:var(--green);margin-bottom:10px}
-.guar .claim{font-family:'Cormorant Garamond',serif;font-size:27px;line-height:1.18;font-weight:300;max-width:560px}
-.guar .claim em{font-style:italic}
-.guar .artifact{flex-shrink:0;border-left:1px solid var(--hair);padding-left:36px;display:flex;flex-direction:column;gap:10px}
-.guar .arow{display:flex;align-items:baseline;gap:10px;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.04em;color:var(--muted);white-space:nowrap}
-.guar .arow b{color:var(--green);font-weight:500;font-size:13px}
-.guar .seeall{font-family:'Geist Mono',monospace;font-size:10.5px;letter-spacing:.14em;color:var(--faint);margin-top:4px}
-.guar .seeall:hover{color:var(--ink)}
 .uc-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:48px;border-top:1px solid var(--hair);border-left:1px solid var(--hair)}
 .uc-card{padding:36px 32px;border-right:1px solid var(--hair);border-bottom:1px solid var(--hair)}
 .uc-label{font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.22em;color:var(--green);margin-bottom:14px;text-transform:uppercase}
@@ -202,8 +193,6 @@ a.uc-card:hover .uc-more{color:var(--green)}
   .frame{padding:0 24px}
   h1{font-size:42px}
   .hero h1{font-size:40px}
-  .guar-in{flex-direction:column;align-items:flex-start;gap:22px}
-  .guar .artifact{border-left:none;padding-left:0;border-top:1px solid var(--hair);padding-top:20px;width:100%}
   .hero{padding:80px 0 64px}
   .sec{padding:64px 0}
   .sec-grid{grid-template-columns:1fr;gap:28px}
@@ -247,12 +236,6 @@ a.uc-card:hover .uc-more{color:var(--green)}
   h1{font-size:32px!important;line-height:1.12}
   .hero{padding:40px 0 36px}
   .hero p{font-size:14.5px;margin-top:20px}
-  .guar{margin-top:0}
-  .guar-in{flex-direction:column;gap:18px;padding-top:24px;padding-bottom:24px}
-  .guar .lab{font-size:10px;margin-bottom:6px}
-  .guar .claim{font-size:22px}
-  .guar .artifact{border-left:none;padding-left:0;border-top:1px solid var(--hair);padding-top:16px;width:100%}
-  .guar .arow{font-size:10px;gap:8px}
   .reg-grid{grid-template-columns:repeat(2,1fr)}
   .reg-cell{padding:20px 0}
   .reg-cell + .reg-cell{padding-left:20px}
@@ -279,7 +262,6 @@ a.uc-card:hover .uc-more{color:var(--green)}
   .footer-bottom{flex-direction:column;align-items:flex-start;gap:12px}
   footer{padding:28px 20px}
 }
-
 
   /* ── HEADER NAV ── */
   header {
@@ -482,7 +464,6 @@ a.uc-card:hover .uc-more{color:var(--green)}
     .footer-bottom { flex-direction: column; align-items: flex-start; gap: 12px; }
   }
 
-
   /* ── CONTACT MODAL ── */
   .modal-backdrop{position:fixed;inset:0;z-index:9000;background:rgba(10,12,14,.72);backdrop-filter:blur(6px);opacity:0;pointer-events:none;transition:opacity .25s}
   .modal-backdrop.open{opacity:1;pointer-events:auto}
@@ -570,19 +551,6 @@ a.uc-card:hover .uc-more{color:var(--green)}
 <span class="c-mut">// Press Run to issue a sandbox key and open a matter.</span></div>
       <div class="term-note" id="termNote">Live sandbox &middot; synthetic data only &middot; no signup</div>
     </div>
-  </div>
-</div></section>
-
-<section class="guar"><div class="frame guar-in">
-  <div>
-    <div class="lab">THE GUARANTEE</div>
-    <div class="claim">Every move is <em>authority-gated</em> and <em>provable</em></div>
-  </div>
-  <div class="artifact">
-    <div class="arow"><b>&#10003;</b> Authority check before every operation</div>
-    <div class="arow"><b>&#10003;</b> Tamper-evident audit trail, exportable</div>
-    <div class="arow"><b>&#10003;</b> Holds no client funds</div>
-    <a class="arow seeall" href="/trust">SEE THE TRUST SURFACE &rarr;</a>
   </div>
 </div></section>
 
@@ -713,7 +681,7 @@ a.uc-card:hover .uc-more{color:var(--green)}
   <div class="sec-grid">
     <h2>Built for regulated recovery</h2>
     <div class="sec-body">
-      <p>Every operation is authority-gated, audited, and source-linked on an immutable trail. Kinetic Anvil holds no client funds.</p>
+      <p>Every operation is authority-gated, audited, and source-linked on an immutable trail. Kinetic Anvil holds no client funds. Plain statements on <a href="/trust">the Trust page</a>.</p>
     </div>
   </div>
 </div></section>
@@ -827,7 +795,7 @@ a.uc-card:hover .uc-more{color:var(--green)}
         <a href="/mandate">Mandate</a>
         <a href="/sandbox">Sandbox</a>
         <a href="/mandate#pricing">Pricing</a>
-        <a href="/trust">Trust Surface</a>
+        <a href="/trust">Trust</a>
         <a href="https://docs.kineticanvil.com">Documentation</a>
         <a href="/status">Status</a>
       </div>
