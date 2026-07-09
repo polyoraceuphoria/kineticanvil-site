@@ -33,6 +33,7 @@
 }
 *{margin:0;padding:0;box-sizing:border-box}
 :focus-visible{outline:2px solid var(--green);outline-offset:2px}
+::selection{background:rgba(0,255,115,.18);color:inherit}
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,sans-serif;font-weight:300;-webkit-font-smoothing:antialiased;min-height:100vh;display:flex;flex-direction:column}
 .mono{font-family:'Geist Mono',monospace}
@@ -50,6 +51,7 @@ header{position:sticky;top:0;z-index:50;background:rgba(17,21,24,0.82);-webkit-b
 .nav-links a.nav-active{color:var(--bone)}
 .nav-cta{font-family:'Geist Mono',monospace;font-size:10px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color: var(--bone);background: transparent; border: 1px solid var(--stone-700, #2e3540);padding:6px 14px;transition:opacity .15s;white-space:nowrap;flex-shrink:0;margin-left:12px}
 .nav-cta:hover { border-color: var(--stone-500, #5e6670); }
+.nav-cta:active{opacity:.7}
 .nav-hamburger{display:none;background:none;border:none;cursor:pointer;padding:6px;flex-direction:column;gap:5px;margin-left:auto}
 .nav-hamburger span{display:block;width:20px;height:1.5px;background:var(--bone);transition:transform .25s,opacity .2s}
 .nav-hamburger[aria-expanded="true"] span:first-child{transform:translateY(3.25px) rotate(45deg)}
@@ -75,6 +77,8 @@ h1{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:54px;line-he
 .cta-row{margin-top:38px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
 .btn{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.16em;padding:13px 26px;border:1px solid var(--ink);cursor:pointer;background:none;color:var(--ink);transition:opacity .15s;text-transform:uppercase}
 .btn:hover{opacity:.8}
+.btn:active{opacity:.6}
+.btn:disabled,.btn[disabled]{opacity:.45;cursor:not-allowed}
 .btn.primary{background:var(--accent);color:var(--void);border-color:var(--accent)}
 .sec{padding:64px 0;border-bottom:1px solid var(--hair)}
 .sec:last-of-type{border-bottom:none}
@@ -187,6 +191,8 @@ h1{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:54px;line-he
 .cform-field input:focus,.cform-field textarea:focus{border-color:var(--accent)}
 .cform-submit{width:100%;margin-top:8px;font-family:'Geist Mono',monospace;font-size:0.75rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--void);background:var(--accent);padding:15px 30px;transition:opacity .2s;cursor:pointer;border:none}
 .cform-submit:hover{opacity:0.85}
+.cform-submit:active{opacity:0.7}
+.cform-submit:disabled,.cform-submit[disabled]{opacity:.45;cursor:not-allowed}
 .cform-note{font-size:11px;color:var(--stone-500);text-align:center;margin-top:14px;font-weight:400}
 .cform-note a{text-decoration:underline;text-underline-offset:2px}
 .hp-trap{position:absolute;left:-9999px}

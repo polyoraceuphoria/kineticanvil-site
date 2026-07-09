@@ -22,6 +22,8 @@
 html[data-theme="dark"]{--bg:#111518;--ink:#E9E7E2;--muted:#9BA1A8;--faint:#6A7077;--hair:rgba(233,231,226,0.13);--green:#00FF73}
 html[data-theme="light"]{--bg:#F2F0ED;--ink:#111518;--muted:#5A6068;--faint:#8B9097;--hair:rgba(28,33,39,0.14);--green:#228B33}
 *{margin:0;padding:0;box-sizing:border-box}
+:focus-visible{outline:2px solid var(--green);outline-offset:2px}
+::selection{background:rgba(0,255,115,.18);color:inherit}
 body{background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
 .mono{font-family:'Geist Mono',monospace}
 a{color:inherit;text-decoration:none}
@@ -126,6 +128,7 @@ a.c:hover{color:var(--ink)}
     margin-left: 12px;
   }
   .nav-cta:hover { border-color: var(--stone-500, #5e6670); }
+  .nav-cta:active{opacity:.7}
 
   /* ── HAMBURGER ── */
   .nav-hamburger {
@@ -277,6 +280,10 @@ a.c:hover{color:var(--ink)}
   .cform-field input:focus,.cform-field textarea:focus{border-color:var(--accent,#00FF73)}
   .cform-submit{width:100%;margin-top:8px;display:inline-block;font-family:'Geist Mono',monospace;font-size:0.75rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--void,#111518);background:var(--accent,#00FF73);padding:15px 30px;transition:opacity .2s;cursor:pointer;border:none}
   .cform-submit:hover{opacity:0.85}
+  .cform-submit:active{opacity:0.7}
+  .cform-submit:disabled,.cform-submit[disabled]{opacity:.45;cursor:not-allowed}
+  .cform-field input.field-error,.cform-field textarea.field-error{border-color:#e05454}
+  .cform-field .field-error-msg{display:block;font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.08em;color:#e05454;margin-top:5px}
   .cform-note{font-size:11px;color:var(--stone-500,#5e6670);text-align:center;margin-top:14px;font-weight:400}
   .cform-note a{text-decoration:underline;text-underline-offset:2px}
   .hp-trap{position:absolute;left:-9999px}
