@@ -29,6 +29,7 @@
 }
 *{margin:0;padding:0;box-sizing:border-box}
 :focus-visible{outline:2px solid var(--green);outline-offset:2px}
+::selection{background:rgba(0,255,115,.18);color:inherit}
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,sans-serif;font-weight:300;-webkit-font-smoothing:antialiased;min-height:100vh;display:flex;flex-direction:column}
 .mono{font-family:'Geist Mono',monospace}
@@ -44,6 +45,8 @@ header{position:sticky;top:0;z-index:50;background:rgba(17,21,24,0.82);-webkit-b
 .nav-links a:hover{color:var(--bone)}
 .nav-links a.nav-active{color:var(--bone)}
 .nav-cta{font-family:'Geist Mono',monospace;font-size:10px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color: var(--bone);background: transparent; border: 1px solid var(--stone-700, #2e3540);padding:6px 14px;transition:opacity .15s;white-space:nowrap;flex-shrink:0;margin-left:12px}
+.nav-cta:hover{border-color:var(--stone-500,#5e6670)}
+.nav-cta:active{opacity:.7}
 @media(max-width:760px){.nav-links{display:none}}
 /* preview banner */
 .pv-banner{background:var(--stone-950);border-bottom:1px solid var(--stone-800);padding:9px 40px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
