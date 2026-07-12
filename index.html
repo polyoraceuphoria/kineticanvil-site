@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Kinetic Anvil keeps a stateful recovery matter record and runs real BTC and ETH fund-flow tracing, with results written back to the matter.">
+<meta name="description" content="Kinetic Anvil keeps a recovery matter and its BTC or ETH fund-flow trace in one record.">
 <link rel="canonical" href="https://kineticanvil.com/">
 <meta property="og:title" content="Kinetic Anvil | Recovery matter record and crypto tracing">
-<meta property="og:description" content="Keep the recovery matter and its BTC or ETH fund-flow trace in one stateful record.">
+<meta property="og:description" content="Keep the recovery matter and its BTC or ETH fund-flow trace in one record.">
 <meta property="og:url" content="https://kineticanvil.com/">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://kineticanvil.com/og.png">
@@ -14,7 +14,7 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Kinetic Anvil | Recovery matter record and crypto tracing">
-<meta name="twitter:description" content="Keep the recovery matter and its BTC or ETH fund-flow trace in one stateful record.">
+<meta name="twitter:description" content="Keep the recovery matter and its BTC or ETH fund-flow trace in one record.">
 <meta name="twitter:image" content="https://kineticanvil.com/og.png">
 <title>Kinetic Anvil | Recovery matter record and crypto tracing</title>
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
@@ -648,14 +648,14 @@ footer a.c:hover{color:var(--ink)}
 <section class="hero"><div class="frame">
   <div class="hero-grid">
     <div>
-      <div class="hero-tag"><span class="live-dot"></span>KINETIC ANVIL · LIVE CAPABILITY</div>
+      <div class="hero-tag"><span class="live-dot"></span>KINETIC ANVIL</div>
       <h1>Keep the recovery matter and its <em>fund-flow trace</em> in one record.</h1>
-      <p class="hero-lede">Anvil maintains the matter, runs real BTC and ETH multi-hop tracing, and writes the resulting fund-flow map back to the record.</p>
+      <p class="hero-lede">Anvil keeps the matter, traces BTC and ETH fund flows, and writes the map back to the record.</p>
       <div class="hero-cta">
         <a class="btn primary" href="/sandbox">EXPLORE THE SANDBOX</a>
         <a class="btn" href="#product">SEE WHAT ANVIL DOES</a>
       </div>
-      <p class="hero-note">Current live capability: <span class="mono">crypto.trace</span> · Sandbox uses synthetic matter data</p>
+      <p class="hero-note"><span class="mono">crypto.trace</span> · Sandbox uses synthetic matter data</p>
     </div>
     <div class="trace-scene" aria-label="Synthetic example showing a matter record, a multi-hop fund-flow trace, and the result written back">
       <div class="scene-card left">
@@ -704,7 +704,7 @@ footer a.c:hover{color:var(--ink)}
 
 <section class="product-register" aria-label="Current product facts"><div class="frame"><div class="product-register-grid">
   <div class="product-proof"><div class="v">One matter record</div><div class="k">CONTEXT STAYS TOGETHER</div></div>
-  <div class="product-proof"><div class="v">BTC + ETH</div><div class="k">REAL FUND-FLOW TRACING</div></div>
+  <div class="product-proof"><div class="v">BTC + ETH</div><div class="k">FUND-FLOW TRACING</div></div>
   <div class="product-proof"><div class="v">Conservative results</div><div class="k">HYPOTHESES CARRY CONFIDENCE</div></div>
   <div class="product-proof"><div class="v">Written back</div><div class="k">RESULT ATTACHES TO THE MATTER</div></div>
 </div></div></section>
@@ -712,29 +712,29 @@ footer a.c:hover{color:var(--ink)}
 <section class="sec" id="product"><div class="frame">
   <div class="section-head">
     <div class="eyebrow">§ 01 · PRODUCT</div>
-    <h2>A durable record for crypto recovery work</h2>
-    <p>Tracing is more useful when its inputs, status, and results stay connected to the matter they belong to. Anvil keeps that work in one structured record.</p>
+    <h2>One record for the matter and the trace</h2>
+    <p>Keep the matter, trace inputs, status, and results together.</p>
   </div>
   <div class="product-cards">
-    <div class="product-card"><div class="n">01 · RECORD</div><h3>Keep the matter</h3><p>Create the matter and connect its parties, judgment data, wallet inputs, jobs, trace maps, packets, ledger entries, and events.</p></div>
-    <div class="product-card"><div class="n">02 · TRACE</div><h3>Follow the fund flow</h3><p>Run bounded, multi-hop tracing across public BTC or ETH activity from submitted wallets.</p></div>
-    <div class="product-card"><div class="n">03 · REVIEW</div><h3>Write back the result</h3><p>Store observed wallets, flow edges, terminal addresses, sources, and conservative exchange or service hypotheses on the record.</p></div>
+    <div class="product-card"><div class="n">01 · RECORD</div><h3>Keep the matter</h3><p>Connect parties, judgment data, wallet inputs, jobs, trace maps, packets, ledger entries, and events.</p></div>
+    <div class="product-card"><div class="n">02 · TRACE</div><h3>Follow the fund flow</h3><p>Trace BTC or ETH outflows across bounded hops.</p></div>
+    <div class="product-card"><div class="n">03 · REVIEW</div><h3>Write back the result</h3><p>Store wallets, flow edges, terminal addresses, and confidence-labeled hypotheses on the matter.</p></div>
   </div>
 </div></section>
 
 <section class="sec evaluate" id="trace"><div class="frame">
   <div class="section-head">
-    <div class="eyebrow">§ 02 · LIVE NOW</div>
-    <h2>Real BTC and ETH fund-flow tracing</h2>
-    <p><span class="mono">crypto.trace</span> follows public-chain activity across bounded hops and returns a structured map for review. It is the current live execution capability.</p>
+    <div class="eyebrow">§ 02 · TRACE</div>
+    <h2>BTC and ETH fund-flow tracing</h2>
+    <p><span class="mono">crypto.trace</span> follows outflows across bounded hops and returns a structured map for review.</p>
   </div>
   <div class="trace-detail">
     <div class="trace-list">
       <div class="trace-item"><div class="label">INPUT</div><p>Wallets, chain, and hop limit associated with a matter.</p></div>
-      <div class="trace-item"><div class="label">BTC</div><p>Outflows followed hop by hop through public mempool.space data.</p></div>
-      <div class="trace-item"><div class="label">ETH</div><p>Native ETH and ERC-20 transfer activity followed through public Blockscout data.</p></div>
-      <div class="trace-item"><div class="label">OUTPUT</div><p>Wallets, flows, terminal nodes, source metadata, and confidence-labeled hypotheses.</p></div>
-      <div class="trace-item"><div class="label">BOUNDARY</div><p>Hypotheses support review. They do not establish custody, control, legal authority, or a recovery outcome.</p></div>
+      <div class="trace-item"><div class="label">BTC</div><p>Outflows followed hop by hop.</p></div>
+      <div class="trace-item"><div class="label">ETH</div><p>Native ETH and ERC-20 outflows followed across bounded hops.</p></div>
+      <div class="trace-item"><div class="label">OUTPUT</div><p>Wallets, flows, terminal nodes, and confidence-labeled hypotheses.</p></div>
+      <div class="trace-item"><div class="label">BOUNDARY</div><p>Hypotheses require review. They do not establish custody, control, authority, or recovery.</p></div>
     </div>
     <div class="result-panel" aria-label="Synthetic crypto trace result shape">
       <div class="result-top"><span>CryptoAssetMap</span><b>RESULT · SYNTHETIC</b></div>
@@ -763,12 +763,12 @@ footer a.c:hover{color:var(--ink)}
   <div class="section-head">
     <div class="eyebrow">§ 03 · SYSTEM OF RECORD</div>
     <h2>The trace remains connected to the matter</h2>
-    <p>Instead of leaving the result in a chain explorer, script, or screenshot, Anvil ties execution and output to the matter record that requested it.</p>
+    <p>Anvil ties each trace and result to the matter that requested it.</p>
   </div>
   <div class="object-flow" aria-label="Anvil product record flow">
-    <div class="object-node"><small>01</small><strong>Matter</strong><p>Parties, judgment data, wallet inputs, and organization context.</p></div>
+    <div class="object-node"><small>01</small><strong>Matter</strong><p>Parties, judgment data, and wallet inputs.</p></div>
     <div class="object-node"><small>02</small><strong>Trace job</strong><p><span class="mono">crypto.trace</span> runs through the execution layer.</p></div>
-    <div class="object-node"><small>03</small><strong>Fund-flow map</strong><p>Wallets, flow edges, terminals, sources, and hypotheses.</p></div>
+    <div class="object-node"><small>03</small><strong>Fund-flow map</strong><p>Wallets, flow edges, terminals, and hypotheses.</p></div>
     <div class="object-node"><small>04</small><strong>Record update</strong><p>Result state and events remain available to connected systems.</p></div>
   </div>
 </div></section>
@@ -777,7 +777,7 @@ footer a.c:hover{color:var(--ink)}
   <div class="section-head">
     <div class="eyebrow">§ 04 · TECHNICAL PROOF</div>
     <h2>A product institutions and developers can inspect</h2>
-    <p>The contract, scopes, events, and SDK source make the product integration surface reviewable. They support integration and diligence after the product is clear.</p>
+    <p>Review the contract, permissions, events, and SDK source.</p>
   </div>
   <div class="proof-grid">
     <div class="proof-card"><div class="number">45</div><h3>Operations</h3><p>Current dated contract across 11 resource groups.</p></div>
@@ -792,13 +792,13 @@ footer a.c:hover{color:var(--ink)}
     <a class="text-link" href="/trust">TRUST <span aria-hidden="true">↗</span></a>
     <a class="text-link" href="/status">STATUS <span aria-hidden="true">↗</span></a>
   </div>
-  <div class="boundary"><strong>Current boundary:</strong> <span class="mono">crypto.trace</span> is the live execution capability. Other registered verbs remain unavailable until their engines ship. Kinetic Anvil holds no client funds.</div>
+  <div class="boundary"><strong>Current scope:</strong> <span class="mono">crypto.trace</span> is available. Other verbs remain unavailable until shipped. Kinetic Anvil holds no client funds.</div>
 </div></section>
 
 <section class="sec reference" id="reference"><div class="frame">
   <div class="section-head compact">
     <div class="eyebrow">§ 05 · REFERENCE</div>
-    <h2>Protocol materials for technical, institutional, and academic review</h2>
+    <h2>Materials for technical, institutional, and academic review</h2>
   </div>
   <div class="reference-grid">
     <a href="https://docs.kineticanvil.com"><span>Documentation</span><small>GUIDES + API REFERENCE</small></a>
@@ -890,7 +890,7 @@ footer a.c:hover{color:var(--ink)}
   "@type": "Organization",
   "name": "Kinetic Anvil",
   "url": "https://kineticanvil.com",
-  "description": "A stateful recovery matter record with live BTC and ETH fund-flow tracing and results written back to the matter."
+  "description": "A recovery matter record with BTC and ETH fund-flow tracing and results written back to the matter."
 }
 </script>
 
