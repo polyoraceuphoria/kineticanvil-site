@@ -1,0 +1,38 @@
+name: CI
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Regression tests
+        run: node scripts/regression.mjs
+      - name: Smoke tests
+        run: node scripts/smoke_status.mjs
+      - name: HTML structure check
+        run: |
+          python3 -c "
+          import re, sys, glob
+          errors = []
+          for path in glob.glob('**/*.html', recursive=True):
+              with open(path) as f:
+                  content = f.read()
+              opens = len(re.findall(r'<section\b', content))
+              closes = len(re.findall(r'</section>', content))
+              if opens != closes:
+                  errors.append(f'{path}: section mismatch ({opens} vs {closes})')
+              if '\u2014' in content:
+                  errors.append(f'{path}: em dash found')
+          if errors:
+              for e in errors: print('ERROR: ' + e)
+              sys.exit(1)
+          print('HTML checks passed')
+          "

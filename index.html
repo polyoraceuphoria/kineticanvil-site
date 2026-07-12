@@ -499,10 +499,12 @@ a.uc-card:hover .uc-more{color:var(--green)}
   .cform-ok p{font-size:13px;color:var(--stone-400,#9BA1A8);font-weight:400;line-height:1.6}
 
 </style>
+<style>.skip-link{position:absolute;top:-100px;left:16px;background:var(--accent);color:var(--void);font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.1em;padding:10px 18px;z-index:9999;transition:top .15s}.skip-link:focus{top:8px}</style>
 <style id="kp-fmark">.site-footer{display:block}.footer-bottom{position:relative}.footer-mark{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:flex;align-items:center;line-height:0}.footer-mark svg{height:22px;width:auto;display:block;color:rgba(255,255,255,.6);transition:color .15s ease}.footer-mark:hover svg{color:#00FF73}@media(max-width:640px){.footer-bottom{align-items:center}.footer-mark{position:static;transform:none;order:-1;margin-bottom:6px}}</style>
 <script src="/analytics.js"></script>
 </head>
 <body>
+<a class="skip-link" href="#main-content">Skip to content</a>
 <header>
     <a class="brand" href="/">
       <svg class="mark" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="none" stroke="var(--accent)" stroke-width="1.5"/><circle cx="12" cy="12" r="3.5" fill="var(--accent)"/></svg>
@@ -538,6 +540,7 @@ a.uc-card:hover .uc-more{color:var(--green)}
 
   <div class="crumb"><a href="https://kineticpartners.org">KINETIC</a> &rsaquo; ANVIL</div>
 
+<main id="main-content">
 <section class="hero"><div class="frame">
   <div class="hero-grid">
     <div>
@@ -549,18 +552,25 @@ a.uc-card:hover .uc-more{color:var(--green)}
         <a class="btn" href="https://docs.kineticanvil.com">READ THE DOCS</a>
       </div>
     </div>
-    <div class="terminal" id="term">
+    <div class="terminal" aria-label="Static protocol exchange example">
       <div class="term-bar">
         <span class="d"></span><span class="d"></span><span class="d"></span>
-        <span class="term-title">POST /v1/matters</span>
-        <button class="term-run" id="termRun">&#9654; Run live</button>
+        <span class="term-title">POST /v3/crypto.trace</span>
+        <span class="term-run" style="cursor:default;border-color:var(--stone-700);color:var(--stone-500)">EXAMPLE</span>
       </div>
-      <div class="term-body" id="termBody"><span class="c-mut">$ curl -X POST https://api.kineticanvil.com/v1/matters \
-  -H</span> <span class="c-str">"Authorization: Bearer kx_test_&hellip;"</span> <span class="c-mut">\
-  -d</span> <span class="c-str">'{ "type": "asset_trace" }'</span>
+      <div class="term-body"><span class="c-mut">$ curl -X POST https://api.kineticanvil.com/v3/crypto.trace \</span>
+<span class="c-mut">  -H</span> <span class="c-str">"Authorization: Bearer kx_test_..."</span> <span class="c-mut">\</span>
+<span class="c-mut">  -H</span> <span class="c-str">"Anvil-Version: 2026-07-05"</span> <span class="c-mut">\</span>
+<span class="c-mut">  -d</span> <span class="c-str">'{ "address": "0xdead...beef", "depth": 3 }'</span>
 
-<span class="c-mut">// Press Run to issue a sandbox key and open a matter.</span></div>
-      <div class="term-note" id="termNote">Live sandbox &middot; synthetic data only &middot; no signup</div>
+{
+  <span class="c-key">"object"</span>: <span class="c-str">"trace"</span>,
+  <span class="c-key">"trace_id"</span>: <span class="c-str">"tr_a8f3k29x01"</span>,
+  <span class="c-key">"status"</span>: <span class="c-str">"complete"</span>,
+  <span class="c-key">"hops"</span>: 3,
+  <span class="c-key">"environment"</span>: <span class="c-str">"sandbox"</span>
+}</div>
+      <div class="term-note">Static example only. Obtain a sandbox key at <a href="/sandbox" style="color:var(--accent);text-decoration:underline">/sandbox</a> to run live calls.</div>
     </div>
   </div>
 </div></section>
@@ -574,16 +584,16 @@ a.uc-card:hover .uc-more{color:var(--green)}
     </div>
   </div>
   <div class="caps">
-    <div class="cap"><div class="cap-id">01</div><div class="cap-name">Case Protocol</div><div class="cap-desc">Structured intake and lifecycle for every matter, from first report to audited resolution.</div></div>
-    <div class="cap"><div class="cap-id">02</div><div class="cap-name">Evidence Custody</div><div class="cap-desc">Sealed, append-only chain of custody. Tamper-evident from collection to court.</div></div>
-    <div class="cap"><div class="cap-id">03</div><div class="cap-name">Asset Tracing</div><div class="cap-desc">On-chain and cross-rail tracing wired directly into the case record.</div></div>
-    <div class="cap"><div class="cap-id">04</div><div class="cap-name">API + SDKs</div><div class="cap-desc">Open spec and typed SDKs. Build on the protocol or integrate your own stack.</div></div>
+    <div class="cap"><div class="cap-id" style="color:var(--accent)">LIVE</div><div class="cap-name">crypto.trace</div><div class="cap-desc">On-chain tracing: address attribution, hop traversal, and endpoint resolution. Available now in sandbox and production.</div></div>
+    <div class="cap"><div class="cap-id" style="color:var(--faint)">PLANNED</div><div class="cap-name">Case Protocol</div><div class="cap-desc">Structured intake and lifecycle for every matter, from first report to audited resolution.</div></div>
+    <div class="cap"><div class="cap-id" style="color:var(--faint)">PLANNED</div><div class="cap-name">Evidence Custody</div><div class="cap-desc">Sealed, append-only chain of custody. Tamper-evident from collection to court.</div></div>
+    <div class="cap"><div class="cap-id" style="color:var(--faint)">PLANNED</div><div class="cap-name">API + SDKs</div><div class="cap-desc">Open spec and typed SDKs. Build on the protocol or integrate your own stack.</div></div>
   </div>
   <div class="specs">
-    <div class="spec"><div class="s-val">99.9%</div><div class="s-lbl">Target uptime</div></div>
-    <div class="spec"><div class="s-val">&lt;120ms</div><div class="s-lbl">p50 latency target</div></div>
-    <div class="spec"><div class="s-val">SOC 2</div><div class="s-lbl">Controls track</div></div>
-    <div class="spec"><div class="s-val">Open</div><div class="s-lbl">Spec + SDKs</div></div>
+    <div class="spec"><div class="s-val">v3</div><div class="s-lbl">API version 2026-07-05</div></div>
+    <div class="spec"><div class="s-val">45</div><div class="s-lbl">Operations</div></div>
+    <div class="spec"><div class="s-val">11</div><div class="s-lbl">Resources</div></div>
+    <div class="spec"><div class="s-val">120</div><div class="s-lbl">Sandbox req/min</div></div>
   </div>
 </div></section>
 
@@ -678,7 +688,7 @@ a.uc-card:hover .uc-more{color:var(--green)}
   <div class="sec-grid">
     <h2>Turn a matter into <em>a Mandate</em></h2>
     <div class="sec-body">
-      <p>A Mandate is a dedicated workspace for a single matter: branded to your firm, live for the lifecycle of the judgment. Priced per matter, not per seat.</p>
+      <p>A Mandate is a dedicated workspace for a single matter: branded to your firm, live for the lifecycle of the judgment.</p>
       <div class="btn-row" style="margin-top:28px">
         <a class="btn primary" href="/mandate">Explore Mandate</a>
         <a class="btn" href="/mandate/demo">See an instance &rarr;</a>
@@ -697,106 +707,17 @@ a.uc-card:hover .uc-more{color:var(--green)}
   </div>
 </div></section>
 
-<section class="pricing" id="pricing"><div class="frame">
-  <div class="eyebrow">§ 06 · PRICING</div>
-  <div class="sec-grid">
-    <h2>Outcome-aligned</h2>
-    <div class="sec-body">
-      <p>Anvil is enforcement infrastructure, not a seat-based tool. GETs are free; only compute and write operations meter.</p>
-      <p>Running recoveries one matter at a time? Counsel start with <a href="/mandate">Kinetic Mandate</a>: priced per active matter, no platform subscription.</p>
-    </div>
-  </div>
-  <div class="pricing-grid">
-    <div class="price-card">
-      <div class="price-tier">Sandbox</div>
-      <div class="price-amount">$0</div>
-      <div class="price-period">FOREVER</div>
-      <ul class="price-features">
-        <li>1,000 operations / month</li>
-        <li>Sandbox data only</li>
-        <li>All 10 stations</li>
-        <li>5 req/s rate limit</li>
-        <li>Community docs</li>
-      </ul>
-      <div class="price-cta"><a class="btn" href="https://docs.kineticanvil.com">READ THE DOCS</a></div>
-    </div>
-    <div class="price-card featured">
-      <div class="price-tier">Operator</div>
-      <div class="price-amount">$2,500</div>
-      <div class="price-period">PER MONTH</div>
-      <ul class="price-features">
-        <li>50 active matters</li>
-        <li>All 10 stations, production data</li>
-        <li>25 req/s rate limit</li>
-        <li>Standard SLA</li>
-        <li>Audit export</li>
-        <li>Per-matter overage (see below)</li>
-      </ul>
-      <div class="price-cta"><button class="btn primary" data-request-access>BOOK A DEMO</button></div>
-    </div>
-    <div class="price-card">
-      <div class="price-tier">Institutional</div>
-      <div class="price-amount">Custom</div>
-      <div class="price-period">ANNUAL CONTRACT</div>
-      <ul class="price-features">
-        <li>Custom matter caps</li>
-        <li>Priority SLA</li>
-        <li>SSO / SAML</li>
-        <li>Dedicated support</li>
-        <li>Custom reporting</li>
-        <li>BAA available</li>
-      </ul>
-      <div class="price-cta"><button class="btn" data-request-access>BOOK A DEMO</button></div>
-    </div>
-    <div class="price-card">
-      <div class="price-tier">Government / LE</div>
-      <div class="price-amount">Custom</div>
-      <div class="price-period">CONTRACT / IDIQ</div>
-      <ul class="price-features">
-        <li>On-premise deployment</li>
-        <li>CJIS / IL4 compliance</li>
-        <li>Dedicated infrastructure</li>
-        <li>Success-fee structures</li>
-        <li>Unlimited matters</li>
-        <li>Named support contact</li>
-      </ul>
-      <div class="price-cta"><button class="btn" data-request-access>BOOK A DEMO</button></div>
-    </div>
-  </div>
-  <div class="overage-table">
-    <div class="overage-row header">
-      <div class="overage-cell">MATTER VALUE BRACKET</div>
-      <div class="overage-cell">INDICATIVE PER-MATTER</div>
-    </div>
-    <div class="overage-row">
-      <div class="overage-cell">Under $100K</div>
-      <div class="overage-cell">$500</div>
-    </div>
-    <div class="overage-row">
-      <div class="overage-cell">$100K to $1M</div>
-      <div class="overage-cell">$2,500</div>
-    </div>
-    <div class="overage-row">
-      <div class="overage-cell">$1M to $10M</div>
-      <div class="overage-cell">$10,000</div>
-    </div>
-    <div class="overage-row">
-      <div class="overage-cell">Above $10M</div>
-      <div class="overage-cell">Negotiated</div>
-    </div>
-  </div>
-  <p class="pricing-note">All tiers include full audit trail, webhooks, and API access.</p>
-</div></section>
-
 <section class="access" id="access"><div class="frame">
-  <div class="eyebrow">§ 07 · ACCESS</div>
+  <div class="eyebrow">§ 06 · ACCESS</div>
   <h2>Have a judgment? <em>Begin recovery</em></h2>
-  <p>The sandbox runs on synthetic data. Move to production on an Operator plan when you are ready.</p>
+  <p>The sandbox runs on synthetic data. Contact us to discuss production access and terms.</p>
   <div class="btn-row">
     <a class="btn primary" href="/sandbox">START IN THE SANDBOX</a>
-    <a class="btn" href="https://docs.kineticanvil.com">READ THE DOCS →</a>
+    <a class="btn" href="https://docs.kineticanvil.com">READ THE DOCS</a>
+    <a class="btn" href="#contact">GET IN TOUCH</a>
   </div>
 </div></section>
+</main>
 
 <footer class="site-footer">
     <div class="footer-grid">
@@ -805,7 +726,6 @@ a.uc-card:hover .uc-more{color:var(--green)}
         <a href="/use-cases">Use Cases</a>
         <a href="/mandate">Mandate</a>
         <a href="/sandbox">Sandbox</a>
-        <a href="/mandate#pricing">Pricing</a>
         <a href="/trust">Trust</a>
         <a href="https://docs.kineticanvil.com">Documentation</a>
         <a href="/status">Status</a>
@@ -942,40 +862,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal()
 if(location.hash==='#access'){openModal();}
 </script>
 
-<script>
-/* Hero terminal: real call to the sandbox API (same-origin: works on preview + prod) */
-(function(){
-  var btn=document.getElementById('termRun'),body=document.getElementById('termBody'),note=document.getElementById('termNote');
-  if(!btn||!body)return;
-  function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
-  function syntax(j){return esc(j).replace(/("(?:\\.|[^"])*")(\s*:)/g,'<span class="c-key">$1</span>$2').replace(/(:\s*)("(?:\\.|[^"])*")/g,'$1<span class="c-str">$2</span>');}
-  btn.addEventListener('click',function(){
-    btn.disabled=true;btn.innerHTML='Running\u2026';note.textContent='Issuing sandbox key\u2026';
-    body.innerHTML='<span class="c-mut">$ POST /api/sandbox-key</span>\n';
-    var key='';
-    fetch('/api/sandbox-key',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:'sandbox@kineticanvil.com',org:'Live demo'})})
-      .then(function(r){return r.json()})
-      .then(function(d){
-        if(d&&d.key)window.kxTrack&&window.kxTrack('apikey_created',{environment_kind:'sandbox',source:'hero_terminal'});
-        key=d.key||'kx_test_';var masked=key.slice(0,12)+'\u2026';note.textContent='Opening matter\u2026';
-        body.innerHTML='<span class="c-mut">$ curl -X POST https://api.kineticanvil.com/v1/matters \\\n  -H</span> <span class="c-str">"Authorization: Bearer '+masked+'"</span> <span class="c-mut">\\\n  -d</span> <span class="c-str">\'{ "type": "asset_trace" }\'</span>\n\n';
-        return fetch('/v1/matters',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+key},body:JSON.stringify({type:'asset_trace'})});
-      })
-      .then(function(r){return r.json()})
-      .then(function(c){
-        body.innerHTML+=syntax(JSON.stringify(c,null,2));
-        window.kxTrack&&window.kxTrack('sandbox_first_call',{endpoint:'/v1/matters',source:'hero_terminal'});
-        note.textContent='Live sandbox \u00b7 real response \u00b7 synthetic data';
-        btn.innerHTML='\u25b6 Run again';btn.disabled=false;
-      })
-      .catch(function(){
-        body.innerHTML+='<span class="c-mut">// Live on kineticanvil.com. Open the site to run against the sandbox.</span>';
-        note.textContent='Run available on the live domain';btn.innerHTML='\u25b6 Run live';btn.disabled=false;
-      });
-  });
-})();
-</script>
-
+<!-- Hero terminal is a static example; no live calls from the marketing page. -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
