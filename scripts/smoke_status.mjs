@@ -80,6 +80,7 @@ async function main() {
   // Sanity: default component list carries no secrets or private endpoints
   const urls = status.COMPONENTS.map((c) => c.url).join(' ');
   check('no brain endpoints probed', !/_brain|_deploy/.test(urls));
+  check('no private console endpoint probed', !/dashboard|console/i.test(urls));
   check('timeout budget sane', TIMEOUT_MS === 5000);
 
   console.log(failures === 0 ? 'ALL CHECKS PASSED' : failures + ' CHECK(S) FAILED');

@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Self-serve a Kinetic Anvil sandbox API key against the full surface on synthetic data: no production data, no card, no sales call.">
+<meta name="description" content="Generate a Kinetic Anvil sandbox API key for the current contract and synthetic data. No production data, no card, no sales call.">
 <link rel="canonical" href="https://kineticanvil.com/sandbox">
 <meta property="og:title" content="Sandbox key | Kinetic Anvil">
-<meta property="og:description" content="Self-serve a sandbox key and hit the full API surface against synthetic data. Scoped, rate-limited, sandbox-only.">
+<meta property="og:description" content="Generate a sandbox key for the current contract and synthetic data. Scoped, rate-limited, sandbox-only.">
 <meta property="og:url" content="https://kineticanvil.com/sandbox">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://kineticanvil.com/og.png">
@@ -363,10 +363,8 @@ a.c:hover{color:var(--ink)}
       <svg class="mark" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="none" stroke="var(--accent)" stroke-width="1.5"/><circle cx="12" cy="12" r="3.5" fill="var(--accent)"/></svg>
       <div class="wordmark">Kinetic Anvil</div>
     </a>
-    <nav class="nav-links">
-      <a href="/">Anvil</a>
-      <a href="/use-cases">Use Cases</a>
-      <a href="/mandate">Mandate</a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="/">Product</a>
       <a href="/sandbox">Sandbox</a>
       <a href="/status">Status</a>
       <a href="/trust">Trust</a>
@@ -379,10 +377,8 @@ a.c:hover{color:var(--ink)}
   </header>
 
   <div class="mobile-menu" aria-hidden="true">
-    <nav class="mobile-menu-links">
-      <a href="/">Anvil</a>
-      <a href="/use-cases">Use Cases</a>
-      <a href="/mandate">Mandate</a>
+    <nav class="mobile-menu-links" aria-label="Mobile">
+      <a href="/">Product</a>
       <a href="/sandbox">Sandbox</a>
       <a href="/status">Status</a>
       <a href="/trust">Trust</a>
@@ -393,9 +389,9 @@ a.c:hover{color:var(--ink)}
 <main><div class="frame">
 <div class="kicker">§ SANDBOX</div>
 <h1>Get a <em>sandbox</em> key</h1>
-<p class="lede">Self-serve a key against the full Kinetic Anvil surface on synthetic data. No production data, no card, no sales call.</p>
+<p class="lede">Generate a key for the current contract and synthetic data. No production data, no card, no sales call.</p>
 <div class="proof">
-  <span><b>114</b> operations, full surface</span>
+  <span><b>45</b> contract operations</span>
   <span><b>Synthetic</b> data only</span>
   <span>Scoped <b>kx_test_</b> key</span>
   <span>Rate-limited &amp; revocable</span>
@@ -422,20 +418,20 @@ a.c:hover{color:var(--ink)}
     <div class="reveal" id="reveal">
       <div class="lab">YOUR SANDBOX KEY &middot; SHOWN ONCE</div>
       <div class="keybox"><code id="keyVal">kx_test_&hellip;</code><button class="copy" id="copyBtn" onclick="copyKey()">COPY</button></div>
-      <div class="warn"><span>&#9888;</span><div><b>Store this now.</b> The key is signed, not stored, and cannot be shown or recovered again. Mint a replacement and revoke this key if it is lost.</div></div>
+      <div class="warn"><span>&#9888;</span><div><b>Store this now.</b> The key is signed, not stored, and cannot be shown or recovered again. Mint a replacement and contact Kinetic if the lost key must be revoked.</div></div>
       <div class="meta-grid">
         <div class="mcell"><div class="k">ENVIRONMENT</div><div class="v"><b>sandbox</b> &middot; api.kineticanvil.com</div></div>
         <div class="mcell"><div class="k">KEY ID</div><div class="v mono" id="keyId">key_&hellip;</div></div>
-        <div class="mcell"><div class="k">SCOPE</div><div class="v">All sandbox scopes &middot; read + write</div></div>
+        <div class="mcell"><div class="k">ACCESS</div><div class="v">Contract scopes &middot; <span class="mono">crypto.trace</span> available</div></div>
         <div class="mcell"><div class="k">RATE LIMIT</div><div class="v">120 req / min</div></div>
       </div>
       <div class="next">
         <div class="h">NEXT STEPS</div>
         <div class="steps">
           <div class="step"><span class="n">01</span><div>Set your base URL to <code>https://api.kineticanvil.com</code> and send the key as <code>Authorization: Bearer &lt;key&gt;</code>.</div></div>
-          <div class="step"><span class="n">02</span><div>Follow the <a href="https://docs.kineticanvil.com/quickstart">Quickstart</a>. First call in under a minute.</div></div>
-          <div class="step"><span class="n">03</span><div>Import the <a href="https://docs.kineticanvil.com/#tools">Postman collection</a>. The key drops into <code>{{api_key}}</code>.</div></div>
-          <div class="step"><span class="n">04</span><div>Ready for production? <a href="/#pricing">Move to an Operator plan</a>, or <a href="#contact" data-request-access>get in touch</a> for institutional and government terms.</div></div>
+          <div class="step"><span class="n">02</span><div>Follow the <a href="https://docs.kineticanvil.com/quickstart">Quickstart</a> to run your first call.</div></div>
+          <div class="step"><span class="n">03</span><div>Import the <a href="https://docs.kineticanvil.com/kinetic-anvil.postman_collection.json">Postman collection</a>. Set the key as <code>{{api_key}}</code>.</div></div>
+          <div class="step"><span class="n">04</span><div>Review Python and TypeScript <a href="https://docs.kineticanvil.com/quickstart">SDK source under Apache-2.0</a>, or <a href="#contact" data-request-access>contact Kinetic</a> about production access.</div></div>
         </div>
       </div>
     </div>
@@ -448,7 +444,7 @@ a.c:hover{color:var(--ink)}
     <div class="m"><h3>Scoped &amp; sandbox-only</h3><p>A <span class="mono">kx_test_</span> key reaches the sandbox and synthetic data only. It cannot see production matters.</p></div>
     <div class="m"><h3>Signed, not stored</h3><p>A signed token we verify but never store. Shown exactly once at creation.</p></div>
     <div class="m"><h3>One-time reveal</h3><p>Returned once in the response that creates it. Lost keys are replaced, not retrieved.</p></div>
-    <div class="m"><h3>Rate-limited &amp; revocable</h3><p>Rate-limited and capped per organization, with self-serve revoke and rotate.</p></div>
+    <div class="m"><h3>Rate-limited &amp; revocable</h3><p>Rate-limited and capped per organization. Contact Kinetic to revoke a disclosed or lost key.</p></div>
   </div>
 </div>
 
@@ -456,11 +452,8 @@ a.c:hover{color:var(--ink)}
 <footer class="site-footer">
     <div class="footer-grid">
       <div class="footer-col">
-        <div class="footer-heading">Product</div>
-        <a href="/use-cases">Use Cases</a>
-        <a href="/mandate">Mandate</a>
+        <div class="footer-heading">Protocol</div>
         <a href="/sandbox">Sandbox</a>
-        <a href="/#pricing">Pricing</a>
         <a href="/trust">Trust</a>
         <a href="https://docs.kineticanvil.com">Documentation</a>
         <a href="/status">Status</a>
@@ -470,8 +463,6 @@ a.c:hover{color:var(--ink)}
         <a href="/about">About</a>
         <a href="/company">Company</a>
         <a href="https://kineticpartners.org">Kinetic</a>
-        <a href="https://meridianoffice.org">Meridian Recovery</a>
-        <a href="https://cipherblade.com">CipherBlade (Integrated Partner)</a>
       </div>
     </div>
     <div class="footer-bottom"><a class="footer-mark" href="/" aria-label="Kinetic"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 971.44 867.94" width="971.44" height="867.94"><g transform="translate(-487.408020,1507.940550) scale(0.100000,-0.100000)" fill="currentColor" stroke="none"><path d="M7962 15060 c-125 -33 -242 -104 -310 -189 -18 -22 -148 -239 -288
@@ -507,7 +498,7 @@ a.c:hover{color:var(--ink)}
 80 -146 251 -222 380 -76 129 -255 435 -398 680 -143 245 -350 598 -460 785
 -276 467 -273 446 -100 744 688 1193 686 1189 680 1230 -5 33 -384 699 -425
 744 -18 20 -80 23 -104 5z"/></g></svg></a>
-      <div class="footer-copy">&copy; 2026 Kinetic Digital Partners Inc.</div>
+      <div class="footer-copy">&copy; 2026 Kinetic</div>
       <div class="footer-legal">
         <a href="/privacy">Privacy</a>
         <a href="/terms">Terms</a>
@@ -572,12 +563,13 @@ function submitKey(e){
 })();
 </script>
 
+<span id="contact" hidden></span>
 <div class="modal-backdrop" id="contactBg" onclick="closeContact()"></div>
 <div class="modal-card" id="contactCard" role="dialog" aria-modal="true" aria-labelledby="contactTitle">
   <button class="modal-close" onclick="closeContact()" aria-label="Close"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg></button>
   <div id="contactWrap">
     <h3 id="contactTitle">Get in Touch</h3>
-    <p class="modal-sub">Tell us what you're working on. We'll get back within one business day.</p>
+    <p class="modal-sub">Tell us about your evaluation or use case and we will follow up.</p>
     <form id="contactForm" onsubmit="return submitContact(event)">
       <div class="cform-field"><label for="c-name">Name</label><input type="text" name="name" id="c-name" placeholder="Full name" required></div>
       <div class="cform-field"><label for="c-email">Email</label><input type="email" name="email" id="c-email" placeholder="you@company.com" required></div>

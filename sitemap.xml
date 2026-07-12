@@ -1,21 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://kineticanvil.com/</loc></url>
-  <url><loc>https://kineticanvil.com/use-cases</loc></url>
-  <url><loc>https://kineticanvil.com/mandate</loc></url>
   <url><loc>https://kineticanvil.com/sandbox</loc></url>
   <url><loc>https://kineticanvil.com/status</loc></url>
   <url><loc>https://kineticanvil.com/trust</loc></url>
   <url><loc>https://kineticanvil.com/privacy</loc></url>
   <url><loc>https://kineticanvil.com/terms</loc></url>
-  <url><loc>https://kineticanvil.com/use-cases/judgment-recovery</loc></url>
-  <url><loc>https://kineticanvil.com/use-cases/crypto-fraud-tracing</loc></url>
-  <url><loc>https://kineticanvil.com/use-cases/receiver-operations</loc></url>
-  <url><loc>https://kineticanvil.com/use-cases/sar-support</loc></url>
-  <url><loc>https://kineticanvil.com/use-cases/stablecoin-recovery</loc></url>
-  <url><loc>https://kineticanvil.com/use-cases/exchange-enforcement</loc></url>
-  <url><loc>https://kineticanvil.com/use-cases/multi-claimant-waterfall</loc></url>
-  <url><loc>https://kineticanvil.com/use-cases/ofac-sanctions-clearance</loc></url>
   <url><loc>https://kineticanvil.com/about</loc><lastmod>2026-06-19</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://kineticanvil.com/company</loc><lastmod>2026-06-19</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://kineticanvil.com/contact</loc><lastmod>2026-06-19</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
