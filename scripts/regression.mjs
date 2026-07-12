@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // Regression tests for the freeze-protocol-portal PR.
 // Run: node scripts/regression.mjs
-import { readFileSync, existsSync, readdirSync, statSync } from 'fs';
+import { readFileSync, existsSync, statSync } from 'fs';
 import { join, resolve } from 'path';
 
 const ROOT = resolve(import.meta.dirname || '.', '..');
@@ -32,11 +32,20 @@ check('og.png is non-trivial size', statSync(join(ROOT, 'og.png')).size > 1000);
 // 2. Hero terminal is static (no Run button, no fetch)
 // ──────────────────────────────────────────────────────
 const idx = read('index.html');
+const heroStart = idx.indexOf('<section class="hero">');
+const heroEnd = idx.indexOf('</section>', heroStart);
+const hero = idx.slice(heroStart, heroEnd);
 check('no termRun button id', !idx.includes('id="termRun"'));
-check('no /api/sandbox-key fetch in hero', !idx.includes("fetch('/api/sandbox-key'"));
-check('no /v1/matters fetch in hero', !idx.includes("fetch('/v1/matters'"));
-check('hero shows EXAMPLE label', idx.includes('>EXAMPLE</span>'));
-check('hero shows crypto.trace', idx.includes('crypto.trace'));
+check('no /api/sandbox-key fetch in hero', !hero.includes("fetch('/api/sandbox-key'"));
+check('no /v1/matters fetch in hero', !hero.includes("fetch('/v1/matters'"));
+check('hero shows EXAMPLE label', hero.includes('>EXAMPLE</span>'));
+check('hero posts to canonical /v1/jobs route', hero.includes('POST /v1/jobs') && hero.includes('https://api.kineticanvil.com/v1/jobs'));
+check('hero forbids nonexistent /v3/crypto.trace route', !hero.includes('/v3/crypto.trace'));
+check('hero sends crypto.trace job type', /-d<\/span>\s*<span class="c-str">'\{ "type": "crypto\.trace"/.test(hero));
+check('hero nests address and chain under input', /-d<\/span>\s*<span class="c-str">'\{[^']*"input": \{ "address": "0xabc", "chain": "eth" \}/.test(hero));
+check('hero returns Job object', hero.includes('>"object"</span>: <span class="c-str">"job"</span>'));
+check('hero returns queued status', hero.includes('>"status"</span>: <span class="c-str">"queued"</span>'));
+check('hero retains dated Anvil-Version header', hero.includes('"Anvil-Version: 2026-07-05"'));
 
 // ──────────────────────────────────────────────────────
 // 3. Current facts: v3, 2026-07-05, 45 ops, 11 resources, 120 rpm
@@ -71,10 +80,34 @@ check('mandate no per matter pricing text', !mandate.includes('per matter beyond
 check('mandate pricing section replaced with access', mandate.includes('Pricing and access'));
 
 // ──────────────────────────────────────────────────────
-// 6. Planned vs live capabilities
+// 6. Restrained portal boundaries
 // ──────────────────────────────────────────────────────
-check('crypto.trace marked LIVE', idx.includes('>LIVE</div>'));
-check('Case Protocol marked PLANNED', idx.includes('>PLANNED</div>'));
+check('crypto.trace is the sole live verb shown', idx.includes('LIVE VERB') && idx.includes('crypto.trace'));
+check('home has no planned capability cards', !idx.includes('PLANNED'));
+check('home has no Use Cases navigation or section', !idx.includes('Use Cases') && !idx.includes('id="use-cases"') && !idx.includes('href="/use-cases'));
+check('home has no Mandate navigation or section', !idx.includes('Mandate') && !idx.includes('href="/mandate'));
+check('home has no immutable claim', !idx.toLowerCase().includes('immutable'));
+check('home has no production availability claim', !idx.toLowerCase().includes('available now in sandbox and production'));
+check('home copy centers protocol contract', idx.includes('CURRENT CONTRACT') && idx.includes('PROTOCOL POSTURE'));
+
+const hiddenPages = [
+  'mandate/index.html',
+  'mandate/demo.html',
+  'use-cases/index.html',
+  'use-cases/judgment-recovery.html',
+  'use-cases/crypto-fraud-tracing.html',
+  'use-cases/receiver-operations.html',
+  'use-cases/sar-support.html',
+  'use-cases/stablecoin-recovery.html',
+  'use-cases/exchange-enforcement.html',
+  'use-cases/multi-claimant-waterfall.html',
+  'use-cases/ofac-sanctions-clearance.html',
+];
+for (const page of hiddenPages) {
+  check(`${page} is noindex`, read(page).includes('<meta name="robots" content="noindex, nofollow">'));
+}
+const sitemap = read('sitemap.xml');
+check('sitemap omits retained noindex page families', !sitemap.includes('/mandate') && !sitemap.includes('/use-cases'));
 
 // ──────────────────────────────────────────────────────
 // 7. Accessibility: <main>, skip link

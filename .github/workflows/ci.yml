@@ -17,6 +17,8 @@ jobs:
         run: node scripts/regression.mjs
       - name: Smoke tests
         run: node scripts/smoke_status.mjs
+      - name: Whitespace check
+        run: git diff --check HEAD^ HEAD
       - name: HTML structure check
         run: |
           python3 -c "
