@@ -52,43 +52,44 @@ const allPages = [...indexedPages, ...hiddenPages].map(read).join('\n');
 check('og.png exists', existsSync(join(ROOT, 'og.png')));
 check('og.png is non-trivial size', statSync(join(ROOT, 'og.png')).size > 1000);
 
-// 2. Static, canonical developer proof
-check('hero is static with no run button', !idx.includes('id="termRun"'));
-check('hero performs no API fetch', !/fetch\s*\(/.test(hero));
-check('hero labels the terminal example', hero.includes('>EXAMPLE</span>'));
-check('hero posts to canonical /v1/jobs', hero.includes('POST /v1/jobs') && hero.includes('https://api.kineticanvil.com/v1/jobs'));
-check('hero sends crypto.trace job type', /-d<\/span>\s*<span class="c-str">'\{ "type": "crypto\.trace"/.test(hero));
-check('hero nests address and chain under input', /"input": \{ "address": "0xabc", "chain": "eth" \}/.test(hero));
-check('hero response echoes submitted input', hero.includes('>"address"</span>: <span class="c-str">"0xabc"</span>') && hero.includes('>"chain"</span>: <span class="c-str">"eth"</span>'));
-check('hero returns Job object', hero.includes('>"object"</span>: <span class="c-str">"job"</span>'));
-check('hero returns queued status', hero.includes('>"status"</span>: <span class="c-str">"queued"</span>'));
-check('hero uses dated Anvil-Version header', hero.includes('"Anvil-Version: 2026-07-05"'));
-check('hero links to live sandbox instead of calling it', hero.includes('Static example.') && hero.includes('href="/sandbox"'));
+// 2. Product-first hero and five-second comprehension
+check('hero leads with the product outcome', hero.includes('Keep the recovery matter and its <em>fund-flow trace</em> in one record.'));
+check('hero explains the product loop', hero.includes('maintains the matter, runs real BTC and ETH multi-hop tracing, and writes the resulting fund-flow map back to the record'));
+check('hero avoids API-first category language', !hero.includes('PROTOCOL API') && !hero.includes('dated API contract'));
+check('hero avoids terminal or curl as the main visual', !hero.includes('curl -X') && !hero.includes('term-body'));
+check('hero shows the matter record', hero.includes('Recovery record') && hero.includes('matter_demo_04'));
+check('hero shows the fund-flow map writeback', hero.includes('Fund-flow map') && hero.includes('RESULT ATTACHED'));
+check('hero labels its visual as synthetic', hero.includes('SYNTHETIC EXAMPLE · PRODUCT FLOW'));
+check('hero identifies the current live capability', hero.includes('Current live capability:') && hero.includes('crypto.trace'));
+check('hero primary CTA explores the sandbox', hero.includes('EXPLORE THE SANDBOX'));
+check('hero secondary CTA explains the product', hero.includes('SEE WHAT ANVIL DOES'));
 
-// 3. Two readers, one clear hierarchy
-check('hero states protocol infrastructure outcome', idx.includes('Protocol infrastructure for <em>financial fraud recovery</em>'));
-check('hero names contract primitives', idx.includes('recovery records, asynchronous Jobs, signed events, and audit output'));
-check('homepage exposes explicit build path', idx.includes('>BUILD</span>API, SDKs, and quickstart'));
-check('homepage exposes explicit evaluation path', idx.includes('>EVALUATE</span>Contract, controls, and access'));
-check('homepage offers sandbox and docs primary paths', hero.includes('START IN THE SANDBOX') && hero.includes('READ THE DOCS'));
-check('homepage offers institutional diligence path', idx.includes('INSTITUTIONAL ACCESS') && idx.includes('security diligence'));
-check('homepage includes technical and academic reference', idx.includes('Technical and academic materials') && idx.includes('Academic inquiry'));
+// 3. Product truth and current capability
+check('homepage explains one durable matter record', idx.includes('A durable record for crypto recovery work'));
+check('homepage connects matter context', idx.includes('parties, judgment data, wallet inputs, jobs, trace maps, packets, ledger entries, and events'));
+check('homepage states bounded multi-hop tracing', idx.includes('bounded, multi-hop tracing across public BTC or ETH activity'));
+check('homepage states results written back', idx.includes('writes the resulting fund-flow map back to the record') && idx.includes('Write back the result'));
+check('homepage describes conservative hypotheses', idx.includes('conservative exchange or service hypotheses'));
+check('homepage avoids unsupported direction input', !idx.includes('direction, and hop limit'));
+check('homepage explains BTC source', idx.includes('public mempool.space data'));
+check('homepage explains ETH source', idx.includes('public Blockscout data'));
+check('homepage distinguishes hypotheses from outcomes', idx.includes('They do not establish custody, control, legal authority, or a recovery outcome.'));
+check('homepage shows matter to result flow', ['Matter','Trace job','Fund-flow map','Record update'].every((name) => idx.includes(`<strong>${name}</strong>`)));
+check('homepage names crypto.trace as current live execution capability', idx.includes('crypto.trace</span> is the live execution capability'));
+check('homepage states unavailable verb boundary', idx.includes('Other registered verbs remain unavailable until their engines ship'));
+check('homepage states no client funds', idx.includes('Kinetic Anvil holds no client funds'));
 
-// 4. Current contract facts
+// 4. Technical proof remains subordinate and accurate
+check('technical proof appears after product section', idx.indexOf('§ 04 · TECHNICAL PROOF') > idx.indexOf('§ 01 · PRODUCT'));
 check('homepage shows dated version', idx.includes('VERSION 2026-07-05'));
 check('homepage avoids ambiguous v3 badge', !idx.includes('>v3</div>'));
-check('homepage shows 45 operations', idx.includes('>45</div><div class="l">OPERATIONS</div>'));
-check('homepage shows 11 resources', idx.includes('>11</div><div class="l">RESOURCES</div>'));
-check('homepage shows 23 enforced scopes', idx.includes('>23</div><div class="l">ENFORCED SCOPES</div>'));
-check('homepage shows 21 webhook events', idx.includes('>21</div><div class="l">WEBHOOK EVENTS</div>'));
-check('homepage shows all 11 resource labels', ['Matters','Parties','Judgments','Jobs','Trace','Packets','Ledger','Events','Webhooks','Organization','Health'].every((name) => idx.includes(`<span>${name}</span>`)));
-check('homepage names crypto.trace as the current verb', idx.includes('AVAILABLE NOW') && idx.includes('crypto.trace'));
-check('homepage states unavailable verb behavior', idx.includes('verb_not_available'));
-check('homepage shows job retrieval path', idx.includes('GET /v1/jobs/{job_id}'));
-check('homepage surfaces SDK languages and license', idx.includes('PYTHON + TYPESCRIPT SDKs · APACHE-2.0'));
+check('homepage shows 45 operations', idx.includes('<div class="number">45</div><h3>Operations</h3>'));
+check('homepage shows 11 resource groups', idx.includes('Current dated contract across 11 resource groups'));
+check('homepage shows 23 enforced scopes', idx.includes('<div class="number">23</div><h3>Enforced scopes</h3>'));
+check('homepage shows 21 event types', idx.includes('<div class="number">21</div><h3>Event types</h3>'));
+check('homepage surfaces SDK languages and license', idx.includes('Python and TypeScript SDK source under Apache-2.0'));
 check('homepage surfaces OpenAPI 3.1', idx.includes('OPENAPI 3.1'));
-check('homepage surfaces signed webhooks', idx.includes('Twenty-one event types use signed webhooks'));
-check('homepage states no client funds', idx.includes('Kinetic Anvil holds no client funds'));
+check('homepage preserves institutional and academic paths', idx.includes('Institutional inquiry') && idx.includes('Academic inquiry'));
 
 // 5. Removed or unsupported claims and storefront residue
 const forbiddenClaims = [
@@ -119,7 +120,7 @@ check('sandbox frames production access as contact', sandbox.includes('contact K
 // 7. Navigation and page-family boundaries
 for (const page of indexedPages) {
   const html = read(page);
-  check(`${page} has protocol nav`, html.includes('<a href="/">Protocol</a>'));
+  check(`${page} has product nav`, html.includes('<a href="/">Product</a>'));
   check(`${page} nav omits Mandate and Use Cases`, !html.includes('href="/mandate') && !html.includes('href="/use-cases'));
   check(`${page} footer omits Meridian and CipherBlade`, !html.includes('meridianoffice.org') && !html.includes('cipherblade.com'));
   check(`${page} has no one-business-day promise`, !/within one business day/i.test(html));
@@ -159,7 +160,7 @@ check('homepage has main element', idx.includes('<main id="main-content">'));
 check('homepage has skip link', idx.includes('class="skip-link" href="#main-content"'));
 check('homepage primary nav is labelled', idx.includes('<nav class="nav-links" aria-label="Primary">'));
 check('homepage mobile nav is labelled', idx.includes('<nav class="mobile-menu-links" aria-label="Mobile">'));
-check('homepage terminal has descriptive label', idx.includes('aria-label="Static API request and response example"'));
+check('homepage product visual has descriptive label', idx.includes('aria-label="Synthetic example showing a matter record, a multi-hop fund-flow trace, and the result written back"'));
 check('homepage has a single h1', (idx.match(/<h1[ >]/g) || []).length === 1);
 
 // 11. Runtime and integration safety
