@@ -17,6 +17,16 @@ jobs:
         run: node scripts/regression.mjs
       - name: Smoke tests
         run: node scripts/smoke_status.mjs
+      - name: JavaScript syntax check
+        run: |
+          node --check analytics.js
+          node --check api/contact.js
+          node --check api/sandbox-key.js
+          node --check api/security-report.js
+          node --check api/status.js
+          node --check lib/anvil.js
+          node --check scripts/regression.mjs
+          node --check scripts/smoke_status.mjs
       - name: Whitespace check
         run: git diff --check HEAD^ HEAD
       - name: HTML structure check

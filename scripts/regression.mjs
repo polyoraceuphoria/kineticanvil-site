@@ -82,13 +82,17 @@ check('mandate pricing section replaced with access', mandate.includes('Pricing 
 // ──────────────────────────────────────────────────────
 // 6. Restrained portal boundaries
 // ──────────────────────────────────────────────────────
-check('crypto.trace is the sole live verb shown', idx.includes('LIVE VERB') && idx.includes('crypto.trace'));
+check('crypto.trace is the sole available verb shown', idx.includes('AVAILABLE VERB') && idx.includes('crypto.trace'));
+check('home does not label verbs live', !idx.includes('LIVE VERB'));
 check('home has no planned capability cards', !idx.includes('PLANNED'));
 check('home has no Use Cases navigation or section', !idx.includes('Use Cases') && !idx.includes('id="use-cases"') && !idx.includes('href="/use-cases'));
 check('home has no Mandate navigation or section', !idx.includes('Mandate') && !idx.includes('href="/mandate'));
 check('home has no immutable claim', !idx.toLowerCase().includes('immutable'));
 check('home has no production availability claim', !idx.toLowerCase().includes('available now in sandbox and production'));
 check('home copy centers protocol contract', idx.includes('CURRENT CONTRACT') && idx.includes('PROTOCOL POSTURE'));
+check('home states release-header semantics plainly', idx.includes('VERSION HEADER') && idx.includes('Current release') && idx.includes('Responses report release <span class="mono">2026-07-05</span> through the Anvil-Version header. Clients should send the header on every request.'));
+check('home makes no version-pin claim', !idx.includes('VERSION PIN') && !idx.includes('Requests identify contract version'));
+check('restrained footer omits Meridian and CipherBlade', !idx.includes('meridianoffice.org') && !idx.includes('Meridian Recovery') && !idx.includes('cipherblade.com') && !idx.includes('CipherBlade'));
 
 const hiddenPages = [
   'mandate/index.html',
