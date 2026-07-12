@@ -18,7 +18,6 @@ const COMPONENTS = [
   { name: 'API', url: 'https://api.kineticanvil.com/v1/health' },
   { name: 'Spec', url: 'https://api.kineticanvil.com/openapi.json' },
   { name: 'Docs', url: 'https://docs.kineticanvil.com' },
-  { name: 'Console', url: 'https://api.kineticanvil.com/dashboard' },
   { name: 'Site', url: 'https://www.kineticanvil.com' },
 ];
 

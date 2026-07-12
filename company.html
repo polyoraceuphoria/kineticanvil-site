@@ -351,10 +351,8 @@ a.c:hover{color:var(--ink)}
       <svg class="mark" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="none" stroke="var(--accent)" stroke-width="1.5"/><circle cx="12" cy="12" r="3.5" fill="var(--accent)"/></svg>
       <div class="wordmark">Kinetic Anvil</div>
     </a>
-    <nav class="nav-links">
-      <a href="/">Anvil</a>
-      <a href="/use-cases">Use Cases</a>
-      <a href="/mandate">Mandate</a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="/">Protocol</a>
       <a href="/sandbox">Sandbox</a>
       <a href="/status">Status</a>
       <a href="/trust">Trust</a>
@@ -367,10 +365,8 @@ a.c:hover{color:var(--ink)}
   </header>
 
   <div class="mobile-menu" aria-hidden="true">
-    <nav class="mobile-menu-links">
-      <a href="/">Anvil</a>
-      <a href="/use-cases">Use Cases</a>
-      <a href="/mandate">Mandate</a>
+    <nav class="mobile-menu-links" aria-label="Mobile">
+      <a href="/">Protocol</a>
       <a href="/sandbox">Sandbox</a>
       <a href="/status">Status</a>
       <a href="/trust">Trust</a>
@@ -383,40 +379,28 @@ a.c:hover{color:var(--ink)}
 
 <div class="kicker">§ COMPANY</div>
 <h1>Built and operated by <em>Kinetic</em></h1>
-<p class="lede">Kinetic is an enforcement-infrastructure institution. We design and run the systems that financial-crime recovery operates on, and the client-facing offices that use them.</p>
+<p class="lede">Kinetic builds and operates infrastructure for financial fraud recovery. Kinetic Anvil is its protocol API.</p>
 
 <div class="sec">
   <div class="eyebrow">THE INSTITUTION</div>
-  <p class="lede" style="max-width:660px">Kinetic is structured to be durable and accountable to counterparties that conduct diligence. Identities of individual personnel are held off the public record by design.</p>
+  <p class="lede" style="max-width:660px">Kinetic provides corporate, security, and operating information directly to qualified counterparties during diligence.</p>
 </div>
 
 <div class="sec">
   <div class="eyebrow">CORPORATE REGISTRY</div>
   <div class="certs">
-    <div class="certrow"><div><div class="nm">Kinetic Digital Partners Inc.</div><div class="sub">Legal operating entity behind Kinetic Anvil</div></div><div class="meta"><span class="badge live">On record</span></div></div>
-    <div class="certrow"><div><div class="nm">Jurisdiction of formation</div><div class="sub">United States</div></div><div class="meta"><span class="badge">On file</span></div></div>
-    <div class="certrow"><div><div class="nm">Registered agent</div><div class="sub">Agent of record for service of process</div></div><div class="meta"><span class="badge">On file</span></div></div>
-    <div class="certrow"><div><div class="nm">Registration identifier</div><div class="sub">Provided to counterparties under diligence</div></div><div class="meta"><span class="badge">On request</span></div></div>
+    <div class="certrow"><div><div class="nm">Intended rights-holder</div><div class="sub">Kinetic Digital Partners Inc., pending counsel confirmation</div></div><div class="meta"><span class="badge">UNDER REVIEW</span></div></div>
+    <div class="certrow"><div><div class="nm">Counterparty diligence</div><div class="sub">Corporate records and contracting detail are provided directly</div></div><div class="meta"><span class="badge">ON REQUEST</span></div></div>
   </div>
-  <p class="dnote" style="margin-top:16px">Full corporate detail is furnished directly to engaged counterparties. See the <a href="/trust" style="color:var(--muted);text-decoration:underline">trust surface</a> for security posture and certification roadmap.</p>
+  <p class="dnote" style="margin-top:16px">No jurisdiction or registration detail is published here until counsel confirms the final rights-holder. See <a href="/trust" style="color:var(--muted);text-decoration:underline">Trust</a> for current security and data-handling statements.</p>
 </div>
 
 <div class="sec">
-  <div class="eyebrow">THE SYSTEM</div>
+  <div class="eyebrow">KINETIC ANVIL</div>
   <div class="pillars">
-    <div class="pillar"><h3>Kinetic Anvil <span class="badge live">Protocol</span></h3><p>The case operations spine. Everything else runs on it.</p></div>
-    <div class="pillar"><h3>Meridian Recovery Office <span class="badge">Client services</span></h3><p>Client-facing recovery for fraud victims. Built on Kinetic. <a href="https://meridianoffice.org" style="color:var(--ink);text-decoration:underline;text-underline-offset:2px">meridianoffice.org</a></p></div>
-    <div class="pillar"><h3>CipherBlade <span class="badge">Integrated Partner</span></h3><p>Blockchain investigations capability integrated into Kinetic operations. An independent partner, not a Kinetic company.</p></div>
-  </div>
-</div>
-
-<div class="sec">
-  <div class="eyebrow">HOW WE OPERATE</div>
-  <div class="pillars">
-    <div class="pillar"><h3>Authority-gated</h3><p>Every action carries a recorded basis. Permission is enforced by the system, not assumed.</p></div>
-    <div class="pillar"><h3>Provable</h3><p>A tamper-evident trail makes every move reconstructable.</p></div>
-    <div class="pillar"><h3>Deterministic</h3><p>Reproducible outputs, on demand.</p></div>
-    <div class="pillar"><h3>Jurisdiction-aware</h3><p>Data residency and handling are treated as first-order requirements. Detail on the <a href="/trust" style="color:var(--ink);text-decoration:underline;text-underline-offset:2px">trust surface</a>.</p></div>
+    <div class="pillar"><h3>Protocol API</h3><p>A dated contract for recovery records, Jobs, events, and audit output.</p></div>
+    <div class="pillar"><h3>Developer access</h3><p>Sandbox, OpenAPI 3.1, Postman, and source SDKs for Python and TypeScript.</p></div>
+    <div class="pillar"><h3>Institutional review</h3><p>Architecture, security, deployment, and contracting detail are handled directly with qualified counterparties.</p></div>
   </div>
 </div>
 
@@ -433,11 +417,8 @@ a.c:hover{color:var(--ink)}
 <footer class="site-footer">
     <div class="footer-grid">
       <div class="footer-col">
-        <div class="footer-heading">Product</div>
-        <a href="/use-cases">Use Cases</a>
-        <a href="/mandate">Mandate</a>
+        <div class="footer-heading">Protocol</div>
         <a href="/sandbox">Sandbox</a>
-
         <a href="/trust">Trust</a>
         <a href="https://docs.kineticanvil.com">Documentation</a>
         <a href="/status">Status</a>
@@ -447,8 +428,6 @@ a.c:hover{color:var(--ink)}
         <a href="/about">About</a>
         <a href="/company">Company</a>
         <a href="https://kineticpartners.org">Kinetic</a>
-        <a href="https://meridianoffice.org">Meridian Recovery</a>
-        <a href="https://cipherblade.com">CipherBlade (Integrated Partner)</a>
       </div>
     </div>
     <div class="footer-bottom"><a class="footer-mark" href="/" aria-label="Kinetic"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 971.44 867.94" width="971.44" height="867.94"><g transform="translate(-487.408020,1507.940550) scale(0.100000,-0.100000)" fill="currentColor" stroke="none"><path d="M7962 15060 c-125 -33 -242 -104 -310 -189 -18 -22 -148 -239 -288
@@ -484,7 +463,7 @@ a.c:hover{color:var(--ink)}
 80 -146 251 -222 380 -76 129 -255 435 -398 680 -143 245 -350 598 -460 785
 -276 467 -273 446 -100 744 688 1193 686 1189 680 1230 -5 33 -384 699 -425
 744 -18 20 -80 23 -104 5z"/></g></svg></a>
-      <div class="footer-copy">&copy; 2026 Kinetic Digital Partners Inc.</div>
+      <div class="footer-copy">&copy; 2026 Kinetic</div>
       <div class="footer-legal">
         <a href="/privacy">Privacy</a>
         <a href="/terms">Terms</a>
@@ -529,12 +508,13 @@ document.querySelectorAll('[data-request-access]').forEach(function(a){
 })();
 </script>
 
+<span id="contact" hidden></span>
 <div class="modal-backdrop" id="contactBg" onclick="closeContact()"></div>
 <div class="modal-card" id="contactCard" role="dialog" aria-modal="true" aria-labelledby="contactTitle">
   <button class="modal-close" onclick="closeContact()" aria-label="Close"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg></button>
   <div id="contactWrap">
     <h3 id="contactTitle">Get in Touch</h3>
-    <p class="modal-sub">Tell us what you're working on. We'll get back within one business day.</p>
+    <p class="modal-sub">Tell us about your evaluation or use case and we will follow up.</p>
     <form id="contactForm" onsubmit="return submitContact(event)">
       <div class="cform-field"><label for="c-name">Name</label><input type="text" name="name" id="c-name" placeholder="Full name" required></div>
       <div class="cform-field"><label for="c-email">Email</label><input type="email" name="email" id="c-email" placeholder="you@company.com" required></div>
