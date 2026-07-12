@@ -54,29 +54,30 @@ check('og.png is non-trivial size', statSync(join(ROOT, 'og.png')).size > 1000);
 
 // 2. Product-first hero and five-second comprehension
 check('hero leads with the product outcome', hero.includes('Keep the recovery matter and its <em>fund-flow trace</em> in one record.'));
-check('hero explains the product loop', hero.includes('maintains the matter, runs real BTC and ETH multi-hop tracing, and writes the resulting fund-flow map back to the record'));
+check('hero explains the product loop', hero.includes('keeps the matter, traces BTC and ETH fund flows, and writes the map back to the record'));
 check('hero avoids API-first category language', !hero.includes('PROTOCOL API') && !hero.includes('dated API contract'));
 check('hero avoids terminal or curl as the main visual', !hero.includes('curl -X') && !hero.includes('term-body'));
 check('hero shows the matter record', hero.includes('Recovery record') && hero.includes('matter_demo_04'));
 check('hero shows the fund-flow map writeback', hero.includes('Fund-flow map') && hero.includes('RESULT ATTACHED'));
 check('hero labels its visual as synthetic', hero.includes('SYNTHETIC EXAMPLE · PRODUCT FLOW'));
-check('hero identifies the current live capability', hero.includes('Current live capability:') && hero.includes('crypto.trace'));
+check('hero identifies the current capability', hero.includes('crypto.trace'));
 check('hero primary CTA explores the sandbox', hero.includes('EXPLORE THE SANDBOX'));
 check('hero secondary CTA explains the product', hero.includes('SEE WHAT ANVIL DOES'));
 
 // 3. Product truth and current capability
-check('homepage explains one durable matter record', idx.includes('A durable record for crypto recovery work'));
-check('homepage connects matter context', idx.includes('parties, judgment data, wallet inputs, jobs, trace maps, packets, ledger entries, and events'));
-check('homepage states bounded multi-hop tracing', idx.includes('bounded, multi-hop tracing across public BTC or ETH activity'));
-check('homepage states results written back', idx.includes('writes the resulting fund-flow map back to the record') && idx.includes('Write back the result'));
-check('homepage describes conservative hypotheses', idx.includes('conservative exchange or service hypotheses'));
+check('homepage explains one durable matter record', idx.includes('One record for the matter and the trace'));
+check('homepage connects matter context', idx.includes('Connect parties, judgment data, wallet inputs, jobs, trace maps, packets, ledger entries, and events'));
+check('homepage states bounded multi-hop tracing', idx.includes('Trace BTC or ETH outflows across bounded hops'));
+check('homepage states results written back', idx.includes('writes the map back to the record') && idx.includes('Write back the result'));
+check('homepage describes conservative hypotheses', idx.includes('confidence-labeled hypotheses'));
 check('homepage avoids unsupported direction input', !idx.includes('direction, and hop limit'));
-check('homepage explains BTC source', idx.includes('public mempool.space data'));
-check('homepage explains ETH source', idx.includes('public Blockscout data'));
-check('homepage distinguishes hypotheses from outcomes', idx.includes('They do not establish custody, control, legal authority, or a recovery outcome.'));
+check('indexed portal does not expose trace vendors', !/Blockscout|mempool\.space/i.test(allIndexed));
+check('homepage omits real-as-qualifier', !/\breal\b/i.test(idx));
+check('homepage visible copy stays concise', idx.replace(/<style[\s\S]*?<\/style>/gi, '').replace(/<script[\s\S]*?<\/script>/gi, '').replace(/<[^>]+>/g, ' ').trim().split(/\s+/).length < 700);
+check('homepage distinguishes hypotheses from outcomes', idx.includes('They do not establish custody, control, authority, or recovery.'));
 check('homepage shows matter to result flow', ['Matter','Trace job','Fund-flow map','Record update'].every((name) => idx.includes(`<strong>${name}</strong>`)));
-check('homepage names crypto.trace as current live execution capability', idx.includes('crypto.trace</span> is the live execution capability'));
-check('homepage states unavailable verb boundary', idx.includes('Other registered verbs remain unavailable until their engines ship'));
+check('homepage names crypto.trace as current live execution capability', idx.includes('crypto.trace</span> is available'));
+check('homepage states unavailable verb boundary', idx.includes('Other verbs remain unavailable until shipped'));
 check('homepage states no client funds', idx.includes('Kinetic Anvil holds no client funds'));
 
 // 4. Technical proof remains subordinate and accurate
