@@ -47,6 +47,12 @@ const statusPage = read('status.html');
 const about = read('about.html');
 const allIndexed = indexedPages.map(read).join('\n');
 const allPages = [...indexedPages, ...hiddenPages].map(read).join('\n');
+const publicArtifactFiles = [
+  ...indexedPages,
+  ...hiddenPages,
+  'analytics.js', 'lib/anvil.js', 'vercel.json', 'sitemap.xml', 'robots.txt',
+];
+const allPublicArtifacts = publicArtifactFiles.map(read).join('\n');
 
 // 1. Required visual and social assets
 check('og.png exists', existsSync(join(ROOT, 'og.png')));
@@ -71,8 +77,9 @@ check('homepage states bounded multi-hop tracing', idx.includes('Trace BTC or ET
 check('homepage states results written back', idx.includes('writes the map back to the record') && idx.includes('Write back the result'));
 check('homepage describes conservative hypotheses', idx.includes('confidence-labeled hypotheses'));
 check('homepage avoids unsupported direction input', !idx.includes('direction, and hop limit'));
-check('indexed portal does not expose trace vendors', !/Blockscout|mempool\.space/i.test(allIndexed));
+check('public portal artifacts do not expose trace vendors', !/Blockscout|mempool\.space/i.test(allPublicArtifacts));
 check('homepage omits real-as-qualifier', !/\breal\b/i.test(idx));
+check('all public HTML omits real-as-qualifier', !/\breal\b/i.test(allPages));
 check('homepage visible copy stays concise', idx.replace(/<style[\s\S]*?<\/style>/gi, '').replace(/<script[\s\S]*?<\/script>/gi, '').replace(/<[^>]+>/g, ' ').trim().split(/\s+/).length < 700);
 check('homepage distinguishes hypotheses from outcomes', idx.includes('They do not establish custody, control, authority, or recovery.'));
 check('homepage shows matter to result flow', ['Matter','Trace job','Fund-flow map','Record update'].every((name) => idx.includes(`<strong>${name}</strong>`)));
