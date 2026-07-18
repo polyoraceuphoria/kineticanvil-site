@@ -6,8 +6,8 @@
 <meta name="robots" content="noindex, nofollow">
 <meta name="description" content="Stablecoin issuers can freeze and reissue, but only against a request they can defend. Anvil builds the remediation packet, coordinates the burn and reissu">
 <link rel="canonical" href="https://kineticanvil.com/use-cases/stablecoin-recovery">
-<meta property="og:title" content="Stablecoin Recovery · Kinetic Anvil">
-<meta property="og:description" content="Stablecoin issuers can freeze and reissue, but only against a request they can defend. Anvil builds the remediation packet, coordinates the burn and reissu">
+<meta property="og:title" content="Stablecoin Recovery">
+<meta property="og:description" content="Stablecoin issuers can freeze and reissue, but only against a request they can defend. Anvil builds the remediation packet and documents the destination wallet for issuer review.">
 <meta property="og:url" content="https://kineticanvil.com/use-cases/stablecoin-recovery">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://kineticanvil.com/og.png">
@@ -172,6 +172,15 @@ h1{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:52px;line-he
   h1{font-size:30px}.uc-lede{font-size:15px}
 }
 </style>
+<meta name="theme-color" content="#0C1014">
+<meta property="og:site_name" content="Kinetic Anvil">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Kinetic Anvil case operations infrastructure.">
+<meta name="twitter:title" content="Stablecoin Recovery">
+<meta name="twitter:description" content="Stablecoin issuers can freeze and reissue, but only against a request they can defend. Anvil builds the remediation packet and documents the destination wallet for issuer review.">
+<meta name="twitter:image" content="https://kineticanvil.com/og.png">
+<meta name="twitter:image:alt" content="Kinetic Anvil case operations infrastructure.">
 </head>
 <body>
   <header>
@@ -204,7 +213,7 @@ h1{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:52px;line-he
     <section class="uc-hero"><div class="frame">
       <div class="eyebrow"><span>USE CASE</span><span class="pill">&middot; 05 / 08</span></div>
       <h1>Tainted tokens on-chain. You need a freeze, burn, and reissue.</h1>
-      <p class="uc-lede">Stablecoin issuers can freeze and reissue, but only against a request they can defend. Anvil builds the remediation packet, coordinates the burn and reissue, and certifies the destination wallet for the issuer.</p>
+      <p class="uc-lede">Stablecoin issuers can freeze and reissue, but only against a request they can defend. Anvil builds the remediation packet, coordinates the burn and reissue, and documents the destination wallet for issuer review.</p>
       <div class="cta-row">
         <a class="btn primary" href="/sandbox">START IN THE SANDBOX</a>
         <a class="btn" href="https://docs.kineticanvil.com">READ THE DOCS</a>
@@ -219,18 +228,18 @@ h1{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:52px;line-he
     <section class="sec"><div class="frame">
       <div class="sec-eyebrow">HOW THE PROTOCOL RUNS IT</div>
       <h2>Stablecoin Recovery, station by station</h2>
-      <div class="steps"><div class="step"><div class="s-n">01</div><div class="s-station">Attribution</div><div class="s-desc">The tainted tokens and their destination are resolved on-chain, source-linked to the underlying fraud.</div></div><div class="step"><div class="s-n">02</div><div class="s-station">Enforcement</div><div class="s-desc">A remediation packet is assembled: proof of taint, the rightful destination wallet, and the basis for the freeze and reissue.</div></div><div class="step"><div class="s-n">03</div><div class="s-station">Actions</div><div class="s-desc">The freeze, burn, and reissue are coordinated with the issuer, each step recorded with its authorization.</div></div><div class="step"><div class="s-n">04</div><div class="s-station">Ledger</div><div class="s-desc">Recovered value and the reissue are tracked on the append-only ledger.</div></div><div class="step"><div class="s-n">05</div><div class="s-station">Audit</div><div class="s-desc">A certified record of the destination wallet and the full remediation exports for the issuer and the court.</div></div></div>
+      <div class="steps"><div class="step"><div class="s-n">01</div><div class="s-station">Attribution</div><div class="s-desc">The tainted tokens and their destination are resolved on-chain, source-linked to the underlying fraud.</div></div><div class="step"><div class="s-n">02</div><div class="s-station">Enforcement</div><div class="s-desc">A remediation packet is assembled: proof of taint, the rightful destination wallet, and the basis for the freeze and reissue.</div></div><div class="step"><div class="s-n">03</div><div class="s-station">Actions</div><div class="s-desc">The freeze, burn, and reissue are coordinated with the issuer, each step recorded with its authorization.</div></div><div class="step"><div class="s-n">04</div><div class="s-station">Ledger</div><div class="s-desc">Recovered value and the reissue are tracked on the append-only ledger.</div></div><div class="step"><div class="s-n">05</div><div class="s-station">Audit</div><div class="s-desc">A documented record of the destination wallet and the full remediation exports for the issuer and the court.</div></div></div>
       <div class="strip"><span class="s">Attribution</span><span class="arr">&rarr;</span><span class="s">Enforcement</span><span class="arr">&rarr;</span><span class="s">Actions</span><span class="arr">&rarr;</span><span class="s">Ledger</span><span class="arr">&rarr;</span><span class="s">Audit</span></div>
     </div></section>
 
     <section class="sec"><div class="frame">
       <div class="sec-eyebrow">WHAT YOU GET</div>
-      <div class="outs"><div class="out"><div class="o-k">Issuer-defensible packet</div><div class="o-v">Proof of taint and a certified destination the issuer can act on without carrying the risk.</div></div><div class="out"><div class="o-k">Coordinated freeze-burn-reissue</div><div class="o-v">The full remediation run as one recorded sequence.</div></div><div class="out"><div class="o-k">Certified destination</div><div class="o-v">The rightful wallet documented and certified for reissue.</div></div><div class="out"><div class="o-k">Built for speed</div><div class="o-v">A defensible request compressed into the window that matters.</div></div></div>
+      <div class="outs"><div class="out"><div class="o-k">Issuer-review packet</div><div class="o-v">Proof of taint and a documented destination wallet for issuer review.</div></div><div class="out"><div class="o-k">Coordinated freeze-burn-reissue</div><div class="o-v">The full remediation run as one recorded sequence.</div></div><div class="out"><div class="o-k">Documented destination</div><div class="o-v">The rightful wallet documented for issuer review.</div></div><div class="out"><div class="o-k">Built for speed</div><div class="o-v">A defensible request compressed into the window that matters.</div></div></div>
     </div></section>
 
     <section class="sec"><div class="frame">
       <div class="sec-eyebrow">RELATED USE CASES</div>
-      <div class="rel"><a href="/use-cases/crypto-fraud-tracing"><div class="r-k">Crypto Fraud Tracing</div><div class="r-v">Funds went on-chain. You need attribution linked to identity.</div></a><a href="/use-cases/exchange-enforcement"><div class="r-k">Exchange Enforcement</div><div class="r-v">Assets sitting at an exchange. You need process served and funds turned over.</div></a><a href="/use-cases/judgment-recovery"><div class="r-k">Judgment Recovery</div><div class="r-v">You hold a judgment. The debtor moved the money.</div></a><a href="/use-cases/multi-claimant-waterfall"><div class="r-k">Multi-Claimant Waterfall</div><div class="r-v">Many victims, one debtor. You need pro-rata distribution the court will approve.</div></a></div>
+      <div class="rel"><a href="/use-cases/crypto-fraud-tracing"><div class="r-k">Crypto Fraud Tracing</div><div class="r-v">Funds went on-chain. You need attribution linked to identity.</div></a><a href="/use-cases/exchange-enforcement"><div class="r-k">Exchange Enforcement</div><div class="r-v">Assets sitting at an exchange. You need process served and funds turned over.</div></a><a href="/use-cases/judgment-recovery"><div class="r-k">Judgment Recovery</div><div class="r-v">You hold a judgment. The debtor moved the money.</div></a><a href="/use-cases/multi-claimant-waterfall"><div class="r-k">Multi-Claimant Waterfall</div><div class="r-v">Many victims, one debtor. You need pro-rata distribution with a transparent, reproducible calculation.</div></a></div>
     </div></section>
 
     <section class="sec"><div class="frame">
