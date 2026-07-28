@@ -19,6 +19,8 @@ jobs:
         run: node scripts/regression.mjs
       - name: Smoke tests
         run: node scripts/smoke_status.mjs
+      - name: SEO and claim guard
+        run: node scripts/check_seo.mjs
       - name: JavaScript syntax check
         run: |
           node --check analytics.js
@@ -27,6 +29,7 @@ jobs:
           node --check api/security-report.js
           node --check api/status.js
           node --check lib/anvil.js
+          node --check scripts/check_seo.mjs
           node --check scripts/regression.mjs
           node --check scripts/smoke_status.mjs
       - name: Whitespace check
