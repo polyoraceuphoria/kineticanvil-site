@@ -83,8 +83,8 @@ check('all public HTML omits real-as-qualifier', !/\breal\b/i.test(allPages));
 check('homepage visible copy stays concise', idx.replace(/<style[\s\S]*?<\/style>/gi, '').replace(/<script[\s\S]*?<\/script>/gi, '').replace(/<[^>]+>/g, ' ').trim().split(/\s+/).length < 700);
 check('homepage distinguishes hypotheses from outcomes', idx.includes('They do not establish custody, control, authority, or recovery.'));
 check('homepage shows matter to result flow', ['Matter','Trace job','Fund-flow map','Record update'].every((name) => idx.includes(`<strong>${name}</strong>`)));
-check('homepage names crypto.trace as current live execution capability', idx.includes('crypto.trace</span> is available'));
-check('homepage states unavailable verb boundary', idx.includes('Other verbs remain unavailable until shipped'));
+check('homepage names all three live verbs', idx.includes('crypto.trace</span>,') && idx.includes('crypto.monitor</span>,') && idx.includes('impersonation.monitor</span> are available'));
+check('homepage states unavailable verb boundary', idx.includes('Remaining catalog verbs return 422 until shipped'));
 check('homepage states no client funds', idx.includes('Kinetic Anvil holds no client funds'));
 
 // 4. Technical proof remains subordinate and accurate
@@ -93,8 +93,8 @@ check('homepage shows dated version', idx.includes('VERSION 2026-07-05'));
 check('homepage avoids ambiguous v3 badge', !idx.includes('>v3</div>'));
 check('homepage shows 45 operations', idx.includes('<div class="number">45</div><h3>Operations</h3>'));
 check('homepage shows 11 resource groups', idx.includes('Current dated contract across 11 resource groups'));
-check('homepage shows 23 enforced scopes', idx.includes('<div class="number">23</div><h3>Enforced scopes</h3>'));
-check('homepage shows 21 event types', idx.includes('<div class="number">21</div><h3>Event types</h3>'));
+check('homepage shows credential-bound access proof', idx.includes('<h3>Credential-bound</h3>') && idx.includes("credential's organization"));
+check('homepage shows 23 event types', idx.includes('<div class="number">23</div><h3>Event types</h3>'));
 check('homepage surfaces SDK languages and license', idx.includes('Python and TypeScript SDK source under Apache-2.0'));
 check('homepage surfaces OpenAPI 3.1', idx.includes('OPENAPI 3.1'));
 check('homepage preserves institutional and academic paths', idx.includes('Institutional inquiry') && idx.includes('Academic inquiry'));
@@ -118,7 +118,7 @@ check('homepage has no Book a demo language', !/book a demo/i.test(idx));
 // 6. Sandbox correctness and access path
 check('sandbox shows 45 contract operations', sandbox.includes('<b>45</b> contract operations'));
 check('sandbox removes stale 114 operations claim', !sandbox.includes('<b>114</b> operations') && !sandbox.includes('114 operations'));
-check('sandbox names crypto.trace as available', sandbox.includes('<span class="mono">crypto.trace</span> available'));
+check('sandbox names all three live verbs as available', sandbox.includes('crypto.trace</span>,') && sandbox.includes('crypto.monitor</span>,') && sandbox.includes('impersonation.monitor</span> available'));
 check('sandbox removes broad all-scopes claim', !sandbox.includes('All sandbox scopes'));
 check('sandbox removes dead pricing anchor', !sandbox.includes('/#pricing'));
 check('sandbox links exact Postman collection', sandbox.includes('kinetic-anvil.postman_collection.json'));
