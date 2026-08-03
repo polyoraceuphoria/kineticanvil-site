@@ -60,7 +60,7 @@ check('og.png is non-trivial size', statSync(join(ROOT, 'og.png')).size > 1000);
 
 // 2. Product-first hero and five-second comprehension
 check('hero leads with the product outcome', hero.includes('The system of record for <em>crypto enforcement</em>.'));
-check('hero explains the product loop', hero.includes('keeps the matter, traces BTC and ETH fund flows, and writes the map back to the record'));
+check('hero explains the product loop', hero.includes('traces BTC and ETH fund flows and writes every result back to the matter record'));
 check('hero avoids API-first category language', !hero.includes('PROTOCOL API') && !hero.includes('dated API contract'));
 check('hero avoids terminal or curl as the main visual', !hero.includes('curl -X') && !hero.includes('term-body'));
 check('hero shows the matter record', hero.includes('Recovery record') && hero.includes('matter_demo_04'));
@@ -74,7 +74,7 @@ check('hero secondary CTA explains the product', hero.includes('SEE WHAT ANVIL D
 check('homepage explains one durable matter record', idx.includes('One record for the matter and the trace'));
 check('homepage connects matter context', idx.includes('Connect parties, judgment data, wallet inputs, jobs, trace maps, packets, ledger entries, and events'));
 check('homepage states bounded multi-hop tracing', idx.includes('Trace BTC or ETH outflows across bounded hops'));
-check('homepage states results written back', idx.includes('writes the map back to the record') && idx.includes('Write back the result'));
+check('homepage states results written back', idx.includes('writes every result back to the matter record') && idx.includes('Write back the result'));
 check('homepage describes conservative hypotheses', idx.includes('confidence-labeled hypotheses'));
 check('homepage avoids unsupported direction input', !idx.includes('direction, and hop limit'));
 check('public portal artifacts do not expose trace vendors', !/Blockscout|mempool\.space/i.test(allPublicArtifacts));
