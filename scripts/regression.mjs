@@ -82,13 +82,13 @@ check('homepage omits real-as-qualifier', !/\breal\b/i.test(idx));
 check('all public HTML omits real-as-qualifier', !/\breal\b/i.test(allPages));
 check('homepage visible copy stays concise', idx.replace(/<style[\s\S]*?<\/style>/gi, '').replace(/<script[\s\S]*?<\/script>/gi, '').replace(/<[^>]+>/g, ' ').trim().split(/\s+/).length < 700);
 check('homepage distinguishes hypotheses from outcomes', idx.includes('They do not establish custody, control, authority, or recovery.'));
-check('homepage shows matter to result flow', ['Matter','Trace job','Fund-flow map','Record update'].every((name) => idx.includes(`<strong>${name}</strong>`)));
+check('homepage keeps the three product story cards', ['Keep the matter','Follow the fund flow','Write back the result'].every((name) => idx.includes(`<h3>${name}</h3>`)));
 check('homepage names all three live verbs', idx.includes('crypto.trace</span>,') && idx.includes('crypto.monitor</span>,') && idx.includes('impersonation.monitor</span> are available'));
 check('homepage states unavailable verb boundary', idx.includes('Remaining catalog verbs return 422 until shipped'));
 check('homepage states no client funds', idx.includes('Kinetic Anvil holds no client funds'));
 
 // 4. Technical proof remains subordinate and accurate
-check('technical proof appears after product section', idx.indexOf('§ 04 · TECHNICAL PROOF') > idx.indexOf('§ 01 · PRODUCT'));
+check('technical proof appears after product section', idx.indexOf('§ 02 · TECHNICAL PROOF') > idx.indexOf('§ 01 · PRODUCT'));
 check('homepage shows dated version', idx.includes('VERSION 2026-07-05'));
 check('homepage avoids ambiguous v3 badge', !idx.includes('>v3</div>'));
 check('homepage shows 45 operations', idx.includes('<div class="number">45</div><h3>Operations</h3>'));
