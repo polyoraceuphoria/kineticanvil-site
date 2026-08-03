@@ -70,7 +70,7 @@ h1 em{font-style:italic}
 .reg-cell .l{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.2em;color:var(--muted);margin-top:10px}
 .reg-cell + .reg-cell{padding-left:32px}
 
-.sec{padding:88px 0;border-bottom:1px solid var(--hair)}
+.sec{padding:72px 0;border-bottom:1px solid var(--hair)}
 .eyebrow{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.2em;color:var(--green);margin-bottom:40px}
 .sec-grid{display:grid;grid-template-columns:300px 1fr;gap:64px}
 h2{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:34px;line-height:1.15}
@@ -85,7 +85,7 @@ h2 em{font-style:italic}
 .st .nm{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.08em;color:var(--muted);white-space:nowrap}
 .rail{height:1px;background:var(--hair);flex:1;min-width:14px;margin-bottom:18px}
 
-.access{padding:110px 0 120px}
+.access{padding:88px 0 96px}
 .access h2{font-size:40px;max-width:620px}
 .access p{margin-top:24px;color:var(--muted);font-weight:400;font-size:15px;max-width:480px;line-height:1.7}
 .btn-row{margin-top:44px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
@@ -563,18 +563,12 @@ footer a.c:hover{color:var(--ink)}
 .flow-label{font-family:'Geist Mono',monospace;font-size:7px;letter-spacing:.05em;fill:var(--stone-400)}
 .flow-confidence{font-family:'Geist Mono',monospace;font-size:6px;fill:var(--green)}
 .scene-caption{position:absolute;z-index:3;left:50%;bottom:12px;transform:translateX(-50%);font-family:'Geist Mono',monospace;font-size:7.5px;letter-spacing:.14em;color:var(--stone-500);white-space:nowrap}
-.product-register{border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)}
-.product-register-grid{display:grid;grid-template-columns:repeat(4,1fr)}
-.product-proof{padding:26px 24px 26px 0;border-right:1px solid var(--hair)}
-.product-proof+.product-proof{padding-left:24px}.product-proof:last-child{border-right:0}
-.product-proof .v{font-family:'Cormorant Garamond',serif;font-size:23px;line-height:1.12;font-weight:300;margin-bottom:8px}
-.product-proof .k{font-family:'Geist Mono',monospace;font-size:8px;line-height:1.5;letter-spacing:.15em;color:var(--faint);text-transform:uppercase}
-.product-cards{display:grid;grid-template-columns:repeat(3,1fr);margin-top:52px;border-top:1px solid var(--hair);border-left:1px solid var(--hair)}
+.product-cards{display:grid;grid-template-columns:repeat(3,1fr);margin-top:40px;border-top:1px solid var(--hair);border-left:1px solid var(--hair)}
 .product-card{padding:34px 30px 36px;border-right:1px solid var(--hair);border-bottom:1px solid var(--hair)}
 .product-card .n{font-family:'Geist Mono',monospace;font-size:9px;letter-spacing:.15em;color:var(--green);margin-bottom:24px}
 .product-card h3{font-family:'Cormorant Garamond',serif;font-size:27px;font-weight:300;margin-bottom:12px}
 .product-card p{font-size:13px;line-height:1.7;color:var(--muted);font-weight:400}
-.proof-grid{display:grid;grid-template-columns:repeat(4,1fr);margin-top:48px;border-top:1px solid var(--hair);border-left:1px solid var(--hair)}
+.proof-grid{display:grid;grid-template-columns:repeat(4,1fr);margin-top:40px;border-top:1px solid var(--hair);border-left:1px solid var(--hair)}
 .proof-card{padding:27px 24px;border-right:1px solid var(--hair);border-bottom:1px solid var(--hair)}
 .proof-card .number{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:300;margin-bottom:10px}
 .proof-card h3{font-family:'Geist Mono',monospace;font-size:9px;letter-spacing:.14em;color:var(--green);margin-bottom:10px;text-transform:uppercase}
@@ -582,8 +576,8 @@ footer a.c:hover{color:var(--ink)}
 .reference-links{display:flex;gap:28px;flex-wrap:wrap;margin-top:28px}
 .boundary{margin-top:30px;padding:18px 20px;border-left:2px solid var(--green);background:rgba(0,255,115,.035);font-size:12.5px;line-height:1.7;color:var(--muted);font-weight:400}
 @media(max-width:1050px){.hero-grid{grid-template-columns:1fr;gap:44px}.trace-scene{max-width:760px}.proof-grid{grid-template-columns:1fr 1fr}}
-@media(max-width:860px){.hero h1{font-size:48px}.product-register-grid{grid-template-columns:1fr 1fr}.product-proof:nth-child(2){border-right:0}.product-proof:nth-child(-n+2){border-bottom:1px solid var(--hair)}.product-cards{grid-template-columns:1fr}}
-@media(max-width:640px){.hero{padding:54px 0 48px}.hero h1{font-size:40px!important}.hero-lede{font-size:15px}.trace-scene{grid-template-columns:1fr;min-height:520px}.scene-card{position:absolute;width:140px;margin:0}.scene-card.left{left:12px;top:14px}.scene-card.right{right:12px;bottom:34px}.flow-canvas{height:520px}.scene-caption{bottom:10px}.product-register-grid,.proof-grid{grid-template-columns:1fr 1fr}.product-proof{padding:20px 16px 20px 0}.product-proof+.product-proof{padding-left:16px}.product-proof .v{font-size:19px}.product-card{padding:28px 22px}.proof-card{padding:22px 18px}.reference-links{gap:18px}}
+@media(max-width:860px){.hero h1{font-size:48px}.product-cards{grid-template-columns:1fr}}
+@media(max-width:640px){.hero{padding:54px 0 48px}.hero h1{font-size:40px!important}.hero-lede{font-size:15px}.trace-scene{grid-template-columns:1fr;min-height:520px}.scene-card{position:absolute;width:140px;margin:0}.scene-card.left{left:12px;top:14px}.scene-card.right{right:12px;bottom:34px}.flow-canvas{height:520px}.scene-caption{bottom:10px}.proof-grid{grid-template-columns:1fr 1fr}.product-card{padding:28px 22px}.proof-card{padding:22px 18px}.reference-links{gap:18px}}
 </style>
 <meta name="robots" content="index, follow">
 <meta name="theme-color" content="#0C1014">
@@ -629,7 +623,7 @@ footer a.c:hover{color:var(--ink)}
   <div class="hero-grid">
     <div>
       <div class="hero-tag"><span class="live-dot"></span>KINETIC ANVIL</div>
-      <h1>Keep the recovery matter and its <em>fund-flow trace</em> in one record.</h1>
+      <h1>The system of record for <em>crypto enforcement</em>.</h1>
       <p class="hero-lede">Anvil keeps the matter, traces BTC and ETH fund flows, and writes the map back to the record.</p>
       <div class="hero-cta">
         <a class="btn primary" href="/sandbox">EXPLORE THE SANDBOX</a>
@@ -682,18 +676,10 @@ footer a.c:hover{color:var(--ink)}
   </div>
 </div></section>
 
-<section class="product-register" aria-label="Current product facts"><div class="frame"><div class="product-register-grid">
-  <div class="product-proof"><div class="v">One matter record</div><div class="k">CONTEXT STAYS TOGETHER</div></div>
-  <div class="product-proof"><div class="v">BTC + ETH</div><div class="k">FUND-FLOW TRACING</div></div>
-  <div class="product-proof"><div class="v">Conservative results</div><div class="k">HYPOTHESES CARRY CONFIDENCE</div></div>
-  <div class="product-proof"><div class="v">Written back</div><div class="k">RESULT ATTACHES TO THE MATTER</div></div>
-</div></div></section>
-
 <section class="sec" id="product"><div class="frame">
   <div class="section-head">
     <div class="eyebrow">§ 01 · PRODUCT</div>
     <h2>One record for the matter and the trace</h2>
-    <p>Keep the matter, trace inputs, status, and results together.</p>
   </div>
   <div class="product-cards">
     <div class="product-card"><div class="n">01 · RECORD</div><h3>Keep the matter</h3><p>Connect parties, judgment data, wallet inputs, jobs, trace maps, packets, ledger entries, and events.</p></div>
@@ -706,7 +692,6 @@ footer a.c:hover{color:var(--ink)}
   <div class="section-head">
     <div class="eyebrow">§ 02 · TECHNICAL PROOF</div>
     <h2>A product institutions and developers can inspect</h2>
-    <p>Review the contract, permissions, events, and SDK source.</p>
   </div>
   <div class="proof-grid">
     <div class="proof-card"><div class="number">45</div><h3>Operations</h3><p>Current dated contract across 11 resource groups.</p></div>

@@ -59,7 +59,7 @@ check('og.png exists', existsSync(join(ROOT, 'og.png')));
 check('og.png is non-trivial size', statSync(join(ROOT, 'og.png')).size > 1000);
 
 // 2. Product-first hero and five-second comprehension
-check('hero leads with the product outcome', hero.includes('Keep the recovery matter and its <em>fund-flow trace</em> in one record.'));
+check('hero leads with the product outcome', hero.includes('The system of record for <em>crypto enforcement</em>.'));
 check('hero explains the product loop', hero.includes('keeps the matter, traces BTC and ETH fund flows, and writes the map back to the record'));
 check('hero avoids API-first category language', !hero.includes('PROTOCOL API') && !hero.includes('dated API contract'));
 check('hero avoids terminal or curl as the main visual', !hero.includes('curl -X') && !hero.includes('term-body'));
