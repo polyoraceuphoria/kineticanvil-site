@@ -59,8 +59,8 @@ check('og.png exists', existsSync(join(ROOT, 'og.png')));
 check('og.png is non-trivial size', statSync(join(ROOT, 'og.png')).size > 1000);
 
 // 2. Product-first hero and five-second comprehension
-check('hero leads with the product outcome', hero.includes('Keep the recovery matter and its <em>fund-flow trace</em> in one record.'));
-check('hero explains the product loop', hero.includes('keeps the matter, traces BTC and ETH fund flows, and writes the map back to the record'));
+check('hero leads with the product outcome', hero.includes('The system of record for <em>crypto enforcement</em>.'));
+check('hero explains the product loop', hero.includes('traces BTC and ETH fund flows and writes every result back to the matter record'));
 check('hero avoids API-first category language', !hero.includes('PROTOCOL API') && !hero.includes('dated API contract'));
 check('hero avoids terminal or curl as the main visual', !hero.includes('curl -X') && !hero.includes('term-body'));
 check('hero shows the matter record', hero.includes('Recovery record') && hero.includes('matter_demo_04'));
@@ -74,7 +74,7 @@ check('hero secondary CTA explains the product', hero.includes('SEE WHAT ANVIL D
 check('homepage explains one durable matter record', idx.includes('One record for the matter and the trace'));
 check('homepage connects matter context', idx.includes('Connect parties, judgment data, wallet inputs, jobs, trace maps, packets, ledger entries, and events'));
 check('homepage states bounded multi-hop tracing', idx.includes('Trace BTC or ETH outflows across bounded hops'));
-check('homepage states results written back', idx.includes('writes the map back to the record') && idx.includes('Write back the result'));
+check('homepage states results written back', idx.includes('writes every result back to the matter record') && idx.includes('Write back the result'));
 check('homepage describes conservative hypotheses', idx.includes('confidence-labeled hypotheses'));
 check('homepage avoids unsupported direction input', !idx.includes('direction, and hop limit'));
 check('public portal artifacts do not expose trace vendors', !/Blockscout|mempool\.space/i.test(allPublicArtifacts));
@@ -82,13 +82,13 @@ check('homepage omits real-as-qualifier', !/\breal\b/i.test(idx));
 check('all public HTML omits real-as-qualifier', !/\breal\b/i.test(allPages));
 check('homepage visible copy stays concise', idx.replace(/<style[\s\S]*?<\/style>/gi, '').replace(/<script[\s\S]*?<\/script>/gi, '').replace(/<[^>]+>/g, ' ').trim().split(/\s+/).length < 700);
 check('homepage distinguishes hypotheses from outcomes', idx.includes('They do not establish custody, control, authority, or recovery.'));
-check('homepage shows matter to result flow', ['Matter','Trace job','Fund-flow map','Record update'].every((name) => idx.includes(`<strong>${name}</strong>`)));
+check('homepage keeps the three product story cards', ['Keep the matter','Follow the fund flow','Write back the result'].every((name) => idx.includes(`<h3>${name}</h3>`)));
 check('homepage names all three live verbs', idx.includes('crypto.trace</span>,') && idx.includes('crypto.monitor</span>,') && idx.includes('impersonation.monitor</span> are available'));
 check('homepage states unavailable verb boundary', idx.includes('Remaining catalog verbs return 422 until shipped'));
 check('homepage states no client funds', idx.includes('Kinetic Anvil holds no client funds'));
 
 // 4. Technical proof remains subordinate and accurate
-check('technical proof appears after product section', idx.indexOf('§ 04 · TECHNICAL PROOF') > idx.indexOf('§ 01 · PRODUCT'));
+check('technical proof appears after product section', idx.indexOf('§ 02 · TECHNICAL PROOF') > idx.indexOf('§ 01 · PRODUCT'));
 check('homepage shows dated version', idx.includes('VERSION 2026-07-05'));
 check('homepage avoids ambiguous v3 badge', !idx.includes('>v3</div>'));
 check('homepage shows 45 operations', idx.includes('<div class="number">45</div><h3>Operations</h3>'));
