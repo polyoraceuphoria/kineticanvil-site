@@ -81,22 +81,14 @@ check('public portal artifacts do not expose trace vendors', !/Blockscout|mempoo
 check('homepage omits real-as-qualifier', !/\breal\b/i.test(idx));
 check('all public HTML omits real-as-qualifier', !/\breal\b/i.test(allPages));
 check('homepage visible copy stays concise', idx.replace(/<style[\s\S]*?<\/style>/gi, '').replace(/<script[\s\S]*?<\/script>/gi, '').replace(/<[^>]+>/g, ' ').trim().split(/\s+/).length < 700);
-check('homepage distinguishes hypotheses from outcomes', idx.includes('They do not establish custody, control, authority, or recovery.'));
 check('homepage keeps the three product story cards', ['Keep the matter','Follow the fund flow','Write back the result'].every((name) => idx.includes(`<h3>${name}</h3>`)));
 check('homepage keeps verb availability off the page', !idx.includes('return 422') && !idx.includes('are available'));
-check('homepage states the hypothesis boundary', idx.includes('trace results are hypotheses for review'));
-check('homepage states no client funds', idx.includes('Kinetic Anvil holds no client funds'));
 
-// 4. Technical proof remains subordinate and accurate
-check('technical proof appears after product section', idx.indexOf('§ 02 · TECHNICAL PROOF') > idx.indexOf('§ 01 · PRODUCT'));
-check('homepage shows dated version', idx.includes('VERSION 2026-07-05'));
+// 4. Technical proof section removed (dow 2026-08-06); boundary lives in contract terms and /trust
+check('homepage omits the technical proof section', !idx.includes('TECHNICAL PROOF') && !idx.includes('id="proof"'));
+check('homepage renumbers access to section 02', idx.includes('§ 02 · ACCESS') && idx.indexOf('§ 02 · ACCESS') > idx.indexOf('§ 01 · PRODUCT'));
+check('trust page keeps the no-custody boundary', read('trust.html').includes('Kinetic Anvil never takes custody of funds'));
 check('homepage avoids ambiguous v3 badge', !idx.includes('>v3</div>'));
-check('homepage shows 45 operations', idx.includes('<div class="number">45</div><h3>Operations</h3>'));
-check('homepage keeps the dated contract fact', idx.includes('The full API, published in one dated contract'));
-check('homepage shows credential-bound access proof', idx.includes('<h3>Credential-bound</h3>') && idx.includes('Every request stays inside your organization'));
-check('homepage shows 23 event types', idx.includes('<div class="number">23</div><h3>Event types</h3>'));
-check('homepage surfaces SDK languages and license', idx.includes('Python and TypeScript, source under Apache-2.0'));
-check('homepage surfaces OpenAPI 3.1', idx.includes('OPENAPI 3.1'));
 check('homepage preserves institutional and academic paths', idx.includes('Institutional inquiry') && idx.includes('Academic inquiry'));
 
 // 5. Removed or unsupported claims and storefront residue
