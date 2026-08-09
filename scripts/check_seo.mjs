@@ -18,6 +18,7 @@ function read(rel) { return readFileSync(join(ROOT, rel), 'utf8'); }
 const indexedPages = [
   'index.html', 'about.html', 'company.html', 'contact.html',
   'privacy.html', 'terms.html', 'trust.html', 'status.html',
+  'trace.html',
 ];
 const noindexPages = [
   'sandbox.html',

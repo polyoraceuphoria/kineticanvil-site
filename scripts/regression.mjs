@@ -30,7 +30,7 @@ function section(html, marker) {
 
 const indexedPages = [
   'index.html', 'sandbox.html', 'status.html', 'trust.html', 'about.html',
-  'company.html', 'contact.html', 'privacy.html', 'terms.html',
+  'company.html', 'contact.html', 'privacy.html', 'terms.html', 'trace.html',
 ];
 const hiddenPages = [
   'mandate/index.html',
@@ -181,6 +181,22 @@ check('no /v1 rewrite in vercel.json', !vercel.includes('/v1/:path'));
 check('no em dash in indexed pages', !allIndexed.includes('\u2014'));
 check('no em dash in mandate page', !mandate.includes('\u2014'));
 check('indexed pages omit m1k3d0w stamp', !/m1k3d0w/i.test(allIndexed));
+
+// 13. crypto.trace object page truth
+const trace = read('trace.html');
+check('trace page has a single h1', (trace.match(/<h1[ >]/g) || []).length === 1);
+check('trace page leads with one object one address', trace.includes('One object. The complete answer to <em>one address</em>.'));
+check('trace page labels the terminal synthetic', trace.includes('SYNTHETIC EXAMPLE · MCP SPECIFICATION PREVIEW'));
+check('trace page states crypto.trace is live', trace.includes('crypto.trace</span> is live'));
+check('trace page keeps MCP surface as specification', trace.includes('MCP surface in specification') && trace.includes('is specified against the same contract'));
+check('trace page marks resolvers specified not live', trace.includes('address.resolve') && trace.includes('transaction.resolve') && trace.includes('>SPECIFIED</span>'));
+check('trace page states specified capabilities are not callable', trace.includes('They are not yet callable.'));
+check('trace page keeps dispatch governed', trace.includes('Dispatch is governed'));
+check('trace page states bounded hops', trace.includes('bounded hops'));
+check('trace page has no pricing residue', !trace.includes('PRICING') && !/\$\d/.test(trace.replace(/<script[\s\S]*?<\/script>/g, '')));
+check('trace page keeps envelope provider-neutral framing', trace.includes('provider-neutral') && trace.includes('Sealed sources'));
+check('homepage links the trace page', idx.includes('<a href="/trace">crypto.trace</a>'));
+check('sitemap includes trace page', sitemap.includes('<loc>https://kineticanvil.com/trace</loc>'));
 
 console.log('\n' + (failures === 0 ? 'ALL CHECKS PASSED' : failures + ' CHECK(S) FAILED') + ` (${passes} pass, ${failures} fail)`);
 process.exit(failures === 0 ? 0 : 1);

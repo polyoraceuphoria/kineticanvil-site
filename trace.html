@@ -3,20 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Kinetic Anvil keeps a recovery matter and its BTC or ETH fund-flow trace in one record.">
-<link rel="canonical" href="https://kineticanvil.com/">
-<meta property="og:title" content="Kinetic Anvil">
-<meta property="og:description" content="Keep the recovery matter and its BTC or ETH fund-flow trace in one record.">
-<meta property="og:url" content="https://kineticanvil.com/">
+<meta name="description" content="crypto.trace returns the provider-neutral record of an address as one canonical envelope, written back to the matter.">
+<link rel="canonical" href="https://kineticanvil.com/trace">
+<meta property="og:title" content="crypto.trace | Kinetic Anvil">
+<meta property="og:description" content="One canonical envelope for an address: fund flows, terminal venues, and confidence-labeled hypotheses.">
+<meta property="og:url" content="https://kineticanvil.com/trace">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://kineticanvil.com/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Kinetic Anvil">
-<meta name="twitter:description" content="Keep the recovery matter and its BTC or ETH fund-flow trace in one record.">
+<meta name="twitter:title" content="crypto.trace | Kinetic Anvil">
+<meta name="twitter:description" content="One canonical envelope for an address: fund flows, terminal venues, and confidence-labeled hypotheses.">
 <meta name="twitter:image" content="https://kineticanvil.com/og.png">
-<title>Kinetic Anvil | Recovery matter record and crypto tracing</title>
+<title>crypto.trace | One canonical trace envelope | Kinetic Anvil</title>
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
@@ -533,44 +533,47 @@ footer a.c:hover{color:var(--ink)}
 <style id="kp-fmark">.site-footer{display:block}.footer-bottom{position:relative}.footer-mark{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:flex;align-items:center;line-height:0}.footer-mark svg{height:22px;width:auto;display:block;color:rgba(255,255,255,.6);transition:color .15s ease}.footer-mark:hover svg{color:#00FF73}@media(max-width:640px){.footer-bottom{align-items:center}.footer-mark{position:static;transform:none;order:-1;margin-bottom:6px}}</style>
 <script src="/analytics.js"></script>
 
-<style id="product-first-home">
-/* Product outcome first. Contract mechanics remain supporting proof. */
+<style id="trace-object-page">
+/* crypto.trace as one callable object. States stay honest: live vs specified. */
 .hero{padding:92px 0 76px}
-.hero-grid{grid-template-columns:minmax(0,.78fr) minmax(500px,1.22fr);gap:64px}
+.hero-grid{grid-template-columns:minmax(0,.92fr) minmax(460px,1.08fr);gap:64px}
 .hero-tag{display:flex;align-items:center;gap:10px}
 .live-dot{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 14px rgba(0,255,115,.55)}
-.hero h1{font-size:62px;max-width:620px}
-.hero-lede{max-width:590px;font-size:17px;line-height:1.7}
+.hero h1{font-size:58px;max-width:590px}
+.hero-lede{max-width:560px;font-size:17px;line-height:1.7}
 .hero-note{margin-top:18px;font-family:'Geist Mono',monospace;font-size:9px;line-height:1.6;letter-spacing:.09em;color:var(--faint);text-transform:uppercase}
-.trace-scene{position:relative;display:grid;grid-template-columns:150px 1fr 158px;min-height:390px;background:#0b0e10;border:1px solid var(--stone-700);overflow:hidden;box-shadow:0 30px 90px rgba(0,0,0,.25)}
-.trace-scene::before{content:"";position:absolute;inset:0;background:linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);background-size:28px 28px;pointer-events:none}
-.scene-card{position:relative;z-index:2;margin:20px 0;align-self:center;background:rgba(17,21,24,.96);border:1px solid var(--stone-700);padding:16px 14px;box-shadow:0 16px 42px rgba(0,0,0,.28)}
-.scene-card.left{margin-left:16px}.scene-card.right{margin-right:16px}
-.scene-kicker{font-family:'Geist Mono',monospace;font-size:8px;letter-spacing:.17em;color:var(--green);margin-bottom:14px}
-.scene-title{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:300;margin-bottom:14px}
-.scene-row{border-top:1px solid var(--stone-800);padding:8px 0 0;margin-top:8px}
-.scene-row span{display:block;font-family:'Geist Mono',monospace;font-size:7.5px;letter-spacing:.11em;color:var(--stone-500);margin-bottom:4px}
-.scene-row b{display:block;font-family:'Geist Mono',monospace;font-size:8.5px;font-weight:400;color:var(--stone-300);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.scene-status{display:flex;align-items:center;gap:7px;margin-top:13px;font-family:'Geist Mono',monospace;font-size:8px;color:var(--stone-300)}
-.scene-status i{width:5px;height:5px;border-radius:50%;background:var(--green);box-shadow:0 0 8px rgba(0,255,115,.55)}
-.flow-canvas{position:relative;z-index:1;min-width:0}
-.flow-canvas svg{width:100%;height:100%;display:block;overflow:visible}
-.flow-line{stroke:var(--stone-600);stroke-width:1.2;fill:none;stroke-dasharray:4 5}
-.flow-line.hot{stroke:rgba(0,255,115,.6)}
-.flow-node{fill:#111518;stroke:var(--stone-500);stroke-width:1.2}
-.flow-node.root{stroke:var(--green);stroke-width:1.6}
-.flow-node.terminal{stroke:#8fe0a8}
-.flow-label{font-family:'Geist Mono',monospace;font-size:7px;letter-spacing:.05em;fill:var(--stone-400)}
-.flow-confidence{font-family:'Geist Mono',monospace;font-size:6px;fill:var(--green)}
-.scene-caption{position:absolute;z-index:3;left:50%;bottom:12px;transform:translateX(-50%);font-family:'Geist Mono',monospace;font-size:7.5px;letter-spacing:.14em;color:var(--stone-500);white-space:nowrap}
-.product-cards{display:grid;grid-template-columns:repeat(3,1fr);margin-top:40px;border-top:1px solid var(--hair);border-left:1px solid var(--hair)}
-.product-card{padding:34px 30px 36px;border-right:1px solid var(--hair);border-bottom:1px solid var(--hair)}
-.product-card .n{font-family:'Geist Mono',monospace;font-size:9px;letter-spacing:.15em;color:var(--green);margin-bottom:24px}
-.product-card h3{font-family:'Cormorant Garamond',serif;font-size:27px;font-weight:300;margin-bottom:12px}
-.product-card p{font-size:13px;line-height:1.7;color:var(--muted);font-weight:400}
-@media(max-width:1050px){.hero-grid{grid-template-columns:1fr;gap:44px}.trace-scene{max-width:760px}}
-@media(max-width:860px){.hero h1{font-size:48px}.product-cards{grid-template-columns:1fr}}
-@media(max-width:640px){.hero{padding:54px 0 48px}.hero h1{font-size:40px!important}.hero-lede{font-size:15px}.trace-scene{grid-template-columns:1fr;min-height:520px}.scene-card{position:absolute;width:140px;margin:0}.scene-card.left{left:12px;top:14px}.scene-card.right{right:12px;bottom:34px}.flow-canvas{height:520px}.scene-caption{bottom:10px}.product-card{padding:28px 22px}}
+.term{position:relative;background:#0b0e10;border:1px solid var(--stone-700);font-family:'Geist Mono',monospace;font-size:11.5px;line-height:1.66;box-shadow:0 30px 90px rgba(0,0,0,.25)}
+.term-top{display:flex;align-items:center;gap:7px;padding:12px 16px;border-bottom:1px solid var(--stone-800)}
+.term-top .d{width:7px;height:7px;border-radius:50%;background:var(--stone-600)}
+.term-name{margin-left:9px;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--stone-400)}
+.term-tag{margin-left:auto;font-size:9px;letter-spacing:.14em;color:var(--stone-400);border:1px solid var(--stone-700);padding:4px 9px}
+.term-out{padding:18px 18px 16px;white-space:pre;overflow-x:auto;color:var(--stone-300)}
+.c-mut{color:var(--stone-500)}
+.c-str{color:#8fe0a8}
+.c-key{color:var(--green)}
+.term-cap{padding:0 18px 14px;font-family:'Geist Mono',monospace;font-size:8px;letter-spacing:.14em;color:var(--stone-500);text-transform:uppercase}
+.env-grid{display:grid;grid-template-columns:repeat(3,1fr);margin-top:48px;border-top:1px solid var(--hair);border-left:1px solid var(--hair)}
+.env-cell{padding:30px 28px 32px;border-right:1px solid var(--hair);border-bottom:1px solid var(--hair)}
+.env-id{font-family:'Geist Mono',monospace;font-size:9px;letter-spacing:.18em;color:var(--green);margin-bottom:16px}
+.env-cell h3{font-family:'Cormorant Garamond',serif;font-size:23px;font-weight:300;margin-bottom:10px}
+.env-cell p{font-size:13px;line-height:1.65;color:var(--muted);font-weight:400}
+.chain{display:flex;align-items:center;margin-top:52px;overflow-x:auto;padding-bottom:6px}
+.chain .st{display:flex;flex-direction:column;align-items:center;gap:10px;flex:0 0 auto;padding:0 5px}
+.chain .dot{width:5px;height:5px;border-radius:50%;background:var(--ink);opacity:.85}
+.chain .st:first-child .dot{background:var(--green);opacity:1}
+.chain .nm{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.08em;color:var(--muted);white-space:nowrap}
+.chain .rail{height:1px;background:var(--hair);flex:1;min-width:14px;margin-bottom:18px}
+.tool-table{margin-top:48px;border-top:1px solid var(--hair)}
+.tool-row{display:grid;grid-template-columns:250px 130px 1fr;border-bottom:1px solid var(--hair);align-items:center}
+.tool-row.header .tool-cell{font-size:10px;letter-spacing:.18em;color:var(--faint);padding:14px 16px 10px 0}
+.tool-cell{font-family:'Geist Mono',monospace;font-size:11.5px;letter-spacing:.06em;color:var(--stone-300);padding:16px 16px 16px 0}
+.tool-cell.desc{font-family:'Inter',sans-serif;font-size:13px;color:var(--muted);font-weight:400;letter-spacing:0}
+.pill{display:inline-block;font-family:'Geist Mono',monospace;font-size:9px;letter-spacing:.14em;padding:4px 9px;border:1px solid var(--stone-700);color:var(--stone-400)}
+.pill.live{border-color:rgba(0,255,115,.4);color:var(--green)}
+.surface-note{margin-top:26px;font-size:13px;line-height:1.7;color:var(--faint);font-weight:400;max-width:640px}
+@media(max-width:1050px){.hero-grid{grid-template-columns:1fr;gap:44px}.term{max-width:760px}}
+@media(max-width:860px){.hero h1{font-size:46px}.env-grid{grid-template-columns:1fr}.tool-row{grid-template-columns:1fr;gap:4px;padding:14px 0}.tool-cell{padding:2px 0}.tool-row.header{display:none}}
+@media(max-width:640px){.hero{padding:54px 0 48px}.hero h1{font-size:38px!important}.hero-lede{font-size:15px}.term-out{font-size:10.5px}}
 </style>
 <meta name="robots" content="index, follow">
 <meta name="theme-color" content="#0C1014">
@@ -617,81 +620,122 @@ footer a.c:hover{color:var(--ink)}
 <section class="hero"><div class="frame">
   <div class="hero-grid">
     <div>
-      <div class="hero-tag"><span class="live-dot"></span>KINETIC ANVIL</div>
-      <h1>The system of record for <em>crypto enforcement</em>.</h1>
-      <p class="hero-lede">Anvil traces BTC and ETH fund flows and writes every result back to the matter record.</p>
+      <div class="hero-tag"><span class="live-dot"></span>CRYPTO.TRACE</div>
+      <h1>One object. The complete answer to <em>one address</em>.</h1>
+      <p class="hero-lede">crypto.trace takes an address and returns the full provider-neutral record: fund flows across bounded hops, terminal venues, and confidence-labeled hypotheses, as one canonical envelope written back to the matter record.</p>
       <div class="hero-cta">
         <a class="btn primary" href="/sandbox">EXPLORE THE SANDBOX</a>
-        <a class="btn" href="#product">SEE WHAT ANVIL DOES</a>
+        <a class="btn" href="https://docs.kineticanvil.com">READ THE CONTRACT</a>
       </div>
-      <p class="hero-note"><span class="mono">crypto.trace</span> is live · Sandbox runs on synthetic data</p>
+      <p class="hero-note"><span class="mono">crypto.trace</span> is live · Sandbox runs on synthetic data · MCP surface in specification</p>
     </div>
-    <div class="trace-scene" aria-label="Synthetic example showing a matter record, a multi-hop fund-flow trace, and the result written back">
-      <div class="scene-card left">
-        <div class="scene-kicker">01 · MATTER</div>
-        <div class="scene-title">Recovery record</div>
-        <div class="scene-row"><span>MATTER ID</span><b>matter_demo_04</b></div>
-        <div class="scene-row"><span>SUBJECT WALLET</span><b>0x742d...44e</b></div>
-        <div class="scene-row"><span>CHAIN</span><b>ETH</b></div>
-        <div class="scene-status"><i></i>TRACE REQUESTED</div>
+    <div class="term" aria-label="Synthetic example showing a crypto.trace call and the canonical envelope it returns">
+      <div class="term-top">
+        <div class="d"></div><div class="d"></div><div class="d"></div>
+        <span class="term-name">MCP · Anvil Protocol</span>
+        <span class="term-tag">SANDBOX</span>
       </div>
-      <div class="flow-canvas" aria-hidden="true">
-        <svg viewBox="0 0 280 390" role="img">
-          <path class="flow-line hot" d="M18 194 C65 194 62 112 111 112"/>
-          <path class="flow-line" d="M18 194 C68 194 69 261 118 261"/>
-          <path class="flow-line hot" d="M111 112 C160 112 157 71 203 71"/>
-          <path class="flow-line" d="M111 112 C164 112 159 161 210 161"/>
-          <path class="flow-line" d="M118 261 C170 261 165 317 214 317"/>
-          <circle class="flow-node root" cx="18" cy="194" r="8"/>
-          <circle class="flow-node" cx="111" cy="112" r="7"/>
-          <circle class="flow-node" cx="118" cy="261" r="7"/>
-          <circle class="flow-node terminal" cx="203" cy="71" r="8"/>
-          <circle class="flow-node terminal" cx="210" cy="161" r="8"/>
-          <circle class="flow-node" cx="214" cy="317" r="8"/>
-          <text class="flow-label" x="3" y="218">subject</text>
-          <text class="flow-label" x="86" y="96">hop 1</text>
-          <text class="flow-label" x="93" y="284">hop 1</text>
-          <text class="flow-label" x="183" y="51">known service</text>
-          <text class="flow-confidence" x="187" y="91">high confidence</text>
-          <text class="flow-label" x="188" y="185">exchange hypothesis</text>
-          <text class="flow-confidence" x="188" y="198">review</text>
-          <text class="flow-label" x="190" y="340">unknown wallet</text>
-        </svg>
-      </div>
-      <div class="scene-card right">
-        <div class="scene-kicker">03 · WRITEBACK</div>
-        <div class="scene-title">Fund-flow map</div>
-        <div class="scene-row"><span>WALLETS</span><b>06 observed</b></div>
-        <div class="scene-row"><span>FLOW EDGES</span><b>05 recorded</b></div>
-        <div class="scene-row"><span>HYPOTHESES</span><b>02 for review</b></div>
-        <div class="scene-status"><i></i>RESULT ATTACHED</div>
-      </div>
-      <div class="scene-caption">SYNTHETIC EXAMPLE · PRODUCT FLOW</div>
+      <div class="term-out"><span class="c-mut">&gt;</span> tools/call <span class="c-key">crypto.trace</span>
+<span class="c-mut">  address:</span> <span class="c-str">"bc1q9synthetic0example000"</span>
+
+<span class="c-mut">&larr; intel_envelope</span>
+{
+  <span class="c-key">"trace_id"</span>: <span class="c-str">"trc_8f2a&hellip;"</span>,
+  <span class="c-key">"elements"</span>: 6,
+  <span class="c-key">"nodes"</span>: 3,
+  <span class="c-key">"edges"</span>: 3,
+  <span class="c-key">"outflow"</span>: {
+    <span class="c-str">"terminal_venues"</span>: 2,
+    <span class="c-str">"bounded_hops"</span>: 3
+  },
+  <span class="c-key">"hypotheses"</span>: <span class="c-str">"2 for review"</span>,
+  <span class="c-key">"written_to"</span>: <span class="c-str">"matter_demo_04"</span>
+}</div>
+      <div class="term-cap">SYNTHETIC EXAMPLE · MCP SPECIFICATION PREVIEW</div>
     </div>
   </div>
 </div></section>
 
-<section class="sec" id="product"><div class="frame">
+<section class="sec" id="envelope"><div class="frame">
   <div class="section-head">
-    <div class="eyebrow">§ 01 · PRODUCT</div>
-    <h2>One record for the matter and the trace</h2>
+    <div class="eyebrow">&sect; 01 · THE ENVELOPE</div>
+    <h2>One canonical envelope. <em>No vendor residue.</em></h2>
+    <p>Every call returns the same provider-neutral structure regardless of what sits behind the seam. Stable identifiers join a trace to live monitoring, and every result writes back to the matter it belongs to.</p>
   </div>
-  <div class="product-cards">
-    <div class="product-card"><div class="n">01 · RECORD</div><h3>Keep the matter</h3><p>Connect parties, judgment data, wallet inputs, jobs, trace maps, packets, ledger entries, and events.</p></div>
-    <div class="product-card"><div class="n">02 · TRACE</div><h3>Follow the fund flow</h3><p>Trace BTC or ETH outflows across bounded hops.</p></div>
-    <div class="product-card"><div class="n">03 · REVIEW</div><h3>Write back the result</h3><p>Store wallets, flow edges, terminal addresses, and confidence-labeled hypotheses on the matter.</p></div>
+  <div class="env-grid">
+    <div class="env-cell">
+      <div class="env-id">ELEMENTS · NODES · EDGES</div>
+      <h3>Canonical taxonomy</h3>
+      <p>Fund flows resolve to a typed element tree with stable identifiers. The same identifiers appear in traces, monitors, and packets, so results compose instead of colliding.</p>
+    </div>
+    <div class="env-cell">
+      <div class="env-id">PROVIDER-NEUTRAL</div>
+      <h3>Sealed sources</h3>
+      <p>Source provenance stays behind the protocol seam. Tenants receive one envelope shape, sanitized at every boundary: reads, events, and signed webhooks.</p>
+    </div>
+    <div class="env-cell">
+      <div class="env-id">MATTER-BOUND</div>
+      <h3>Written back</h3>
+      <p>A trace is not a lookup. Every envelope writes back to the matter record where counsel, packets, and enforcement actions pick it up.</p>
+    </div>
+  </div>
+  <div class="chain" aria-label="How a trace connects to monitoring, the matter record, packets, and enforcement">
+    <div class="st"><div class="dot"></div><div class="nm">crypto.trace</div></div>
+    <div class="rail"></div>
+    <div class="st"><div class="dot"></div><div class="nm">crypto.monitor</div></div>
+    <div class="rail"></div>
+    <div class="st"><div class="dot"></div><div class="nm">matter record</div></div>
+    <div class="rail"></div>
+    <div class="st"><div class="dot"></div><div class="nm">packet</div></div>
+    <div class="rail"></div>
+    <div class="st"><div class="dot"></div><div class="nm">enforcement</div></div>
   </div>
 </div></section>
 
+<section class="sec" id="surface"><div class="frame">
+  <div class="section-head">
+    <div class="eyebrow">&sect; 02 · THE SURFACE</div>
+    <h2>Reads resolve instantly. <em>Dispatch is governed.</em></h2>
+    <p>The protocol API carries crypto.trace today. The MCP surface is specified against the same contract, the same keys, and the same scopes: read-only resolvers over completed work, with new tracing dispatched through the governed Jobs plane.</p>
+  </div>
+  <div class="tool-table">
+    <div class="tool-row header">
+      <div class="tool-cell">CAPABILITY</div>
+      <div class="tool-cell">STATE</div>
+      <div class="tool-cell">RETURNS</div>
+    </div>
+    <div class="tool-row">
+      <div class="tool-cell">crypto.trace dispatch</div>
+      <div class="tool-cell"><span class="pill live">LIVE</span></div>
+      <div class="tool-cell desc">Runs a trace through the governed Jobs plane under scoped keys.</div>
+    </div>
+    <div class="tool-row">
+      <div class="tool-cell">envelope read</div>
+      <div class="tool-cell"><span class="pill live">LIVE</span></div>
+      <div class="tool-cell desc">The full canonical envelope for a completed trace, through the protocol API.</div>
+    </div>
+    <div class="tool-row">
+      <div class="tool-cell">address.resolve</div>
+      <div class="tool-cell"><span class="pill">SPECIFIED</span></div>
+      <div class="tool-cell desc">Everything the record already holds on an address: prior traces, monitor state, exposure.</div>
+    </div>
+    <div class="tool-row">
+      <div class="tool-cell">transaction.resolve</div>
+      <div class="tool-cell"><span class="pill">SPECIFIED</span></div>
+      <div class="tool-cell desc">Envelope elements attached to a transaction hash across the record.</div>
+    </div>
+  </div>
+  <p class="surface-note">Specified capabilities describe the published direction of the contract. They are not yet callable. Availability is stated by the contract itself, never by this page.</p>
+</div></section>
 
 <section class="access" id="access"><div class="frame">
   <div class="access-grid">
     <div>
-      <div class="eyebrow">§ 02 · ACCESS</div>
+      <div class="eyebrow">&sect; 03 · ACCESS</div>
       <h2>Start in the sandbox. Talk when you're ready.</h2>
     </div>
     <div>
-      <p>Run the full trace flow on synthetic matter data. When it makes sense, talk to Kinetic about institutional access.</p>
+      <p>Run the trace flow on synthetic matter data. When it makes sense, talk to Kinetic about institutional access.</p>
       <div class="btn-row">
         <a class="btn primary" href="/sandbox">EXPLORE THE SANDBOX</a>
         <a class="btn" href="https://docs.kineticanvil.com">READ THE DOCS</a>
@@ -766,14 +810,14 @@ footer a.c:hover{color:var(--ink)}
     </div>
   </footer>
 
-<!-- Hero terminal is a static example; no live calls from the marketing page. -->
+<!-- The terminal is a static synthetic example; no live calls from this page. -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Organization",
   "name": "Kinetic Anvil",
   "url": "https://kineticanvil.com",
-  "description": "A recovery matter record with BTC and ETH fund-flow tracing and results written back to the matter."
+  "description": "crypto.trace returns the provider-neutral record of an address as one canonical envelope, written back to the matter."
 }
 </script>
 
