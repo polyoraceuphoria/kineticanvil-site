@@ -534,7 +534,7 @@ footer a.c:hover{color:var(--ink)}
 <script src="/analytics.js"></script>
 
 <style id="trace-object-page">
-/* crypto.trace as one callable object. States stay honest: live vs specified. */
+/* crypto.trace as one callable object. Matter of fact; no availability enumeration. */
 .hero{padding:92px 0 76px}
 .hero-grid{grid-template-columns:minmax(0,.92fr) minmax(460px,1.08fr);gap:64px}
 .hero-tag{display:flex;align-items:center;gap:10px}
@@ -564,13 +564,10 @@ footer a.c:hover{color:var(--ink)}
 .chain .nm{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.08em;color:var(--muted);white-space:nowrap}
 .chain .rail{height:1px;background:var(--hair);flex:1;min-width:14px;margin-bottom:18px}
 .tool-table{margin-top:48px;border-top:1px solid var(--hair)}
-.tool-row{display:grid;grid-template-columns:250px 130px 1fr;border-bottom:1px solid var(--hair);align-items:center}
+.tool-row{display:grid;grid-template-columns:250px 1fr;border-bottom:1px solid var(--hair);align-items:center}
 .tool-row.header .tool-cell{font-size:10px;letter-spacing:.18em;color:var(--faint);padding:14px 16px 10px 0}
 .tool-cell{font-family:'Geist Mono',monospace;font-size:11.5px;letter-spacing:.06em;color:var(--stone-300);padding:16px 16px 16px 0}
 .tool-cell.desc{font-family:'Inter',sans-serif;font-size:13px;color:var(--muted);font-weight:400;letter-spacing:0}
-.pill{display:inline-block;font-family:'Geist Mono',monospace;font-size:9px;letter-spacing:.14em;padding:4px 9px;border:1px solid var(--stone-700);color:var(--stone-400)}
-.pill.live{border-color:rgba(0,255,115,.4);color:var(--green)}
-.surface-note{margin-top:26px;font-size:13px;line-height:1.7;color:var(--faint);font-weight:400;max-width:640px}
 @media(max-width:1050px){.hero-grid{grid-template-columns:1fr;gap:44px}.term{max-width:760px}}
 @media(max-width:860px){.hero h1{font-size:46px}.env-grid{grid-template-columns:1fr}.tool-row{grid-template-columns:1fr;gap:4px;padding:14px 0}.tool-cell{padding:2px 0}.tool-row.header{display:none}}
 @media(max-width:640px){.hero{padding:54px 0 48px}.hero h1{font-size:38px!important}.hero-lede{font-size:15px}.term-out{font-size:10.5px}}
@@ -622,12 +619,12 @@ footer a.c:hover{color:var(--ink)}
     <div>
       <div class="hero-tag"><span class="live-dot"></span>CRYPTO.TRACE</div>
       <h1>One object. The complete answer to <em>one address</em>.</h1>
-      <p class="hero-lede">crypto.trace takes an address and returns the full provider-neutral record: fund flows across bounded hops, terminal venues, and confidence-labeled hypotheses, as one canonical envelope written back to the matter record.</p>
+      <p class="hero-lede">An address goes in. The complete provider-neutral record comes out: fund flows, terminal venues, and confidence-labeled hypotheses, written back to the matter as one canonical envelope.</p>
       <div class="hero-cta">
         <a class="btn primary" href="/sandbox">EXPLORE THE SANDBOX</a>
         <a class="btn" href="https://docs.kineticanvil.com">READ THE CONTRACT</a>
       </div>
-      <p class="hero-note"><span class="mono">crypto.trace</span> is live · Sandbox runs on synthetic data · MCP surface in specification</p>
+      <p class="hero-note">Sandbox runs on synthetic data</p>
     </div>
     <div class="term" aria-label="Synthetic example showing a crypto.trace call and the canonical envelope it returns">
       <div class="term-top">
@@ -651,7 +648,7 @@ footer a.c:hover{color:var(--ink)}
   <span class="c-key">"hypotheses"</span>: <span class="c-str">"2 for review"</span>,
   <span class="c-key">"written_to"</span>: <span class="c-str">"matter_demo_04"</span>
 }</div>
-      <div class="term-cap">SYNTHETIC EXAMPLE · MCP SPECIFICATION PREVIEW</div>
+      <div class="term-cap">SYNTHETIC EXAMPLE</div>
     </div>
   </div>
 </div></section>
@@ -696,36 +693,26 @@ footer a.c:hover{color:var(--ink)}
   <div class="section-head">
     <div class="eyebrow">&sect; 02 · THE SURFACE</div>
     <h2>Reads resolve instantly. <em>Dispatch is governed.</em></h2>
-    <p>The protocol API carries crypto.trace today. The MCP surface is specified against the same contract, the same keys, and the same scopes: read-only resolvers over completed work, with new tracing dispatched through the governed Jobs plane.</p>
+    <p>One contract carries the object. Read the record, dispatch new work, receive one envelope. Access is provisioned through scoped keys.</p>
   </div>
   <div class="tool-table">
     <div class="tool-row header">
       <div class="tool-cell">CAPABILITY</div>
-      <div class="tool-cell">STATE</div>
-      <div class="tool-cell">RETURNS</div>
+      <div class="tool-cell desc">RETURNS</div>
     </div>
     <div class="tool-row">
-      <div class="tool-cell">crypto.trace dispatch</div>
-      <div class="tool-cell"><span class="pill live">LIVE</span></div>
-      <div class="tool-cell desc">Runs a trace through the governed Jobs plane under scoped keys.</div>
-    </div>
-    <div class="tool-row">
-      <div class="tool-cell">envelope read</div>
-      <div class="tool-cell"><span class="pill live">LIVE</span></div>
-      <div class="tool-cell desc">The full canonical envelope for a completed trace, through the protocol API.</div>
+      <div class="tool-cell">crypto.trace</div>
+      <div class="tool-cell desc">A full trace of an address, dispatched through the governed Jobs plane.</div>
     </div>
     <div class="tool-row">
       <div class="tool-cell">address.resolve</div>
-      <div class="tool-cell"><span class="pill">SPECIFIED</span></div>
-      <div class="tool-cell desc">Everything the record already holds on an address: prior traces, monitor state, exposure.</div>
+      <div class="tool-cell desc">Everything the record holds on an address: traces, monitor state, exposure.</div>
     </div>
     <div class="tool-row">
       <div class="tool-cell">transaction.resolve</div>
-      <div class="tool-cell"><span class="pill">SPECIFIED</span></div>
       <div class="tool-cell desc">Envelope elements attached to a transaction hash across the record.</div>
     </div>
   </div>
-  <p class="surface-note">Specified capabilities describe the published direction of the contract. They are not yet callable. Availability is stated by the contract itself, never by this page.</p>
 </div></section>
 
 <section class="access" id="access"><div class="frame">
